@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tianaq26.github.io/Eteria-Robotics-Studio/sitemap.xml
