@@ -1,0 +1,62 @@
+{
+  "id": "6.2",
+  "mundo": 6,
+  "orden": 2,
+  "titulo": "La revancha",
+  "tagline": "El rival aprendió de tu código. ¿Y tú del suyo?",
+  "concepto": "Iteración y mejora",
+  "duracion_estimada_min": 15,
+  "lenguaje": "py",
+  "narrativa": "En la competencia real, los robots mejoran ronda a ronda. Observa cómo se comportó tu rival en el combate anterior y adapta tu estrategia. ¿Ataca en línea recta? Esquiva. ¿Gira siempre hacia la derecha? Anticípalo. La adaptación es la clave del campeón.",
+  "objetivo": "Mejora tu código del torneo anterior con al menos una nueva táctica específica contra un rival agresivo.",
+  "codigo_inicial": "import board, time\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# REVANCHA — mejora tu código anterior.\n# Sugerencia: añade velocidad proporcional y escape direccional.\n# ¿Qué funcionó? ¿Qué falló? Ajústalo.\n\nwhile True:\n    pass\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 90,
+    "visualizaciones": [
+      "trail"
+    ]
+  },
+  "pistas": [
+    "Si el rival siempre ataca de frente, un esquive lateral (motor asimétrico) lo hace pasar de largo.",
+    "Aumentar T_GIRO_ESC hace que el robot quede mejor orientado tras escapar.",
+    "Añade el LED con tu color — en competencia real identifica tu robot."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot no salió"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 70
+      },
+      "descripcion": "Sobrevivió 70 segundos"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 88
+      },
+      "descripcion": "Dominó casi todo el torneo"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡MAESTRO! 88 segundos en un combate real. Estás listo para competir en el mundo físico.",
+    "2_estrellas": "¡Excelente mejora! 70 segundos muestra una estrategia sólida. Sigue refinando.",
+    "1_estrella": "No saliste — eso ya es un logro. Añade control proporcional para atacar con más fuerza.",
+    "0_estrellas": "El robot cayó. Toma el código de la misión 5.1 y pégalo aquí como base — ya probó funcionar."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 550,
+  "desbloquea": [
+    "6.3"
+  ]
+}

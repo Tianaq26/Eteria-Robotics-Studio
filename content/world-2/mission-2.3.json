@@ -1,0 +1,46 @@
+{
+  "id": "2.3",
+  "mundo": 2,
+  "orden": 3,
+  "titulo": "El semáforo del combate",
+  "tagline": "Rojo, amarillo, verde — pero en robótica.",
+  "concepto": "LED + lógica de estados",
+  "duracion_estimada_min": 6,
+  "lenguaje": "py",
+
+  "narrativa": "El LED de tu robot puede comunicar información visual. Úsalo como indicador de estado: rojo cuando detectas el borde, amarillo cuando buscas al rival, verde cuando atacas. Así puedes ver la lógica interna del robot en tiempo real.",
+
+  "objetivo": "Implementa lógica completa con 3 estados y cambia el color del LED según el estado actual.",
+
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\n\nBLANCO = 3000\n\nwhile True:\n    dist  = sonar.dist_cm()\n    borde = fl.value < BLANCO or fr.value < BLANCO\n\n    if borde:\n        ib.pixel = (255, 0, 0)   # rojo = peligro\n        ib.motor_1.throttle = -0.7\n        ib.motor_2.throttle = -0.7\n    elif 0 < dist < 25:\n        ib.pixel = (0, 0, 0)   # TODO: verde = atacando\n        ib.motor_1.throttle = 0.0  # TODO: ataca\n        ib.motor_2.throttle = 0.0\n    else:\n        ib.pixel = (0, 0, 0)   # TODO: amarillo = buscando\n        ib.motor_1.throttle = 0.0  # TODO: gira buscando\n        ib.motor_2.throttle = 0.0\n\n    sleep(0.02)\n",
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\n\nBLANCO = 3000\n\nwhile True:\n    dist  = sonar.dist_cm()\n    borde = fl.value < BLANCO or fr.value < BLANCO\n\n    if borde:\n        ib.pixel = (255, 0, 0)      # rojo = peligro\n        ib.motor_1.throttle = -0.7\n        ib.motor_2.throttle = -0.7\n    elif 0 < dist < 25:\n        ib.pixel = (0, 255, 0)      # verde = atacando\n        ib.motor_1.throttle = 1.0\n        ib.motor_2.throttle = 1.0\n    else:\n        ib.pixel = (255, 120, 0)    # amarillo = buscando\n        ib.motor_1.throttle =  0.5\n        ib.motor_2.throttle = -0.5\n\n    sleep(0.02)\n",
+
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 15,
+    "visualizaciones": ["ir", "sonar"]
+  },
+
+  "pistas": [
+    "Verde en RGB es (0, 255, 0). Amarillo es (255, 120, 0).",
+    "ib.pixel = (r, g, b) donde cada valor va de 0 a 255.",
+    "Completa también los throttle de cada estado — sin movimiento no hay estrellas."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "pixel_encendido", "valor": true }, "descripcion": "El LED cambió de color" },
+    { "cantidad": 2, "criterio": { "tipo": "no_salio", "valor": true }, "descripcion": "El robot no salió del dojo" },
+    { "cantidad": 3, "criterio": { "tipo": "tiempo_minimo", "valor": 13 }, "descripcion": "Sobrevivió casi todo el combate" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Brillante! Tu robot lucha y comunica su estado. Eso lo hace depurable y comprensible.",
+    "2_estrellas": "Bien! No salió del dojo. Asegúrate de que el LED cambia a verde al atacar y amarillo al buscar.",
+    "1_estrella": "El LED cambió. Ahora completa los throttle para que el robot también se mueva correctamente.",
+    "0_estrellas": "El robot no cambió el LED ni se movió. Revisa cada bloque if/elif/else."
+  },
+
+  "xp": 200,
+  "desbloquea": ["3.1"]
+}

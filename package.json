@@ -1,0 +1,12 @@
+{
+  "name": "eteria-robotics-studio",
+  "version": "0.1.0",
+  "description": "Eteria Robotics Studio — IDE + simulador de combate + tutorial (Fase 1 MVP)",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/headless.js",
+    "serve": "node tools/serve.js",
+    "fix:glb": "node tools/fix-glb-skin.js"
+  },
+  "license": "CC-BY-NC-SA-4.0"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "1.1",
+  "mundo": 1,
+  "orden": 1,
+  "titulo": "Ojos infrarrojos",
+  "tagline": "El dojo tiene borde blanco. Tu robot necesita verlo.",
+  "concepto": "Sensores IR analógicos",
+  "duracion_estimada_min": 6,
+  "lenguaje": "py",
+
+  "narrativa": "El dojo es negro. El borde es blanco. Los sensores IR de tu robot miden la reflexión de luz en el piso: sobre negro el valor es ALTO (~60000), sobre blanco es BAJO (~500). Con eso puedes saber cuándo estás a punto de caer.",
+
+  "objetivo": "Haz que el robot retroceda cuando detecte el borde blanco con cualquier sensor frontal.",
+
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\nfrom time import sleep\n\nib = IdeaBoard()\n\n# Sensores IR — mismos pines que el robot físico\n# value < BLANCO  →  borde blanco (peligro!)\n# value > BLANCO  →  dojo negro (seguro)\nfl = ib.AnalogIn(board.IO36)  # Frontal izquierdo\nfr = ib.AnalogIn(board.IO39)  # Frontal derecho\nbl = ib.AnalogIn(board.IO34)  # Trasero izquierdo\nbr = ib.AnalogIn(board.IO35)  # Trasero derecho\n\nBLANCO = 3000  # umbral: por debajo = borde blanco detectado\n\nwhile True:\n    if fl.value < BLANCO or fr.value < BLANCO:\n        # TODO: retrocede y pon el LED en rojo\n        pass\n    else:\n        # TODO: avanza y pon el LED en verde\n        pass\n\n    sleep(0.02)\n",
+
+  "escenario": {
+    "modo": "solo",
+    "duracion_test_s": 15,
+    "visualizaciones": ["ir"]
+  },
+
+  "pistas": [
+    "ib.motor_1.throttle = -1 y ib.motor_2.throttle = -1 hace retroceder.",
+    "ib.pixel = (255, 0, 0) pone el LED rojo. (0, 255, 0) es verde.",
+    "El valor BLANCO = 3000 es el umbral: value < 3000 significa borde blanco detectado."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "motores_activos", "valor": true }, "descripcion": "El robot se movió" },
+    { "cantidad": 2, "criterio": { "tipo": "no_salio", "valor": true }, "descripcion": "El robot no salió del dojo" },
+    { "cantidad": 3, "criterio": { "tipo": "tiempo_minimo", "valor": 13 }, "descripcion": "Sobrevivió más de 13 segundos" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Perfecto! Tus sensores IR funcionan igual que en el robot real. Ese mismo código corre en el hardware.",
+    "2_estrellas": "El robot no salió. Ahora añade el LED para saber cuándo detecta el borde.",
+    "1_estrella": "El robot se movió pero salió. Revisa que el retroceso ocurra cuando fl.value < BLANCO.",
+    "0_estrellas": "El robot no hizo nada. Reemplaza el pass del if por ib.motor_1.throttle = -1 y ib.motor_2.throttle = -1."
+  },
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom time import sleep\n\nib = IdeaBoard()\n\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\n\nwhile True:\n    if fl.value < BLANCO or fr.value < BLANCO:\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1\n        ib.motor_2.throttle = -1\n    else:\n        ib.pixel = (0, 255, 0)\n        ib.motor_1.throttle = 1\n        ib.motor_2.throttle = 1\n\n    sleep(0.02)\n",
+
+  "xp": 200,
+  "desbloquea": ["1.2"]
+}

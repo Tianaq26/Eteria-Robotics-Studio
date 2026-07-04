@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eteria Robotics Studio</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Habilita crossOriginIsolated (SharedArrayBuffer/Pyodide) en hosts sin
+       cabeceras COOP/COEP configurables, como GitHub Pages. -->
+  <script src="./coi-serviceworker.js"></script>
+</head>
+<body>
+
+  <!-- ── PÁGINA DE INICIO ── -->
+  <div id="landing">
+    <div class="land-brand">
+      <div class="land-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="18" height="10" rx="2"/><path d="M7 8V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+          <circle cx="9" cy="13" r="1.2" fill="currentColor" stroke="none"/>
+          <circle cx="15" cy="13" r="1.2" fill="currentColor" stroke="none"/>
+          <path d="M3 13H1m22 0h-2"/>
+        </svg>
+      </div>
+      <h1 class="land-title">Eteria Robotics Studio</h1>
+      <p class="land-sub">Programa, entrena y combate sumobots virtuales. Elige por dónde quieres empezar.</p>
+    </div>
+
+    <div class="land-cards">
+      <div class="land-card lab" id="landSumolab" role="button" tabindex="0">
+        <div class="lc-icon">🔬</div>
+        <div class="lc-title">SumoLab</div>
+        <div class="lc-desc">El laboratorio completo: editor de código, simulación 3D y control total. Programa tus bots y pruébalos con total libertad.</div>
+        <div class="lc-cta">Entrar al laboratorio →</div>
+      </div>
+
+      <div class="land-card learn" id="landAprende" role="button" tabindex="0">
+        <div class="lc-icon">🎓</div>
+        <div class="lc-title">Aprende</div>
+        <div class="lc-desc">Misiones guiadas paso a paso. De cero a robot competitivo, con pistas, retos y logros por el camino.</div>
+        <div class="lc-cta">Empezar a aprender →</div>
+      </div>
+
+      <div class="land-card battle" id="landBatalla" role="button" tabindex="0" aria-disabled="true">
+        <span class="lc-badge">Próximamente</span>
+        <div class="lc-icon">⚔️</div>
+        <div class="lc-title">Batalla</div>
+        <div class="lc-desc">Lleva tus bots a combates estilo juego, como las peleas reales: torneos, rivales y ranking. Aún en desarrollo.</div>
+        <div class="lc-cta">En desarrollo 🚧</div>
+      </div>
+    </div>
+
+    <div class="land-foot">Desarrollado por <b>Sebastián Aguilar</b></div>
+  </div>
+
+  <div class="menubar"></div>
+
+  <header>
+    <button id="btnHome" title="Volver al inicio">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+      Inicio
+    </button>
+    <div class="logo" id="appLogo" title="Volver al inicio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)">
+        <rect x="3" y="8" width="18" height="10" rx="2"/><path d="M7 8V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+        <circle cx="9" cy="13" r="1.2" fill="currentColor" stroke="none"/>
+        <circle cx="15" cy="13" r="1.2" fill="currentColor" stroke="none"/>
+        <path d="M3 13H1m22 0h-2"/>
+      </svg>
+      <h1>Eteria Robotics Studio</h1>
+    </div>
+    <span class="section-chip" id="sectionChip">SumoLab</span>
+    <div class="spacer"></div>
+    <span id="xpBadge">⚡ <span id="xpVal">0</span> XP</span>
+    <span id="gemBadge">💎 <span id="gemVal">0</span></span>
+    <button id="btnConnectDevice" title="Conectar la IdeaBoard por USB (puerto serie). Requiere Chrome o Edge de escritorio.">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v4M15 2v4M7 8h10l-1 5a4 4 0 0 1-4 3.2A4 4 0 0 1 8 13z"/><path d="M12 16.2V20M9 20h6"/></svg>
+      <span id="btnConnectLabel">Conectar IdeaBoard</span>
+    </button>
+    <button id="btnPaint" title="Personaliza y pinta la tapa de tu sumobot">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+      Pintar
+    </button>
+    <button id="btnLearn" title="Modo Aprender — misiones guiadas">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Aprender
+    </button>
+    <span class="version" style="margin-left:6px" title="Lenguajes: pyblock · Python · JavaScript · C++">v1.1 · por <b style="color:var(--muted2);font-weight:600">Sebastián Aguilar</b></span>
+  </header>
+
+  <!-- ── Sistema de docking: esqueleto de zonas (dockManager.js las llena) ── -->
+  <div class="dock-root" id="dockRoot">
+    <div class="dock-row">
+      <div class="dock-zone" data-zone="left">
+        <div class="dock-tabstrip"></div>
+        <div class="dock-content"></div>
+      </div>
+      <div class="dock-resizer" data-resizer="left"></div>
+      <div class="dock-zone" data-zone="center">
+        <div class="dock-tabstrip"></div>
+        <div class="dock-content"></div>
+      </div>
+      <div class="dock-resizer" data-resizer="right"></div>
+      <div class="dock-zone" data-zone="right">
+        <div class="dock-tabstrip"></div>
+        <div class="dock-content"></div>
+      </div>
+    </div>
+    <div class="dock-resizer-h" data-resizer="bottom"></div>
+    <div class="dock-zone dock-zone-bottom" data-zone="bottom">
+      <div class="dock-tabstrip"></div>
+      <div class="dock-content"></div>
+    </div>
+  </div>
+
+  <!-- ── Contenido real de los paneles: dockManager los adopta (appendChild) en su zona al iniciar ── -->
+  <div id="panelSources" style="display:none">
+
+    <!-- ── EDITOR ── -->
+    <section class="editorpane" id="srcEditorPane">
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <button id="btnRun" class="primary" title="Compilar y ejecutar tu código (Ctrl+Enter)">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M2 1l9 5-9 5V1z"/></svg>
+          <span id="btnRunLabel">Ejecutar mi bot</span>
+        </button>
+        <div class="sep"></div>
+        <button id="btnPause" class="icon" title="Pausar / reanudar">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg>
+          <span>Pausa</span>
+        </button>
+        <button id="btnReset" class="icon" title="Reiniciar partida">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 6A4 4 0 1 1 6 2"/><polyline points="6 0 10 2 8 5"/></svg>
+          Reset
+        </button>
+        <div class="sep"></div>
+        <button id="btnUpload" class="icon" title="Sube el código actual a la IdeaBoard conectada (escribe code.py y lo ejecuta)" disabled>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M5 12l7-7 7 7"/><path d="M5 21h14"/></svg>
+          Subir al robot
+        </button>
+        <div style="flex:1"></div>
+        <select id="selLang" title="Lenguaje de programación" style="font-size:11px;padding:3px 6px;border-radius:5px;background:var(--panel2);border:1px solid var(--border2);color:var(--muted2)">
+          <option value="blocks">🧩 pyblock </option>
+          <option value="py" selected>🐍 Python (CircuitPython)</option>
+          <option value="js">✨ JavaScript</option>
+          <option value="cpp">⚙️ C++ </option>
+        </select>
+      </div>
+
+      <!-- Monaco editor + editor de bloques -->
+      <div id="editor">
+        <div id="monaco-container"></div>
+        <div id="blocksEditor" style="display:none"></div>
+      </div>
+    </section>
+
+    <!-- ── CONSOLA ── -->
+    <div class="console-wrap" id="srcConsoleWrap">
+      <div class="console-toolbar">
+        <button class="icon" title="Limpiar consola" onclick="document.getElementById('console').innerHTML=''">🗑 Limpiar</button>
+      </div>
+      <div id="console"></div>
+    </div>
+
+    <!-- ── MONITOR SERIAL (IdeaBoard) ── -->
+    <div class="console-wrap" id="srcSerialWrap">
+      <div class="console-toolbar">
+        <span id="serialStatus" class="mono">Desconectado</span>
+        <span id="serialActivity" class="mono serial-activity"></span>
+        <div style="flex:1"></div>
+        <button class="icon" id="btnSerialInterrupt" title="Detener el programa en el robot (Ctrl+C)">⏹</button>
+        <button class="icon" id="btnSerialReload" title="Reiniciar y ejecutar code.py (Ctrl+D)">↻</button>
+        <button class="icon" id="btnSerialClear" title="Limpiar">🗑 Limpiar</button>
+      </div>
+      <div id="serialLog"></div>
+      <form id="serialInputRow" class="serial-input-row">
+        <input id="serialInput" type="text" placeholder="Escribe y Enter para enviar al REPL de la IdeaBoard…" autocomplete="off" />
+        <button type="submit" class="icon">Enviar</button>
+      </form>
+    </div>
+
+    <!-- ── ARCHIVOS DEL ROBOT (CIRCUITPY) ── -->
+    <div class="console-wrap" id="srcDeviceFilesWrap">
+      <div class="console-toolbar">
+        <span id="deviceFilesStatus" class="mono">Desconectado</span>
+        <div style="flex:1"></div>
+        <button class="icon" id="btnDeviceFilesRefresh" title="Actualizar lista">↻ Actualizar</button>
+      </div>
+      <div id="deviceFilesList" class="proj-list device-files-list"></div>
+    </div>
+
+    <!-- ── ARENA ── -->
+    <div class="arena-wrap" id="srcArenaWrap">
+      <canvas id="arena"></canvas>
+      <div id="result"></div>
+      <div id="codeToast" style="display:none"></div>
+      <button id="btnOverlays" title="Mostrar overlays de sensores" class="arena-float-btn">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg>
+        Sensores
+      </button>
+    </div>
+
+    <!-- ── CONTROL PANEL ── -->
+    <aside class="panel" id="mainPanel">
+      <div class="panel-body">
+
+        <!-- Modo -->
+        <div class="panel-section">
+          <h3>Modo de juego</h3>
+          <select id="selMode" style="width:100%">
+            <option value="rival">⚔️  Con rival</option>
+            <option value="solo">🤖  Solo </option>
+          </select>
+        </div>
+
+        <!-- Combate stats -->
+        <div class="panel-section">
+          <h3>Combate</h3>
+          <div class="stat-grid">
+            <div class="stat-box">
+              <div class="label">Ronda</div>
+              <div class="value" id="round">—</div>
+            </div>
+            <div class="stat-box" id="time-box">
+              <div class="label">Tiempo</div>
+              <div class="value" id="time">—</div>
+            </div>
+            <div class="stat-box wide">
+              <div class="label">Marcador</div>
+              <div class="value" id="score">—</div>
+            </div>
+            <div class="stat-box wide" id="result-box">
+              <div class="label">Estado</div>
+              <div class="value" id="result-panel">—</div>
+            </div>
+          </div>
+          <div id="startpos" class="mono" style="margin-top:2px"></div>
+        </div>
+
+        <!-- Robots -->
+        <div class="panel-section">
+          <h3>Robots</h3>
+          <div class="bot-row">
+            <span class="bot-dot blue"></span>
+            <select id="selA" style="flex:1"></select>
+          </div>
+          <div class="bot-row">
+            <span class="bot-dot red"></span>
+            <select id="selB" style="flex:1"></select>
+          </div>
+          <div id="stateA" class="mono" style="margin-top:2px"></div>
+          <div id="stateB" class="mono"></div>
+        </div>
+
+        <!-- Velocidad -->
+        <div class="panel-section">
+          <h3>Velocidad de simulación</h3>
+          <div class="row">
+            <input id="speed" type="range" min="0.25" max="6" step="0.25" value="1" style="flex:1"/>
+            <span id="speedLabel" class="speed-val">×1.00</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── PANEL DE MISIÓN (aprender mode) ── -->
+      <div id="missionPanel">
+        <div class="mp-header">
+          <div class="mp-world-label" id="mpWorldLabel">Mundo 0 · El Despertar</div>
+          <div class="mp-title" id="mpTitle">—</div>
+          <div class="mp-tagline" id="mpTagline"></div>
+        </div>
+        <div class="mp-body">
+          <div>
+            <div class="mp-section-title">Objetivo</div>
+            <div class="mp-objetivo" id="mpObjetivo"></div>
+          </div>
+          <div>
+            <div class="mp-section-title">Contexto</div>
+            <div class="mp-narrativa" id="mpNarrativa"></div>
+          </div>
+          <div class="mp-timer" id="mpTimerWrap" style="display:none">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg>
+            Prueba: <span id="mpTimerVal">—</span>
+          </div>
+          <div class="mp-progress-card" id="mpProgressCard">
+            <div class="mp-progress-head">
+              <span>Progreso de mision</span>
+              <strong id="mpProgressPct">0%</strong>
+            </div>
+            <div class="mp-progress-stars" aria-label="Estrellas de la mision">
+              <span id="mpLiveStar1">★</span>
+              <span id="mpLiveStar2">★</span>
+              <span id="mpLiveStar3">★</span>
+            </div>
+            <div class="mp-progress-track">
+              <div class="mp-progress-fill" id="mpProgressFill" style="width:0%"></div>
+            </div>
+            <div class="mp-progress-note" id="mpProgressNote">Pulsa Probar para medir tu avance.</div>
+          </div>
+          <div class="mp-actions">
+            <button class="mp-hint-btn" id="mpHintBtn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span id="mpHintText">Ver pista</span>
+            </button>
+          </div>
+          <!-- XP bar -->
+          <div class="mp-xp-section" id="mpXpSection">
+            <div class="mp-xp-row">
+              <span class="mp-xp-label">Nivel <span id="mpNivelNum">1</span></span>
+              <span class="mp-xp-val">⚡ <span id="mpXpNum">0</span> XP</span>
+            </div>
+            <div class="mp-xp-track">
+              <div class="mp-xp-fill" id="mpXpFill" style="width:0%"></div>
+            </div>
+            <div class="mp-nivel-label" id="mpNivelLabel">0 / 500 XP para nivel 2</div>
+          </div>
+
+          <div style="margin-top:auto; padding-top:4px; display:flex; gap:6px; flex-wrap:wrap">
+            <button id="mpRunBtn" class="icon" style="flex:1; justify-content:center; min-width:80px">
+              ▶ Probar
+            </button>
+            <div style="display:flex; gap:6px; flex:0 0 auto">
+              <button id="mpSolBtn" class="icon" title="Ver solución">💡</button>
+              <button id="mpSkipBtn" class="icon" title="Saltar misión" style="padding:0 10px; border-color:#f59e0b44; color:#f59e0b; opacity:0.75">⏭</button>
+            </div>
+            <button id="mpChangeBtn" class="icon" style="flex:1; justify-content:center; min-width:80px; border-color:#a855f744; color:#c084fc" onclick="window._learnUI && window._learnUI.backToMap()">
+              🗺️ Mapa
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /panelSources -->
+
+  <!-- ── MAPA DE MISIONES (pantalla completa del modo Aprender) ── -->
+  <div id="missionModal">
+    <div class="mm-box">
+      <div class="mm-header">
+        <div style="display:flex; gap:0; border-bottom:1px solid var(--border); margin:-12px -20px 0; padding:0 20px;">
+          <button class="mm-tab active" id="mmTabMisiones" onclick="switchModalTab('misiones')">Misiones</button>
+          <button class="mm-tab" id="mmTabLogros" onclick="switchModalTab('logros')">Logros</button>
+        </div>
+      </div>
+      <div id="mmBody" style="overflow:auto; flex:1; padding-bottom:12px"></div>
+      <div id="mmBodyLogros" style="overflow:auto; flex:1; padding-bottom:12px; display:none"></div>
+    </div>
+  </div>
+
+  <!-- ── Transición de carga entre Lab y Mapa ── -->
+  <div id="viewLoader">
+    <div class="vl-spinner"></div>
+    <div class="vl-text">Cargando…</div>
+  </div>
+
+  <!-- ── DIÁLOGO CONFIRMACIÓN SOLUCIÓN ── -->
+  <div id="solConfirm">
+    <div class="sol-box">
+      <div class="sol-icon">💡</div>
+      <div class="sol-title">¿Ver la solución?</div>
+      <div class="sol-desc">Tu código actual será reemplazado por la solución completa. Úsala solo si ya lo intentaste de verdad.</div>
+      <div class="sol-actions">
+        <button class="icon" onclick="document.getElementById('solConfirm').classList.remove('open')">Cancelar</button>
+        <button class="sol-yes" id="solConfirmYes">Sí, mostrar solución</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST DE LOGRO ── -->
+  <div id="achievementToast">
+    <div class="ach-toast-icon" id="achToastIcon">🏆</div>
+    <div class="ach-toast-body">
+      <div class="ach-toast-label">Logro desbloqueado</div>
+      <div class="ach-toast-title" id="achToastTitle"></div>
+      <div class="ach-toast-desc"  id="achToastDesc"></div>
+      <div class="ach-toast-xp"   id="achToastXp" style="display:none"></div>
+      <div class="ach-toast-gemas" id="achToastGemas" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- ── LEVEL-UP OVERLAY ── -->
+  <div id="levelUpOverlay">
+    <div class="lu-box">
+      <div class="lu-label">¡Subiste de nivel!</div>
+      <div class="lu-num" id="luNum">2</div>
+      <div class="lu-msg" id="luMsg">Sigue así</div>
+    </div>
+  </div>
+
+  <!-- ── OVERLAY RESULTADO (estrellas) ── -->
+  <div id="resultOverlay">
+    <div class="ro-box">
+      <div class="ro-title" id="roTitle">Misión completada</div>
+      <div class="ro-stars">
+        <span class="ro-star" id="roStar1">★</span>
+        <span class="ro-star" id="roStar2">★</span>
+        <span class="ro-star" id="roStar3">★</span>
+      </div>
+      <div class="ro-criteria" id="roCriteria"></div>
+      <div class="ro-feedback" id="roFeedback"></div>
+      <div class="ro-xp" id="roXp" style="display:none"></div>
+      <div class="ro-gemas" id="roGemas" style="display:none"></div>
+      <div class="ro-actions">
+        <button class="ro-btn secondary" onclick="window._learnUI && window._learnUI.closeResult()">Reintentar</button>
+        <button class="ro-btn secondary" onclick="window._learnUI && window._learnUI.backToMap()">🗺️ Mapa</button>
+        <button class="ro-btn primary" id="roNextBtn" onclick="window._learnUI && window._learnUI.nextMission()">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EDITOR DE PINTURA (modo de trabajo a pantalla completa) ── -->
+  <div id="paintEditor">
+    <div class="pe-top">
+      <div class="pe-title">🎨 Editor de pintura</div>
+      <div class="pe-viewtoggle">
+        <button id="peView3d" class="pe-btn active">🧊 3D</button>
+        <button id="peView2d" class="pe-btn">🗺️ 2D (desplegado)</button>
+      </div>
+      <div class="pe-hint" id="peHint">Clic izquierdo: pintar · Clic derecho: girar · Rueda: zoom · Botón central: pan</div>
+      <div class="pe-spacer"></div>
+      <button id="peUndo" class="pe-btn" title="Deshacer">↶</button>
+      <button id="peRedo" class="pe-btn" title="Rehacer">↷</button>
+      <div class="pe-sep"></div>
+      <button id="peNew" class="pe-btn">🆕 Nuevo</button>
+      <button id="peOpen" class="pe-btn">📂 Abrir</button>
+      <button id="peSave" class="pe-btn">💾 Guardar</button>
+      <button id="peSaveAs" class="pe-btn">💾 Guardar como</button>
+      <button id="peExport" class="pe-btn">⬇ Exportar</button>
+      <button id="peImport" class="pe-btn">⬆ Importar</button>
+      <div class="pe-sep"></div>
+      <button id="peApply" class="pe-btn pe-apply">✔ Aplicar al robot</button>
+      <button id="peClose" class="pe-x" title="Cerrar">✕</button>
+    </div>
+    <div class="pe-main">
+      <div class="pe-rail" id="peRail">
+        <button id="peBrush" class="pe-rail-btn" title="Pincel"><span class="pe-rail-icon">🖌️</span><span class="pe-rail-label">Pincel</span></button>
+        <button id="peEraser" class="pe-rail-btn" title="Goma"><span class="pe-rail-icon">🧽</span><span class="pe-rail-label">Goma</span></button>
+        <button id="peBucket" class="pe-rail-btn" title="Balde"><span class="pe-rail-icon">🪣</span><span class="pe-rail-label">Balde</span></button>
+        <button id="peShapeRect" class="pe-rail-btn" title="Rectángulo"><span class="pe-rail-icon">▭</span><span class="pe-rail-label">Rectángulo</span></button>
+        <button id="peShapeCircle" class="pe-rail-btn" title="Círculo"><span class="pe-rail-icon">⬤</span><span class="pe-rail-label">Círculo</span></button>
+        <button id="peBlur" class="pe-rail-btn" title="Difuminar"><span class="pe-rail-icon">💫</span><span class="pe-rail-label">Difuminar</span></button>
+        <button id="peSmudge" class="pe-rail-btn" title="Arrastrar color"><span class="pe-rail-icon">👆</span><span class="pe-rail-label">Arrastrar</span></button>
+        <button id="peEyedrop" class="pe-rail-btn" title="Gotero"><span class="pe-rail-icon">💧</span><span class="pe-rail-label">Gotero</span></button>
+        <div class="pe-rail-sep"></div>
+        <button id="peMirror" class="pe-rail-btn" title="Pintura espejada"><span class="pe-rail-icon">🪞</span><span class="pe-rail-label">Espejo</span></button>
+        <div class="pe-rail-sep"></div>
+        <button id="peClear" class="pe-rail-btn" title="Limpiar pieza activa"><span class="pe-rail-icon">🗑</span><span class="pe-rail-label">Limpiar</span></button>
+      </div>
+      <div class="pe-canvaswrap">
+        <div id="peViewport3d" class="pe-viewport"></div>
+        <div id="peViewport2d" class="pe-viewport" style="display:none"></div>
+      </div>
+      <div class="pe-props">
+        <div class="pe-group">
+          <div class="pe-group-t">Color</div>
+          <div id="peColorPicker"></div>
+        </div>
+        <div class="pe-group">
+          <div class="pe-group-t">Tamaño: <span id="peSizeVal">42</span> px</div>
+          <input type="range" id="peSize" min="4" max="140" step="2" value="42">
+        </div>
+        <div class="pe-group">
+          <div class="pe-group-t">Dureza: <span id="peHardnessVal">85</span>%</div>
+          <input type="range" id="peHardness" min="0" max="100" step="5" value="85">
+        </div>
+        <div class="pe-group">
+          <div class="pe-group-t">Opacidad: <span id="peOpacityVal">100</span>%</div>
+          <input type="range" id="peOpacity" min="5" max="100" step="5" value="100">
+        </div>
+        <div class="pe-group">
+          <div class="pe-group-t">Espaciado: <span id="peSpacingVal">22</span>%</div>
+          <input type="range" id="peSpacing" min="5" max="100" step="5" value="22">
+        </div>
+        <div class="pe-group">
+          <div class="pe-group-t">Piezas</div>
+          <div id="pePartsList" class="pe-parts"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blockly (pyblock) — cargar ANTES del loader AMD de Monaco:
+       si `define.amd` existiera, el UMD de Blockly no crearía el global. -->
+  <script src="https://cdn.jsdelivr.net/npm/blockly@10.4.3/blockly_compressed.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/blockly@10.4.3/blocks_compressed.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/blockly@10.4.3/python_compressed.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/blockly@10.4.3/msg/es.js"></script>
+
+  <!-- Monaco Editor (AMD loader) -->
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+  <script src="./src/app/monacoSetup.js"></script>
+
+  <!-- App -->
+  <script type="importmap">
+  { "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  } }
+  </script>
+  <script type="module" src="./src/app/main.js"></script>
+
+</body>
+</html>

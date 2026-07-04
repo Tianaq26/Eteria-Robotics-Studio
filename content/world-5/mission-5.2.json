@@ -1,0 +1,63 @@
+{
+  "id": "5.2",
+  "mundo": 5,
+  "orden": 2,
+  "titulo": "Velocidad proporcional",
+  "tagline": "Lejos = despacio, cerca = a todo gas.",
+  "concepto": "Control proporcional",
+  "duracion_estimada_min": 8,
+  "lenguaje": "py",
+  "narrativa": "Hasta ahora tu robot usa velocidades fijas. Un control proporcional ajusta la velocidad según la distancia al objetivo. Cuanto más lejos está el rival, más despacio buscas. Cuanto más cerca, más fuerte atacas. Esto hace los movimientos más suaves y eficientes.",
+  "objetivo": "Implementa velocidad de ataque proporcional a la cercanía del rival.",
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\nUMBRAL_MAX = 60   # distancia a la que empieza a acercarse\nVEL_MIN    = 0.3  # velocidad mínima al acercarse\nVEL_MAX    = 1.0  # velocidad máxima en contacto\n\nwhile True:\n    dist  = ib.sonar\n    fl    = ib.ir_front_left\n    fr    = ib.ir_front_right\n    borde = fl or fr or ib.ir_back_left or ib.ir_back_right\n\n    if borde:\n        ib.motor_1.throttle = -0.7\n        ib.motor_2.throttle = -0.5\n    elif dist < UMBRAL_MAX:\n        # Control proporcional: más cerca → más velocidad\n        # factor va de 0.0 (lejos) a 1.0 (muy cerca)\n        factor = 1.0 - (dist / UMBRAL_MAX)\n        vel    = VEL_MIN + factor * (VEL_MAX - VEL_MIN)\n\n        ib.motor_1.throttle = vel\n        ib.motor_2.throttle = vel\n\n        # Brillo del LED proporcional a la velocidad\n        ib.pixel = (0, int(vel * 255), 0)  # verde = velocidad\n    else:\n        # Búsqueda: gira\n        ib.motor_1.throttle =  0.5\n        ib.motor_2.throttle = -0.5\n        ib.pixel = (0, 0, 60)\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 30,
+    "visualizaciones": [
+      "sonar",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "factor = 1.0 - (dist / UMBRAL_MAX) da 0.0 cuando dist=UMBRAL_MAX y 1.0 cuando dist=0.",
+    "Prueba cambiar UMBRAL_MAX a 80 para empezar a atacar desde más lejos.",
+    "El LED verde más brillante significa que estás yendo más rápido — ¡útil para depurar!"
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot no salió"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 22
+      },
+      "descripcion": "Sobrevivió 22 segundos"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 28
+      },
+      "descripcion": "Dominó con control suave"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡Excelente! Control proporcional implementado. Así funcionan los robots industriales reales.",
+    "2_estrellas": "Bien! Sobreviviste. Ajusta VEL_MIN y UMBRAL_MAX para un comportamiento más agresivo.",
+    "1_estrella": "No saliste. El control proporcional funciona si dist < UMBRAL_MAX — verifica ese umbral.",
+    "0_estrellas": "El robot salió. Revisa el retroceso al detectar borde — necesita más potencia o más tiempo."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 340,
+  "desbloquea": [
+    "5.3"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "2.1",
+  "mundo": 2,
+  "orden": 1,
+  "titulo": "Si esto, entonces aquello",
+  "tagline": "Las decisiones son el alma de la robótica.",
+  "concepto": "Condicionales if/elif/else",
+  "duracion_estimada_min": 5,
+  "lenguaje": "py",
+
+  "narrativa": "Hasta ahora seguiste recetas. Ahora diseñas la lógica tú mismo. El if-elif-else es la estructura más poderosa en robótica: permite que tu robot tome decisiones diferentes según lo que siente.",
+
+  "objetivo": "Programa 3 comportamientos distintos: atacar cuando el rival está cerca, esquivar el borde cuando lo detectas, y girar buscando cuando no hay nada.",
+
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\n\nBLANCO = 3000\n\nwhile True:\n    dist  = sonar.dist_cm()\n    borde = fl.value < BLANCO or fr.value < BLANCO\n\n    # Completa la lógica:\n    if borde:\n        pass  # TODO: retrocede y gira\n    elif 0 < dist < 25:\n        pass  # TODO: ataca a máxima velocidad\n    else:\n        pass  # TODO: gira despacio buscando al rival\n\n    sleep(0.02)\n",
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\n\nBLANCO = 3000\n\nwhile True:\n    dist  = sonar.dist_cm()\n    borde = fl.value < BLANCO or fr.value < BLANCO\n\n    if borde:\n        ib.motor_1.throttle = -0.8\n        ib.motor_2.throttle =  0.3\n    elif 0 < dist < 25:\n        ib.motor_1.throttle = 1.0\n        ib.motor_2.throttle = 1.0\n    else:\n        ib.motor_1.throttle =  0.5\n        ib.motor_2.throttle = -0.5\n\n    sleep(0.02)\n",
+
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 15,
+    "visualizaciones": ["ir", "sonar"]
+  },
+
+  "pistas": [
+    "pass es un placeholder — reemplázalo con código real.",
+    "Para retroceder y girar a la vez: motor_1 negativo, motor_2 positivo.",
+    "Prueba 0 < dist < 25 para el ataque — el 0 < filtra el -1 cuando no hay rival."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "no_salio", "valor": true }, "descripcion": "El robot no salió" },
+    { "cantidad": 2, "criterio": { "tipo": "tiempo_minimo", "valor": 10 }, "descripcion": "Sobrevivió 10 segundos" },
+    { "cantidad": 3, "criterio": { "tipo": "tiempo_minimo", "valor": 14 }, "descripcion": "Sobrevivió casi todo el combate" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Perfecto! Tres comportamientos, tres decisiones, un robot completo. Esto es programación real.",
+    "2_estrellas": "Bien! Sobrevivió bastante. Afina la lógica del else para que gire y encuentre al rival más rápido.",
+    "1_estrella": "Sobrevivió algo. Revisa que cada bloque if/elif/else tenga código real en vez de pass.",
+    "0_estrellas": "El robot salió. Reemplaza los pass con instrucciones para los motores."
+  },
+
+  "xp": 180,
+  "desbloquea": ["2.2"]
+}

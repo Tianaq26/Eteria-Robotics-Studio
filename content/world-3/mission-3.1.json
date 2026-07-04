@@ -1,0 +1,63 @@
+{
+  "id": "3.1",
+  "mundo": 3,
+  "orden": 1,
+  "titulo": "La curva perfecta",
+  "tagline": "Girar no es solo parar una rueda.",
+  "concepto": "Movimiento diferencial",
+  "duracion_estimada_min": 5,
+  "lenguaje": "py",
+  "narrativa": "La diferencia de velocidad entre las dos ruedas define el radio de giro. Con ambas al mismo valor giras en círculo infinito (recto). Con una a 0 giras sobre esa rueda. Con valores opuestos giras en el sitio. Explora estas posibilidades.",
+  "objetivo": "Haz que el robot describa una trayectoria circular amplia (no giro en sitio) durante al menos 8 segundos sin salir del dojo.",
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\nwhile True:\n    borde = ib.ir_front_left or ib.ir_front_right or ib.ir_back_left or ib.ir_back_right\n\n    if borde:\n        ib.motor_1.throttle = -0.5\n        ib.motor_2.throttle = -0.5\n    else:\n        # TODO: curva amplia — una rueda más rápida que la otra\n        ib.motor_1.throttle = 0.0\n        ib.motor_2.throttle = 0.0\n",
+  "escenario": {
+    "modo": "solo",
+    "duracion_test_s": 10,
+    "visualizaciones": [
+      "ir",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "Una curva amplia: motor_1=0.8, motor_2=0.4 (o al revés para curvar al otro lado).",
+    "Giro en sitio: motor_1=0.6, motor_2=-0.6.",
+    "El trail te muestra la trayectoria — observa qué forma dibuja."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "angulo_minimo",
+        "valor": 90
+      },
+      "descripcion": "El robot giró al menos 90°"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 7
+      },
+      "descripcion": "Permaneció 7 s en el dojo"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 9
+      },
+      "descripcion": "Permaneció casi 10 s en el dojo"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡Increíble control! Hiciste una curva suave y te mantuviste en el dojo. Eso requiere entender el movimiento diferencial.",
+    "2_estrellas": "Bien! El robot giró. Para 3 estrellas ajusta los valores para que la curva quepa mejor en el dojo.",
+    "1_estrella": "El robot giró un poco. Prueba diferencias pequeñas entre motor_1 y motor_2 para curvas amplias.",
+    "0_estrellas": "El robot no se movió. Pon valores distintos de 0 en el bloque else."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 220,
+  "desbloquea": [
+    "3.2"
+  ]
+}

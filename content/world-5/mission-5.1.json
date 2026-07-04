@@ -1,0 +1,64 @@
+{
+  "id": "5.1",
+  "mundo": 5,
+  "orden": 1,
+  "titulo": "El número correcto",
+  "tagline": "La diferencia entre 0.7 y 0.9 puede ser la diferencia entre ganar y perder.",
+  "concepto": "Tunear parámetros",
+  "duracion_estimada_min": 8,
+  "lenguaje": "py",
+  "narrativa": "Tienes un robot que funciona. Ahora necesitas que funcione mejor. El tuning es el proceso de ajustar parámetros numéricos para maximizar el rendimiento. Cada número en tu código es una decisión — algunos importan más que otros.",
+  "objetivo": "Ajusta los parámetros de velocidad, umbral de distancia y tiempo de escape para maximizar el tiempo de supervivencia.",
+  "codigo_inicial": "import board, time\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# ── PARÁMETROS A TUNEAR ───────────────────────────────\nVEL_ATAQUE    = 0.7    # velocidad de ataque (0.0 - 1.0)\nVEL_BUSQUEDA  = 0.4    # velocidad de giro buscando\nUMBRAL_CERCA  = 25     # cm para atacar\nUMBRAL_LEJOS  = 45     # cm para dejar de atacar\nT_RETROCESO   = 0.3    # segundos retrocediendo al escapar\nT_GIRO_ESC    = 0.5    # segundos girando al escapar\n# ──────────────────────────────────────────────────────\n\nestado = 'buscar'\nt0 = time.monotonic()\n\nwhile True:\n    t    = time.monotonic()\n    dt   = t - t0\n    dist = ib.sonar\n    fl   = ib.ir_front_left\n    fr   = ib.ir_front_right\n    borde = fl or fr or ib.ir_back_left or ib.ir_back_right\n\n    if estado == 'buscar':\n        ib.motor_1.throttle =  VEL_BUSQUEDA\n        ib.motor_2.throttle = -VEL_BUSQUEDA\n        if borde:\n            estado = 'escapar'; t0 = t\n        elif dist < UMBRAL_CERCA:\n            estado = 'atacar'\n\n    elif estado == 'atacar':\n        ib.motor_1.throttle = VEL_ATAQUE\n        ib.motor_2.throttle = VEL_ATAQUE\n        if borde:\n            estado = 'escapar'; t0 = t\n        elif dist > UMBRAL_LEJOS:\n            estado = 'buscar'\n\n    elif estado == 'escapar':\n        if dt < T_RETROCESO:\n            ib.motor_1.throttle = -0.8\n            ib.motor_2.throttle = -0.8\n        elif dt < T_RETROCESO + T_GIRO_ESC:\n            ib.motor_1.throttle =  0.7\n            ib.motor_2.throttle = -0.7\n        else:\n            estado = 'buscar'\n\n    ib.pixel = (255 if borde else 0, 255 if estado == 'atacar' else 0, 0)\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 30,
+    "visualizaciones": [
+      "ir",
+      "sonar",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "Empieza cambiando VEL_ATAQUE a 1.0 — el ataque a máxima potencia suele ganar.",
+    "T_RETROCESO demasiado largo hace que el robot salga por atrás — prueba 0.2.",
+    "UMBRAL_CERCA muy grande hace que ataque desde lejos y falle — prueba 20."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot no salió"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 24
+      },
+      "descripcion": "Sobrevivió 24 segundos"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 29
+      },
+      "descripcion": "Dominó el combate completo"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡Perfecto tunning! Encontraste los parámetros óptimos. Eso es ingeniería de control aplicada.",
+    "2_estrellas": "Bien! Ajusta VEL_ATAQUE más alto y T_RETROCESO más corto para mejorar.",
+    "1_estrella": "No salió. Prueba VEL_ATAQUE=1.0, UMBRAL_CERCA=20 y T_RETROCESO=0.2 como punto de partida.",
+    "0_estrellas": "El robot salió. Revisa T_RETROCESO — si es muy largo, el robot retrocede hasta el borde trasero."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 320,
+  "desbloquea": [
+    "5.2"
+  ]
+}

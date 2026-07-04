@@ -1,0 +1,46 @@
+{
+  "id": "1.2",
+  "mundo": 1,
+  "orden": 2,
+  "titulo": "El sonar",
+  "tagline": "¿Hay alguien ahí? El sonar lo sabe.",
+  "concepto": "Sensor ultrasónico HCSR04",
+  "duracion_estimada_min": 6,
+  "lenguaje": "py",
+
+  "narrativa": "El sensor ultrasónico mide cuánto tarda un pulso de sonido en rebotar. Si el rival está cerca, la distancia es pequeña. Si no hay nadie, devuelve -1. Con eso puedes decidir: ¿busco o ataco?",
+
+  "objetivo": "Ataca cuando el sonar detecta al rival a menos de 40 cm. Si no lo ve, gira buscándolo.",
+
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\n\nwhile True:\n    dist = sonar.dist_cm()\n\n    if 0 < dist < 40:\n        # TODO: ataca — avanza a máxima velocidad, LED verde\n        pass\n    else:\n        # TODO: busca — gira sobre sí mismo, LED azul\n        pass\n\n    sleep(0.02)\n",
+
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 20,
+    "visualizaciones": ["sonar"]
+  },
+
+  "pistas": [
+    "sonar.dist_cm() devuelve -1 si no detecta nada. Por eso el if es 0 < dist < 40.",
+    "Para girar: ib.motor_1.throttle = 0.6, ib.motor_2.throttle = -0.6",
+    "Combina IR + sonar: primero verifica el borde, luego ataca al rival."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "motores_activos", "valor": true }, "descripcion": "El robot se movió" },
+    { "cantidad": 2, "criterio": { "tipo": "no_salio", "valor": true }, "descripcion": "No salió del dojo" },
+    { "cantidad": 3, "criterio": { "tipo": "tiempo_minimo", "valor": 16 }, "descripcion": "Sobrevivió 16 segundos" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Excelente! El sonar detecta al rival igual en la simulación que en el robot físico.",
+    "2_estrellas": "Sobreviviste. Añade también detección de borde IR para no caer mientras buscas.",
+    "1_estrella": "El robot se movió. Revisa que el if sea 0 < dist < 40 — el -1 cuando no hay rival es la trampa.",
+    "0_estrellas": "Reemplaza el pass por ib.motor_1.throttle = 1 y ib.motor_2.throttle = 1 en el bloque de ataque."
+  },
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\n\nwhile True:\n    dist = sonar.dist_cm()\n\n    if 0 < dist < 40:\n        ib.pixel = (0, 255, 0)\n        ib.motor_1.throttle = 1\n        ib.motor_2.throttle = 1\n    else:\n        ib.pixel = (0, 0, 255)\n        ib.motor_1.throttle =  0.6\n        ib.motor_2.throttle = -0.6\n\n    sleep(0.02)\n",
+
+  "xp": 240,
+  "desbloquea": ["1.3"]
+}

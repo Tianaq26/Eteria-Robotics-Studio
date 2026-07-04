@@ -1,0 +1,46 @@
+{
+  "id": "2.2",
+  "mundo": 2,
+  "orden": 2,
+  "titulo": "Memoria de estado",
+  "tagline": "Los robots olvidadizos pierden. Los que recuerdan, ganan.",
+  "concepto": "Variables de estado",
+  "duracion_estimada_min": 7,
+  "lenguaje": "py",
+
+  "narrativa": "Un robot sin memoria reacciona al presente pero olvida el pasado. Con una variable de estado puedes recordar qué estaba haciendo el robot y cuánto tiempo lleva haciéndolo. Esto te permite crear maniobras más complejas.",
+
+  "objetivo": "Usa una variable de estado para que el robot ejecute una maniobra de escape completa: retroceder 0.5 s y luego girar 0.5 s antes de atacar de nuevo.",
+
+  "codigo_inicial": "import board, time\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\n\nBLANCO = 3000\nestado   = 'buscar'\nt_inicio = time.monotonic()\n\nwhile True:\n    ahora   = time.monotonic()\n    elapsed = ahora - t_inicio\n    dist    = sonar.dist_cm()\n    borde   = fl.value < BLANCO or fr.value < BLANCO\n\n    if estado == 'buscar':\n        if borde:\n            estado   = 'retroceder'\n            t_inicio = ahora\n        elif 0 < dist < 20:\n            ib.motor_1.throttle = 1.0\n            ib.motor_2.throttle = 1.0\n        else:\n            ib.motor_1.throttle =  0.4\n            ib.motor_2.throttle = -0.4\n\n    elif estado == 'retroceder':\n        ib.motor_1.throttle = -0.7\n        ib.motor_2.throttle = -0.7\n        if elapsed > 0.5:  # TODO: cambia a estado 'girar'\n            pass\n\n    elif estado == 'girar':\n        pass  # TODO: gira 0.5 s y luego vuelve a 'buscar'\n\n    sleep(0.02)\n",
+
+  "solucion": "import board, time\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\n\nBLANCO = 3000\nestado   = 'buscar'\nt_inicio = time.monotonic()\n\nwhile True:\n    ahora   = time.monotonic()\n    elapsed = ahora - t_inicio\n    dist    = sonar.dist_cm()\n    borde   = fl.value < BLANCO or fr.value < BLANCO\n\n    if estado == 'buscar':\n        if borde:\n            estado   = 'retroceder'\n            t_inicio = ahora\n        elif 0 < dist < 20:\n            ib.motor_1.throttle = 1.0\n            ib.motor_2.throttle = 1.0\n        else:\n            ib.motor_1.throttle =  0.4\n            ib.motor_2.throttle = -0.4\n\n    elif estado == 'retroceder':\n        ib.motor_1.throttle = -0.7\n        ib.motor_2.throttle = -0.7\n        if elapsed > 0.5:\n            estado   = 'girar'\n            t_inicio = ahora\n\n    elif estado == 'girar':\n        ib.motor_1.throttle =  0.6\n        ib.motor_2.throttle = -0.6\n        if elapsed > 0.5:\n            estado   = 'buscar'\n            t_inicio = ahora\n\n    sleep(0.02)\n",
+
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 20,
+    "visualizaciones": ["ir", "sonar", "trail"]
+  },
+
+  "pistas": [
+    "Para cambiar de estado: estado = 'girar' y t_inicio = ahora.",
+    "En el estado 'girar': motor_1=0.6, motor_2=-0.6 durante 0.5 s.",
+    "Después de girar, regresa a estado = 'buscar'."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "no_salio", "valor": true }, "descripcion": "El robot no salió" },
+    { "cantidad": 2, "criterio": { "tipo": "tiempo_minimo", "valor": 15 }, "descripcion": "Sobrevivió 15 segundos" },
+    { "cantidad": 3, "criterio": { "tipo": "angulo_minimo", "valor": 180 }, "descripcion": "El robot giró más de 180°" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Maestro del estado! Tu robot recuerda, planifica y ejecuta. Eso es un agente autónomo real.",
+    "2_estrellas": "Bien! Sobrevivió bastante. Asegúrate de que el estado 'girar' cambie de vuelta a 'buscar'.",
+    "1_estrella": "Sobrevivió un momento. Completa los dos pass que hacen las transiciones de estado.",
+    "0_estrellas": "El robot salió. Revisa que t_inicio se actualice al cambiar de estado."
+  },
+
+  "xp": 200,
+  "desbloquea": ["2.3"]
+}

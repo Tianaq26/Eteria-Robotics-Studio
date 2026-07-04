@@ -1,0 +1,64 @@
+{
+  "id": "4.1",
+  "mundo": 4,
+  "orden": 1,
+  "titulo": "Centrar o morir",
+  "tagline": "Un robot pegado al borde ya perdió la mitad del combate.",
+  "concepto": "Estrategia de posición",
+  "duracion_estimada_min": 7,
+  "lenguaje": "py",
+  "narrativa": "El centro del dojo es la posición estratégica más poderosa. Desde el centro puedes empujar en cualquier dirección. Desde el borde, una sola embestida te saca. Programa tu robot para que siempre intente volver al centro cuando no ve al rival.",
+  "objetivo": "Cuando no detectas al rival, gira buscando. Cuando lo detectas, ataca. Si tocas el borde, escapa hacia el centro.",
+  "codigo_inicial": "import board, time\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\nestado = 'buscar'\nt0 = time.monotonic()\n\nwhile True:\n    t      = time.monotonic()\n    dist   = ib.sonar\n    fl     = ib.ir_front_left\n    fr     = ib.ir_front_right\n    bl     = ib.ir_back_left\n    br     = ib.ir_back_right\n    borde  = fl or fr or bl or br\n\n    if estado == 'buscar':\n        if borde:\n            estado = 'escapar'\n            t0 = t\n        elif dist < 30:\n            estado = 'atacar'\n        else:\n            # Gira buscando al rival\n            ib.motor_1.throttle =  0.5\n            ib.motor_2.throttle = -0.5\n\n    elif estado == 'atacar':\n        if borde:\n            estado = 'escapar'\n            t0 = t\n        elif dist > 40:\n            estado = 'buscar'\n        else:\n            ib.motor_1.throttle = 1.0\n            ib.motor_2.throttle = 1.0\n\n    elif estado == 'escapar':\n        # TODO: retrocede 0.4 s, luego gira 0.5 s hacia el centro, luego 'buscar'\n        ib.motor_1.throttle = 0.0\n        ib.motor_2.throttle = 0.0\n        if t - t0 > 1.0:\n            estado = 'buscar'\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 30,
+    "visualizaciones": [
+      "ir",
+      "sonar",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "El estado 'escapar' necesita sub-fases: primero retrocede, luego gira.",
+    "Usa t - t0 < 0.4 para retroceder y t - t0 < 0.9 para girar.",
+    "La dirección del giro depende de qué sensor se activó — recuérdalo antes de cambiar de estado."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot no salió"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 20
+      },
+      "descripcion": "Sobrevivió 20 segundos"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 28
+      },
+      "descripcion": "Sobrevivió casi todo el combate"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡Estratega de alto nivel! Tu robot controla su posición y sobrevive. Eso es dominio del dojo.",
+    "2_estrellas": "Bien! Sobrevivió bastante. Implementa las sub-fases del estado 'escapar' para volver al centro.",
+    "1_estrella": "No salió. Eso ya es mucho. Afina el escape: retrocede un poco y luego gira hacia el centro.",
+    "0_estrellas": "El robot salió pronto. Asegúrate de que el estado 'escapar' mueva los motores (no quedarse en 0.0)."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 280,
+  "desbloquea": [
+    "4.2"
+  ]
+}

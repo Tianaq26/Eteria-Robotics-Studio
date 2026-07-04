@@ -1,0 +1,63 @@
+{
+  "id": "4.2",
+  "mundo": 4,
+  "orden": 2,
+  "titulo": "El esquive",
+  "tagline": "No todo rival merece un ataque frontal.",
+  "concepto": "Esquiva y contraataque",
+  "duracion_estimada_min": 8,
+  "lenguaje": "py",
+  "narrativa": "A veces la mejor jugada es dejar que el rival pase de largo y empujarlo por la espalda. Un robot que solo ataca en línea recta es predecible. Aprende a esquivar para contraatacar desde una posición ventajosa.",
+  "objetivo": "Cuando el rival se acerque muy rápido, esquívalo lateralmente en vez de atacar de frente.",
+  "codigo_inicial": "import board, time\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\ndist_prev = 100\nt_prev    = time.monotonic()\n\nwhile True:\n    t    = time.monotonic()\n    dt   = max(t - t_prev, 0.001)\n    dist = ib.sonar\n    fl   = ib.ir_front_left\n    fr   = ib.ir_front_right\n\n    # Velocidad de acercamiento (cm/s, positivo = rival acercándose)\n    vel_acercamiento = (dist_prev - dist) / dt\n    dist_prev = dist\n    t_prev    = t\n\n    if fl or fr:\n        ib.motor_1.throttle = -0.7\n        ib.motor_2.throttle = -0.3\n    elif dist < 20 and vel_acercamiento > 15:\n        # El rival viene rápido → esquiva lateral\n        ib.motor_1.throttle = 0.0  # TODO: muévete lateralmente\n        ib.motor_2.throttle = 0.0\n    elif dist < 30:\n        # Rival cerca pero lento → ataca\n        ib.motor_1.throttle = 1.0\n        ib.motor_2.throttle = 1.0\n    else:\n        ib.motor_1.throttle = 0.5\n        ib.motor_2.throttle = -0.5\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 30,
+    "visualizaciones": [
+      "sonar",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "Para esquivar a la derecha: motor_1=0.9, motor_2=0.1 (curva brusca).",
+    "vel_acercamiento > 15 significa que el rival se acerca a más de 15 cm/s.",
+    "Después de esquivar, el rival puede quedar a tu lado — ¡gira y empuja!"
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot no salió"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 22
+      },
+      "descripcion": "Sobrevivió 22 segundos"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 28
+      },
+      "descripcion": "Sobrevivió casi todo el combate"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡Eres imparable! Esquivas, contraatacas y dominas. Eso es inteligencia táctica.",
+    "2_estrellas": "Bien! Sobreviviste bastante. Implementa el esquive lateral para evitar embestidas directas.",
+    "1_estrella": "No saliste. Falta el esquive. Añade movimiento en el elif dist < 20 and vel_acercamiento > 15.",
+    "0_estrellas": "El robot salió pronto. Asegúrate de que el borde active la retirada correctamente."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 300,
+  "desbloquea": [
+    "4.3"
+  ]
+}

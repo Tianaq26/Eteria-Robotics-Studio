@@ -1,0 +1,63 @@
+{
+  "id": "3.3",
+  "mundo": 3,
+  "orden": 3,
+  "titulo": "Ataque en arco",
+  "tagline": "El camino recto no siempre es el más efectivo.",
+  "concepto": "Trayectoria de ataque",
+  "duracion_estimada_min": 7,
+  "lenguaje": "py",
+  "narrativa": "Un ataque frontal directo es predecible. Un ataque en arco, donde te acercas por el lado, puede sorprender al rival y empujarlo directamente al borde. Usa el sonar para calcular cuándo curvar hacia el rival.",
+  "objetivo": "Acércate al rival en arco (no en línea recta) y empújalo fuera del dojo.",
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\nwhile True:\n    dist  = ib.sonar\n    fl    = ib.ir_front_left\n    fr    = ib.ir_front_right\n\n    if fl or fr:\n        ib.motor_1.throttle = -0.6\n        ib.motor_2.throttle = -0.4  # retrocede girando\n    elif dist < 15:\n        # Muy cerca: empuje total\n        ib.motor_1.throttle = 1.0\n        ib.motor_2.throttle = 1.0\n    elif dist < 40:\n        # Rango medio: ataque en arco (curva hacia rival)\n        ib.motor_1.throttle = 0.0  # TODO: curva con diferencia de ruedas\n        ib.motor_2.throttle = 0.0\n    else:\n        # Lejos: gira buscando\n        ib.motor_1.throttle = 0.6\n        ib.motor_2.throttle = -0.6\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 25,
+    "visualizaciones": [
+      "sonar",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "Para curvar a la derecha acercándote: motor_1=0.9, motor_2=0.5.",
+    "Experimenta con distintos umbrales de distancia (< 40 o < 50).",
+    "El trail muestra tu trayectoria — si es una curva, vas bien."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "angulo_minimo",
+        "valor": 270
+      },
+      "descripcion": "El robot giró bastante"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot no salió"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 22
+      },
+      "descripcion": "Sobrevivió más de 22 segundos"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡Estratega! Tu robot ataca en arco y sobrevive. Eso es lo que separa un robot competitivo de uno básico.",
+    "2_estrellas": "Bien! No saliste. Ajusta el ataque en arco (dist < 40) con diferencia entre motores para curvar.",
+    "1_estrella": "El robot giró. Ahora añade el ataque en arco — no basta con girar en sitio, hace falta avanzar curvando.",
+    "0_estrellas": "El robot no se movió bien. Completa el TODO en el elif dist < 40."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 260,
+  "desbloquea": [
+    "4.1"
+  ]
+}

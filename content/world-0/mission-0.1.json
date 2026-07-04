@@ -1,0 +1,46 @@
+{
+  "id": "0.1",
+  "mundo": 0,
+  "orden": 1,
+  "titulo": "Primer pulso",
+  "tagline": "Tu robot puede moverse. Demuéstralo.",
+  "concepto": "Motores y throttle",
+  "duracion_estimada_min": 3,
+  "lenguaje": "py",
+
+  "narrativa": "Tu robot tiene dos motores, uno por rueda. Cada motor acepta un valor entre -1.0 (reversa máxima) y 1.0 (avance máximo). Cambia los valores de throttle para que el robot se mueva.",
+
+  "objetivo": "Haz que el robot avance hacia adelante.",
+
+  "codigo_inicial": "# Mundo 0 · Misión 1 — Primer pulso\nimport board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# Velocidad: -1.0 = reversa máxima | 0 = detenido | 1.0 = avance máximo\nib.motor_1.throttle = 0.0   # rueda izquierda  ← cambia este valor\nib.motor_2.throttle = 0.0   # rueda derecha    ← cambia este valor\n",
+
+  "escenario": {
+    "modo": "solo",
+    "duracion_test_s": 5,
+    "visualizaciones": []
+  },
+
+  "pistas": [
+    "motor_1 controla la rueda izquierda y motor_2 la derecha.",
+    "Un valor de 1.0 significa velocidad máxima hacia adelante.",
+    "Si ambas ruedas van al mismo valor, el robot avanza recto."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "distancia_minima", "valor": 5  }, "descripcion": "El robot se movió" },
+    { "cantidad": 2, "criterio": { "tipo": "distancia_minima", "valor": 18 }, "descripcion": "El robot avanzó con fuerza" },
+    { "cantidad": 3, "criterio": { "tipo": "distancia_minima", "valor": 30 }, "descripcion": "El robot cruzó la arena entera" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Perfecto! Tu robot cruzó casi toda la arena. Eso que escribiste son instrucciones reales — tu robot físico las entiende igual.",
+    "2_estrellas": "¡Bien! El robot avanzó. Prueba subir el throttle a 1.0 en ambas ruedas para ir más rápido.",
+    "1_estrella":  "El robot se movió. Para ganar más estrellas, asegúrate de que ambos throttle lleguen a 1.0.",
+    "0_estrellas": "El robot no se movió. Verifica que motor_1 y motor_2 tengan un valor distinto de 0."
+  },
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\nib.motor_1.throttle = 0.8\nib.motor_2.throttle = 0.8\n",
+
+  "xp": 100,
+  "desbloquea": ["0.2"]
+}

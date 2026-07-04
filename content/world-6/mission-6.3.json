@@ -1,0 +1,62 @@
+{
+  "id": "6.3",
+  "mundo": 6,
+  "orden": 3,
+  "titulo": "El robot definitivo",
+  "tagline": "Este es tu robot. Tu código. Tu victoria.",
+  "concepto": "Robot completo de competencia",
+  "duracion_estimada_min": 20,
+  "lenguaje": "py",
+  "narrativa": "Esta es la misión final. No hay más mundos después de este. Tu robot debe demostrar todo lo que aprendiste: sensores, decisiones, maniobras, optimización y estrategia. El código que escribas aquí es el código que correrías en un torneo real con hardware real.",
+  "objetivo": "Crea el robot definitivo. Sobrevive el combate completo de 90 segundos. Hazlo tuyo.",
+  "codigo_inicial": "import board, time\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# ═══════════════════════════════════════════════\n#   ROBOT DEFINITIVO — Mundo 6, Misión Final\n#   Autor: tú\n#   Estrategia: (descríbela aquí en un comentario)\n# ═══════════════════════════════════════════════\n\nwhile True:\n    pass\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 90,
+    "visualizaciones": [
+      "ir",
+      "sonar",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "No necesitas pistas. Tienes el conocimiento. Confía en él.",
+    "Si necesitas una base: copia la misión 5.1, ajusta a 1.0 de ataque y 0.2 s de retroceso.",
+    "El LED con tu color favorito es la firma de tu robot. No lo olvides."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot defendió su territorio"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 75
+      },
+      "descripcion": "Sobrevivió 75 segundos"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 88
+      },
+      "descripcion": "Completó el torneo como campeón"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "🏆 CAMPEÓN ABSOLUTO. Completaste el journey completo desde 'throttle = 0.0' hasta un robot de competencia. Eso es ingeniería de verdad.",
+    "2_estrellas": "¡Increíble! 75 segundos en el combate final. Eres un programador de robots. Con un poco más de tunning, el campeonato es tuyo.",
+    "1_estrella": "Tu robot sobrevivió en el combate más difícil. Eso ya es un logro enorme. Sigue iterando.",
+    "0_estrellas": "El camino de 0 a campeón nunca fue recto. Vuelve a las misiones anteriores, toma lo mejor de cada una y combínalo aquí."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 600,
+  "desbloquea": []
+}

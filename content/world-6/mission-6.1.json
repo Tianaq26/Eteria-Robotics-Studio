@@ -1,0 +1,60 @@
+{
+  "id": "6.1",
+  "mundo": 6,
+  "orden": 1,
+  "titulo": "El primer torneo",
+  "tagline": "Todo lo que aprendiste. Un solo combate. Sin red de seguridad.",
+  "concepto": "Combate completo",
+  "duracion_estimada_min": 12,
+  "lenguaje": "py",
+  "narrativa": "Has llegado al torneo. No hay pistas, no hay código inicial sugerido, no hay umbrales pre-establecidos. Solo tú, tu robot, y lo que aprendiste en los mundos anteriores. El rival no tiene piedad. ¿Estás listo?",
+  "objetivo": "Gana el combate (mantente en el dojo más tiempo que el rival) o sobrevive los 90 segundos completos.",
+  "codigo_inicial": "import board, time\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# TORNEO — sin ayudas. Tu código completo aquí.\nwhile True:\n    pass\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 90,
+    "visualizaciones": []
+  },
+  "pistas": [
+    "Recuerda: borde → escapar, rival cerca → atacar, sin rival → buscar.",
+    "El código de la misión 5.1 es un buen punto de partida — cópialo y ajústalo.",
+    "Velocidad de ataque 1.0, umbral de distancia 25, retroceso 0.25 s son buenos defaults."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot no salió"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 60
+      },
+      "descripcion": "Sobrevivió 60 segundos"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 85
+      },
+      "descripcion": "Dominó el torneo completo"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡CAMPEÓN DEL TORNEO! Tu robot sobrevivió casi el combate completo. Eres un ingeniero de robótica.",
+    "2_estrellas": "¡Excelente combate! 60 segundos es un resultado profesional. Ajusta los parámetros para llegar a 3 estrellas.",
+    "1_estrella": "Tu robot sobrevivió. En robótica competitiva, sobrevivir es el primer requisito. Sigue mejorando.",
+    "0_estrellas": "El robot cayó. Recuerda el patrón base: detectar borde → escapar, detectar rival → atacar, si no → girar."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 500,
+  "desbloquea": [
+    "6.2"
+  ]
+}

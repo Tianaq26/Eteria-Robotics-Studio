@@ -1,0 +1,103 @@
+{
+  "logros": [
+    {
+      "id": "primer_paso",
+      "titulo": "Primer paso",
+      "descripcion": "Completaste tu primera misión.",
+      "icono": "🚀",
+      "tipo": "misiones_completadas",
+      "valor": 1,
+      "xp_bonus": 50
+    },
+    {
+      "id": "triple_estrella",
+      "titulo": "Perfeccionista",
+      "descripcion": "Obtuviste 3 estrellas en una misión.",
+      "icono": "⭐",
+      "tipo": "max_estrellas_mision",
+      "valor": 3,
+      "xp_bonus": 75
+    },
+    {
+      "id": "cinco_misiones",
+      "titulo": "En racha",
+      "descripcion": "Completaste 5 misiones.",
+      "icono": "🔥",
+      "tipo": "misiones_completadas",
+      "valor": 5,
+      "xp_bonus": 100
+    },
+    {
+      "id": "mundo_0_completo",
+      "titulo": "Despertar completo",
+      "descripcion": "Terminaste todas las misiones del Mundo 0.",
+      "icono": "⚡",
+      "tipo": "mundo_completo",
+      "valor": 0,
+      "xp_bonus": 200
+    },
+    {
+      "id": "sin_pistas",
+      "titulo": "Sin ayuda",
+      "descripcion": "Completaste una misión sin pedir ninguna pista.",
+      "icono": "🎯",
+      "tipo": "mision_sin_pistas",
+      "valor": 1,
+      "xp_bonus": 80
+    },
+    {
+      "id": "velocista",
+      "titulo": "Velocista",
+      "descripcion": "El robot recorrió más de 100 cm en una sola prueba.",
+      "icono": "💨",
+      "tipo": "distancia_prueba",
+      "valor": 100,
+      "xp_bonus": 60
+    },
+    {
+      "id": "giroscopio",
+      "titulo": "Giroscopio",
+      "descripcion": "El robot giró más de 720° en una sola prueba.",
+      "icono": "🌀",
+      "tipo": "angulo_prueba",
+      "valor": 720,
+      "xp_bonus": 60
+    },
+    {
+      "id": "colorista",
+      "titulo": "Colorista",
+      "descripcion": "Encendiste el LED con un color personalizado.",
+      "icono": "🎨",
+      "tipo": "pixel_personalizado",
+      "valor": 1,
+      "xp_bonus": 50
+    },
+    {
+      "id": "depurador",
+      "titulo": "Depurador nato",
+      "descripcion": "Enviaste 5 o más mensajes a la consola en una sola prueba.",
+      "icono": "🔍",
+      "tipo": "console_lines_prueba",
+      "valor": 5,
+      "xp_bonus": 50
+    },
+    {
+      "id": "nivel_2",
+      "titulo": "Subiendo el nivel",
+      "descripcion": "Alcanzaste el nivel 2.",
+      "icono": "📈",
+      "tipo": "nivel_alcanzado",
+      "valor": 2,
+      "xp_bonus": 0
+    },
+    {
+      "id": "todas_3_estrellas",
+      "titulo": "Maestro del Mundo 0",
+      "descripcion": "Obtuviste 3 estrellas en todas las misiones del Mundo 0.",
+      "icono": "👑",
+      "tipo": "mundo_todas_3_estrellas",
+      "valor": 0,
+      "xp_bonus": 300
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "worlds": [
+    {
+      "id": 0,
+      "slug": "world-0",
+      "titulo": "El Despertar",
+      "tagline": "Tu robot existe. Tú existes. Aún no se conocen.",
+      "color": "#3c82f0",
+      "icono": "⚡",
+      "misiones": ["0.1", "0.2", "0.3", "0.4"],
+      "desbloqueado_por_defecto": true
+    },
+    {
+      "id": 1,
+      "slug": "world-1",
+      "titulo": "Los Sentidos",
+      "tagline": "Ver sin ojos. Sentir sin piel. Reaccionar sin pensar.",
+      "color": "#10b981",
+      "icono": "👁️",
+      "misiones": ["1.1", "1.2", "1.3"],
+      "desbloqueado_por_defecto": false
+    },
+    {
+      "id": 2,
+      "slug": "world-2",
+      "titulo": "La Mente",
+      "tagline": "Un robot que no decide, solo obedece. Tú decides.",
+      "color": "#8b5cf6",
+      "icono": "🧠",
+      "misiones": ["2.1", "2.2", "2.3"],
+      "desbloqueado_por_defecto": false
+    },
+    {
+      "id": 3,
+      "slug": "world-3",
+      "titulo": "El Movimiento",
+      "tagline": "Recto es aburrido. Las curvas ganan combates.",
+      "color": "#f59e0b",
+      "icono": "🌀",
+      "misiones": ["3.1", "3.2", "3.3"],
+      "desbloqueado_por_defecto": false
+    },
+    {
+      "id": 4,
+      "slug": "world-4",
+      "titulo": "La Estrategia",
+      "tagline": "Atacar sin pensar es perder con estilo.",
+      "color": "#ef4444",
+      "icono": "⚔️",
+      "misiones": ["4.1", "4.2", "4.3"],
+      "desbloqueado_por_defecto": false
+    },
+    {
+      "id": 5,
+      "slug": "world-5",
+      "titulo": "La Optimización",
+      "tagline": "Un número bien elegido vale más que cien líneas de código.",
+      "color": "#06b6d4",
+      "icono": "🔧",
+      "misiones": ["5.1", "5.2", "5.3"],
+      "desbloqueado_por_defecto": false
+    },
+    {
+      "id": 6,
+      "slug": "world-6",
+      "titulo": "El Torneo",
+      "tagline": "Sin red de seguridad. Sin pistas. Solo tú y tu código.",
+      "color": "#f97316",
+      "icono": "🏆",
+      "misiones": ["6.1", "6.2", "6.3"],
+      "desbloqueado_por_defecto": false
+    }
+  ]
+}

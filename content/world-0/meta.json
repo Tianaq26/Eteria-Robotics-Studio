@@ -1,0 +1,10 @@
+{
+  "id": 0,
+  "slug": "world-0",
+  "titulo": "El Despertar",
+  "tagline": "Tu robot existe. Tú existes. Aún no se conocen.",
+  "descripcion": "Ejecuta código por primera vez. Sin teoría. Solo acción. Cada misión te muestra un concepto nuevo y tu robot lo demuestra en la arena.",
+  "color": "#3c82f0",
+  "icono": "⚡",
+  "xp_total": 400
+}

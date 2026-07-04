@@ -1,0 +1,46 @@
+{
+  "id": "0.4",
+  "mundo": 0,
+  "orden": 4,
+  "titulo": "Habla conmigo",
+  "tagline": "Tu robot puede enviarte mensajes. Escúchalo.",
+  "concepto": "print() y depuración",
+  "duracion_estimada_min": 3,
+  "lenguaje": "py",
+
+  "narrativa": "print() es tu herramienta más importante como programador. Te permite ver qué está pensando tu robot en cada momento. En el robot físico los mensajes aparecen en la terminal. Aquí los ves en la Consola.",
+
+  "objetivo": "Haz que tu robot imprima al menos un mensaje en la consola.",
+
+  "codigo_inicial": "# Mundo 0 · Misión 4 — Habla conmigo\nimport board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# print() muestra mensajes en la consola\nprint(\"Hola desde mi robot\")   # cambia este mensaje\n\n# También puedes mostrar números y mezclar texto\nprint(\"Motor 1:\", ib.motor_1.throttle)\n",
+
+  "escenario": {
+    "modo": "solo",
+    "duracion_test_s": 3,
+    "visualizaciones": []
+  },
+
+  "pistas": [
+    "print() muestra cualquier cosa entre comillas en la Consola.",
+    "Puedes imprimir variables: print('Velocidad:', velocidad).",
+    "Usa print() para saber si tu código llegó a cierta línea."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "consola_output", "minimo": 1 }, "descripcion": "El robot envió un mensaje" },
+    { "cantidad": 2, "criterio": { "tipo": "consola_output", "minimo": 2 }, "descripcion": "El robot envió varios mensajes" },
+    { "cantidad": 3, "criterio": { "tipo": "consola_output_personalizado"  }, "descripcion": "Cambiaste el mensaje original" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Excelente! print() va a ser tu mejor amigo cuando algo no funcione. Un robot que habla es un robot que puedes entender.",
+    "2_estrellas": "¡Bien! Varios mensajes. Ahora sabes cómo depurar. Para la tercera estrella, cambia el texto del primer print.",
+    "1_estrella":  "Un mensaje llegó. Para más estrellas, agrega más líneas de print() con información diferente.",
+    "0_estrellas": "No apareció ningún mensaje. Verifica que print() esté escrito exactamente así, con los paréntesis."
+  },
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\nprint(\"=== Mi Sumobot ===\")\nprint(\"Motor izquierdo:\", ib.motor_1.throttle)\nprint(\"Motor derecho:\",  ib.motor_2.throttle)\nprint(\"LED:\",            ib.pixel)\nprint(\"Robot listo!\")\n",
+
+  "xp": 100,
+  "desbloquea": ["1.1"]
+}

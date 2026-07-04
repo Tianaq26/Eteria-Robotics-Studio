@@ -1,0 +1,46 @@
+{
+  "id": "0.3",
+  "mundo": 0,
+  "orden": 3,
+  "titulo": "Mi primera luz",
+  "tagline": "Tu robot tiene un LED RGB. Dile qué color mostrar.",
+  "concepto": "LED RGB y tuplas",
+  "duracion_estimada_min": 4,
+  "lenguaje": "py",
+
+  "narrativa": "El IdeaBoard tiene un LED RGB que puedes controlar con ib.pixel. Le pasas una tupla de tres números: (Rojo, Verde, Azul). Cada valor va de 0 a 255. Cambia los números y observa el color que aparece en la consola.",
+
+  "objetivo": "Enciende el LED de tu robot con cualquier color que no sea negro (0, 0, 0).",
+
+  "codigo_inicial": "# Mundo 0 · Misión 3 — Mi primera luz\nimport board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# Enciende el LED: ib.pixel = (Rojo, Verde, Azul)\n# Cada valor va de 0 (apagado) a 255 (máximo)\nib.pixel = (0, 0, 0)   # ← cambia los tres números para elegir un color\n",
+
+  "escenario": {
+    "modo": "solo",
+    "duracion_test_s": 3,
+    "visualizaciones": []
+  },
+
+  "pistas": [
+    "ib.pixel recibe una tupla: (rojo, verde, azul). Ej: (0, 255, 0) es verde puro.",
+    "Mezcla colores: (255, 165, 0) es naranja, (128, 0, 128) es morado.",
+    "Para apagar el LED usa (0, 0, 0)."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "pixel_set"                       }, "descripcion": "El LED se encendió" },
+    { "cantidad": 2, "criterio": { "tipo": "pixel_no_rojo"                   }, "descripcion": "Usaste un color diferente al rojo inicial" },
+    { "cantidad": 3, "criterio": { "tipo": "pixel_distinto_al_inicial"       }, "descripcion": "Creaste tu propio color" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Tu propio color! En el robot físico este LED es visible a metros de distancia. Se usa para mostrar el estado del robot.",
+    "2_estrellas": "¡Bien! Probaste un color diferente. En competencia el LED te ayuda a depurar: rojo=borde, verde=rival detectado.",
+    "1_estrella":  "El LED se encendió. Para más estrellas, cambia los valores de la tupla y crea un color diferente.",
+    "0_estrellas": "El LED no se encendió. Verifica que ib.pixel reciba una tupla con tres números entre 0 y 255."
+  },
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# Azul eléctrico vibrante\nib.pixel = (0, 80, 255)\n",
+
+  "xp": 100,
+  "desbloquea": ["0.4"]
+}

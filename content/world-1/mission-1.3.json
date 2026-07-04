@@ -1,0 +1,46 @@
+{
+  "id": "1.3",
+  "mundo": 1,
+  "orden": 3,
+  "titulo": "Todos los sentidos",
+  "tagline": "IR + sonar juntos. Así funciona un sumobot real.",
+  "concepto": "Fusión de sensores",
+  "duracion_estimada_min": 8,
+  "lenguaje": "py",
+
+  "narrativa": "Un sumobot real usa todos sus sensores al mismo tiempo. Los IR cuidan el borde, el sonar detecta al rival. La prioridad importa: primero no caerse, luego atacar.",
+
+  "objetivo": "Combina IR y sonar en un solo bucle con prioridad correcta: borde > atacar > buscar.",
+
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\n\n# Sensores IR\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\n\nwhile True:\n    en_borde = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n    dist = sonar.dist_cm()\n\n    if en_borde:\n        # PRIORIDAD 1: escapar del borde\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1\n        ib.motor_2.throttle = -1\n        sleep(0.2)\n    elif 0 < dist < 40:\n        # PRIORIDAD 2: atacar al rival\n        ib.pixel = (0, 255, 0)\n        # TODO: avanza\n    else:\n        # PRIORIDAD 3: buscar al rival girando\n        ib.pixel = (0, 0, 255)\n        # TODO: gira\n\n    sleep(0.02)\n",
+
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 25,
+    "visualizaciones": ["ir", "sonar"]
+  },
+
+  "pistas": [
+    "El orden del if-elif-else define la prioridad. Borde siempre primero.",
+    "sleep(0.2) después del retroceso da tiempo al robot de alejarse del borde.",
+    "Para girar: motor_1 = 0.6, motor_2 = -0.6 (o viceversa para el otro lado)."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "no_salio", "valor": true }, "descripcion": "El robot no salió" },
+    { "cantidad": 2, "criterio": { "tipo": "tiempo_minimo", "valor": 18 }, "descripcion": "Sobrevivió 18 segundos" },
+    { "cantidad": 3, "criterio": { "tipo": "tiempo_minimo", "valor": 23 }, "descripcion": "Dominó el combate completo" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡PERFECTO! IR + sonar combinados. Este código funciona exactamente igual en el robot físico real.",
+    "2_estrellas": "¡Bien! Sobreviviste 18 segundos. Aumenta la velocidad de ataque para los 3 estrellas.",
+    "1_estrella": "El robot no salió — eso es lo más importante. Ahora completa el TODO del ataque y búsqueda.",
+    "0_estrellas": "El robot salió. Verifica que en_borde use OR entre los cuatro sensores y que el retroceso sea throttle = -1."
+  },
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\n\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\n\nwhile True:\n    en_borde = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n    dist = sonar.dist_cm()\n\n    if en_borde:\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1\n        ib.motor_2.throttle = -1\n        sleep(0.2)\n    elif 0 < dist < 40:\n        ib.pixel = (0, 255, 0)\n        ib.motor_1.throttle = 1\n        ib.motor_2.throttle = 1\n    else:\n        ib.pixel = (0, 0, 255)\n        ib.motor_1.throttle =  0.6\n        ib.motor_2.throttle = -0.6\n\n    sleep(0.02)\n",
+
+  "xp": 280,
+  "desbloquea": ["2.1"]
+}

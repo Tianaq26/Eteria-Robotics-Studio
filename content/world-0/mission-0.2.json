@@ -1,0 +1,46 @@
+{
+  "id": "0.2",
+  "mundo": 0,
+  "orden": 2,
+  "titulo": "Izquierda, derecha",
+  "tagline": "Dos ruedas a velocidades distintas. Eso es un giro.",
+  "concepto": "Dirección diferencial",
+  "duracion_estimada_min": 4,
+  "lenguaje": "py",
+
+  "narrativa": "Un robot de tracción diferencial gira cuando sus ruedas van a velocidades distintas. Si la izquierda va más rápido que la derecha, el robot gira a la derecha. Modifica los valores y observa cómo cambia la dirección.",
+
+  "objetivo": "Haz que el robot gire al menos 90 grados.",
+
+  "codigo_inicial": "# Mundo 0 · Misión 2 — Izquierda, derecha\nimport board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# Para girar, las ruedas deben ir a velocidades distintas\n# Modifica los valores (entre -1.0 y 1.0) para lograr un giro\nib.motor_1.throttle = 0.0   # rueda izquierda  ← ajusta\nib.motor_2.throttle = 0.0   # rueda derecha    ← ajusta\n",
+
+  "escenario": {
+    "modo": "solo",
+    "duracion_test_s": 5,
+    "visualizaciones": []
+  },
+
+  "pistas": [
+    "Si motor_1 > motor_2, el robot gira a la derecha.",
+    "Si motor_2 > motor_1, el robot gira a la izquierda.",
+    "Para girar en el mismo lugar: una rueda en 1.0 y la otra en -1.0."
+  ],
+
+  "estrellas": [
+    { "cantidad": 1, "criterio": { "tipo": "angulo_minimo", "valor": 45  }, "descripcion": "El robot giró" },
+    { "cantidad": 2, "criterio": { "tipo": "angulo_minimo", "valor": 180 }, "descripcion": "El robot giró más de 180°" },
+    { "cantidad": 3, "criterio": { "tipo": "angulo_minimo", "valor": 360 }, "descripcion": "El robot dio una vuelta completa" }
+  ],
+
+  "feedback": {
+    "3_estrellas": "¡Una vuelta completa! Ya controlas la dirección de tu robot. Este es el principio de cualquier maniobra.",
+    "2_estrellas": "¡Buen giro! Para la tercera estrella, haz que complete una vuelta entera (360°).",
+    "1_estrella":  "El robot giró un poco. Aumenta la diferencia entre las ruedas para girar más.",
+    "0_estrellas": "El robot no giró. Para girar, una rueda debe ir más rápido que la otra."
+  },
+
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# Giro a la izquierda: rueda derecha avanza, izquierda retrocede\nib.motor_1.throttle = -0.7\nib.motor_2.throttle =  0.7\n",
+
+  "xp": 100,
+  "desbloquea": ["0.3"]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "5.3",
+  "mundo": 5,
+  "orden": 3,
+  "titulo": "Tu robot, tu firma",
+  "tagline": "El mejor código es el que tú entiendes y nadie más tiene.",
+  "concepto": "Optimización libre",
+  "duracion_estimada_min": 10,
+  "lenguaje": "py",
+  "narrativa": "Esta es tu misión libre. Tienes todos los conceptos: motores, sensores, estados, proporcionalidad, maniobras. Diseña el robot que tú quieras. No hay código inicial correcto — hay tu solución y cuánto rinde.",
+  "objetivo": "Crea el robot más competitivo que puedas. Sobrevive el mayor tiempo posible y mantén el LED encendido con tu color.",
+  "codigo_inicial": "import board, time\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\n# Tu código aquí. Sin restricciones.\n# Tienes: ib.motor_1, ib.motor_2, ib.sonar,\n#          ib.ir_front_left, ib.ir_front_right,\n#          ib.ir_back_left, ib.ir_back_right,\n#          ib.pixel = (r, g, b)\n\nwhile True:\n    pass\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 90,
+    "visualizaciones": [
+      "ir",
+      "sonar",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "Combina el control proporcional con la máquina de estados — son compatibles.",
+    "Pon ib.pixel a tu color favorito para identificar tu robot.",
+    "No existe solución perfecta — existe tu solución mejorada iteración a iteración."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "pixel_encendido",
+        "valor": true
+      },
+      "descripcion": "El LED tiene tu color"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 45
+      },
+      "descripcion": "Sobrevivió la mitad del combate"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 80
+      },
+      "descripcion": "Dominó casi todo el combate"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡LEYENDA! 80 segundos en un combate de 90. Tu robot es una obra maestra de la ingeniería.",
+    "2_estrellas": "¡Excelente! Sobreviviste la mitad. Sigue iterando — cada ajuste te acerca a los 3 estrellas.",
+    "1_estrella": "El LED está encendido — eso significa que tu robot tiene personalidad. Ahora dale también estrategia.",
+    "0_estrellas": "El robot no hizo nada. Reemplaza el pass con cualquier código de las misiones anteriores como punto de partida."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 400,
+  "desbloquea": [
+    "6.1"
+  ]
+}

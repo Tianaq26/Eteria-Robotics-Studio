@@ -1,0 +1,64 @@
+{
+  "id": "3.2",
+  "mundo": 3,
+  "orden": 2,
+  "titulo": "El giro de rescate",
+  "tagline": "Cuando el borde está a la izquierda, giras a la derecha.",
+  "concepto": "Reacción direccional",
+  "duracion_estimada_min": 6,
+  "lenguaje": "py",
+  "narrativa": "Hasta ahora retrocedías igual sin importar qué sensor detectó el borde. Pero si el borde está a la izquierda, lo inteligente es girar a la derecha. Usar el sensor específico que se activó te da maniobras más precisas.",
+  "objetivo": "Detecta en qué lado está el borde y gira hacia el lado contrario para escapar.",
+  "codigo_inicial": "import board\nfrom ideaboard import IdeaBoard\n\nib = IdeaBoard()\n\nwhile True:\n    fl = ib.ir_front_left\n    fr = ib.ir_front_right\n    dist = ib.sonar\n\n    if fl and not fr:\n        # Borde a la izquierda → gira a la derecha\n        ib.motor_1.throttle = 0.0  # TODO\n        ib.motor_2.throttle = 0.0\n    elif fr and not fl:\n        # Borde a la derecha → gira a la izquierda\n        ib.motor_1.throttle = 0.0  # TODO\n        ib.motor_2.throttle = 0.0\n    elif fl and fr:\n        # Borde en ambos lados → retrocede\n        ib.motor_1.throttle = 0.0  # TODO\n        ib.motor_2.throttle = 0.0\n    elif dist < 20:\n        # Rival cerca → ataca\n        ib.motor_1.throttle = 1.0\n        ib.motor_2.throttle = 1.0\n    else:\n        # Busca girando\n        ib.motor_1.throttle = 0.5\n        ib.motor_2.throttle = -0.5\n",
+  "escenario": {
+    "modo": "combate",
+    "duracion_test_s": 20,
+    "visualizaciones": [
+      "ir",
+      "sonar",
+      "trail"
+    ]
+  },
+  "pistas": [
+    "Para girar a la derecha: motor_1 alto (ej. 0.7), motor_2 bajo o negativo.",
+    "Para girar a la izquierda: motor_1 bajo o negativo, motor_2 alto.",
+    "Prueba retroceder un poco antes de girar cuando fl and fr son True."
+  ],
+  "estrellas": [
+    {
+      "cantidad": 1,
+      "criterio": {
+        "tipo": "no_salio",
+        "valor": true
+      },
+      "descripcion": "El robot no salió"
+    },
+    {
+      "cantidad": 2,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 15
+      },
+      "descripcion": "Sobrevivió 15 segundos"
+    },
+    {
+      "cantidad": 3,
+      "criterio": {
+        "tipo": "tiempo_minimo",
+        "valor": 19
+      },
+      "descripcion": "Sobrevivió casi todo el combate"
+    }
+  ],
+  "feedback": {
+    "3_estrellas": "¡Excelente! Tu robot sobrevivió con maniobras direccionales inteligentes. Así se programa un sumobot competitivo.",
+    "2_estrellas": "Bien! Sobrevivió bastante. Afina los giros direccionales para que escape mejor del borde.",
+    "1_estrella": "El robot no salió. Completa los TODO en cada condición con los valores de throttle correctos.",
+    "0_estrellas": "El robot salió pronto. Asegúrate de que el giro a la derecha usa motor_1 alto y motor_2 bajo (o negativo)."
+  },
+  "solucion": "import board\nfrom ideaboard import IdeaBoard\nfrom hcsr04 import HCSR04\nfrom time import sleep, monotonic\n\nib = IdeaBoard()\nsonar = HCSR04(board.IO25, board.IO26)\nfl = ib.AnalogIn(board.IO36)\nfr = ib.AnalogIn(board.IO39)\nbl = ib.AnalogIn(board.IO34)\nbr = ib.AnalogIn(board.IO35)\n\nBLANCO = 3000\nUMBRAL = 35\nT_ESC  = 0.28\nestado = \"buscar\"\nt0 = monotonic()\n\nwhile True:\n    ahora   = monotonic()\n    dist    = sonar.dist_cm()\n    elapsed = ahora - t0\n    borde   = fl.value < BLANCO or fr.value < BLANCO or bl.value < BLANCO or br.value < BLANCO\n\n    if estado == \"buscar\":\n        ib.pixel = (0, 80, 255)\n        if borde:\n            estado = \"escapar\"; t0 = ahora\n        elif 0 < dist < UMBRAL:\n            factor = 1.0 - dist / UMBRAL\n            vel = 0.45 + factor * 0.55\n            ib.pixel = (0, int(vel * 255), 0)\n            ib.motor_1.throttle = vel\n            ib.motor_2.throttle = vel * 0.9\n        else:\n            ib.motor_1.throttle =  0.55\n            ib.motor_2.throttle = -0.55\n\n    elif estado == \"escapar\":\n        ib.pixel = (255, 0, 0)\n        ib.motor_1.throttle = -1.0\n        ib.motor_2.throttle =  0.7\n        if elapsed > T_ESC:\n            estado = \"buscar\"\n\n    sleep(0.02)\n",
+  "xp": 240,
+  "desbloquea": [
+    "3.3"
+  ]
+}
