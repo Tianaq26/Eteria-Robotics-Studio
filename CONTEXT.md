@@ -1,7 +1,7 @@
 # Eteria Robotics Studio — Contexto del proyecto
 
 > Archivo de referencia para retomar el desarrollo sin perder contexto.
-> Última actualización: 2026-06-27 (revisado tras sesión de mejoras)
+> Última actualización: 2026-07-04 (rebranding + lanzamiento en GitHub Pages, SEO, analítica)
 
 ---
 
@@ -9,12 +9,16 @@
 
 Plataforma web educativa para programar y combatir sumobots virtuales que siguen las reglas
 oficiales de CENFOTEC. El usuario escribe código JS o Python (CircuitPython real) en el editor
-del navegador, lo compila al instante y observa el combate en 3D.
+del navegador, lo compila al instante y observa el combate en 3D. Nombre de marca: **Eteria
+Robotics Studio** (antes "Sumobot Arena IDE" — renombrado en 2026-07-04; "sumobot" sigue
+usándose como término genérico del robot/dominio, no como marca).
 
-**Ubicación:** `C:\Users\sebas\Desktop\SumobotArenaIDE`
-**Correr:** `npm run serve` → <http://localhost:8080>
+**Ubicación local:** `D:\Datos\Proyectos Web\SumobotArenaIDE`
+**Repo GitHub:** https://github.com/Tianaq26/Eteria-Robotics-Studio (rama `main`)
+**En producción (GitHub Pages):** https://tianaq26.github.io/Eteria-Robotics-Studio/
+**Correr local:** `npm run serve` → <http://localhost:8080>
 **Tests headless:** `npm test`
-**Sin build:** puro ESM, sin bundler ni transpilación.
+**Sin build:** puro ESM, sin bundler ni transpilación — se sube el repo tal cual a GitHub Pages.
 
 ---
 
@@ -35,10 +39,14 @@ del navegador, lo compila al instante y observa el combate en 3D.
 
 ```
 SumobotArenaIDE/
-├── index.html                    # layout 3 paneles + importmap Three.js
+├── index.html                    # layout 3 paneles + importmap Three.js + SEO/GTM/aviso móvil
 ├── package.json                  # type:module, scripts test/serve
 ├── tools/serve.js                # servidor estático con cabeceras COOP/COEP
 ├── tests/headless.js             # prueba determinismo + batallas batch
+├── coi-serviceworker.js          # habilita crossOriginIsolated en GitHub Pages (ver sección Deploy)
+├── favicon.svg                   # ícono generado a partir del logo inline del header
+├── robots.txt / sitemap.xml      # SEO — indexación en Google Search Console
+├── .gitignore                    # excluye .claude/ (config local) y autoguardados de Blender
 ├── modelos3D/
 │   ├── sumobot.glb               # modelo 3D del robot (PENDIENTE de usar en scene.js)
 │   └── sumobot.blend             # fuente Blender
@@ -146,14 +154,65 @@ ni en móvil) — sin fallback posible, a diferencia de projectManager.js, porqu
 con hardware serie real sin estas APIs. `deviceUI.js` deshabilita el botón con un tooltip explicativo
 cuando no están disponibles.
 
-## Deploy como sitio estático
+## Deploy en producción: GitHub Pages
 
-Ya no hace falta nada más — `tools/serve.js` solo sirve para desarrollo local.
-Para producción, cualquier host estático (Netlify, Cloudflare Pages, Vercel, GitHub Pages…) funciona, **pero**
-Python/pyblock necesitan `crossOriginIsolated` (COOP/COEP) para el Worker de Pyodide con `SharedArrayBuffer`.
-Por eso se agregaron `_headers` (Netlify/Cloudflare Pages) y `vercel.json` (Vercel) en la raíz, replicando las
-mismas cabeceras que `tools/serve.js`. **GitHub Pages no soporta cabeceras personalizadas** — ahí JavaScript
-funcionará pero Python y pyblock mostrarán el aviso de "Python bloqueado".
+**Estado: en vivo** en https://tianaq26.github.io/Eteria-Robotics-Studio/ (repo público
+`Tianaq26/Eteria-Robotics-Studio`, rama `main`, Pages configurado como "Deploy from a branch" →
+`main` / root — sin workflow de Actions propio, GitHub genera automáticamente el check
+"pages build and deployment" en cada push). `tools/serve.js` sigue siendo solo para desarrollo local.
+
+`_headers` (Netlify/Cloudflare Pages) y `vercel.json` (Vercel) quedan en la raíz por si algún día se
+migra a otro host, pero **no se usan en GitHub Pages** (no soporta cabeceras personalizadas).
+
+Al migrar de local/Vercel a GitHub Pages hubo que corregir dos cosas que de otro modo rompen el sitio
+en producción (silenciosamente, porque en local no se nota):
+
+1. **Rutas absolutas → relativas.** El sitio vive bajo un subpath (`/Eteria-Robotics-Studio/`), no en
+   la raíz del dominio. `scene.js`, `viewport3d.js`, `CurriculumLoader.js` y `AchievementEngine.js`
+   cargaban `/modelos3D/...` y `/content/...` con slash inicial → se resolvían contra la raíz del
+   dominio (`tianaq26.github.io/modelos3D/...`, 404). Cambiadas a `./modelos3D/...` y `./content/...`.
+   **Si se agrega un fetch/import nuevo de un asset propio, usar siempre ruta relativa (`./...`), nunca
+   con `/` inicial** — no hay routing client-side (sin `pushState`) así que esto es seguro en toda la app.
+
+2. **`crossOriginIsolated` sin cabeceras propias.** GitHub Pages no permite configurar
+   COOP/COEP, y Python/pyblock (Pyodide + `SharedArrayBuffer`, ver sección más abajo) los necesita.
+   Se agregó `coi-serviceworker.js` (MIT, gzuidhof/coi-serviceworker) registrado como el primer
+   `<script>` del `<head>` de `index.html` — intercepta las respuestas del Service Worker y les añade
+   las cabeceras COOP/COEP en el cliente. En local (`tools/serve.js` ya las manda) el script detecta
+   que `crossOriginIsolated` ya es `true` y no hace nada. **Ya NO es cierto que Python esté bloqueado
+   en GitHub Pages** — funciona igual que en local/Vercel gracias a este service worker.
+
+---
+
+## SEO
+
+`index.html` tiene meta description, `robots`, `canonical`, Open Graph/Twitter, JSON-LD
+(`WebApplication`) y favicon (`favicon.svg`, generado del ícono del header — no hay imagen `og:image`
+todavía, solo texto/JSON-LD). `robots.txt` y `sitemap.xml` en la raíz (single-page, una sola URL).
+Propiedad verificada en Google Search Console (prefijo de URL, método meta-tag) y sitemap enviado.
+Al ser una SPA de una sola página, no hay más superficie que optimizar sin agregar contenido/rutas nuevas.
+
+## Analítica: Google Tag Manager + GA4
+
+- Contenedor GTM: `GTM-WCKPGQTS` (snippet instalado en `index.html`: script al inicio del `<head>`,
+  `<noscript>` justo después de `<body>`).
+- Dentro del contenedor GTM (tagmanager.google.com) hay **una sola etiqueta**: tipo **"Etiqueta de
+  Google"** (Google Tag, reemplazo actual de la vieja "Configuración de GA4"), ID de medición
+  `G-RC4SRSRXP6`, activador "All Pages". **No** se usó el snippet directo de `gtag.js` que ofrece GA4
+  (se habría duplicado con GTM) — todo pasa por el contenedor de Tag Manager.
+- Para agregar tracking de eventos personalizados a futuro (clics, "Ejecutar mi bot", etc.), crear
+  tags tipo "Google Analytics: evento de GA4" en el mismo contenedor — esas sí requieren que la
+  "Etiqueta de Google" ya exista (ya existe), más el nombre del evento y su propio activador.
+- Cualquier cambio en GTM (nueva etiqueta, activador) necesita **Enviar → Publicar** en el contenedor
+  para que tenga efecto — no basta con guardarlo.
+
+## Aviso de "mejor en computadora" (mobile notice)
+
+El dock de 3 paneles (editor/consola, visualización 3D, control) no es usable en pantallas angostas
+(sin diseño responsive para ese layout). `#mobileNotice` en `index.html` + CSS en `styles.css`
+(`@media (max-width:820px)`) muestra un overlay a pantalla completa explicando esto, con un botón
+("Entendido, continuar de todos modos") que solo le agrega la clase `.hidden` — no bloquea la app,
+solo avisa. En desktop (>820px) el overlay tiene `display:none` y nunca se ve.
 
 ---
 
