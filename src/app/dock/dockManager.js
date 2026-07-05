@@ -16,6 +16,9 @@ import { PANELS, getPanel } from './panels.js';
 const LAYOUT_KEY = 'sumobot_layout_v1';
 const ZONE_IDS = ['left', 'center', 'right', 'bottom'];
 
+const MOBILE_LAYOUT_KEY = 'sumobot_mobile_layout_v1';
+const MOBILE_BREAKPOINT = '(max-width: 820px)';
+
 function defaultLayout() {
   const zones = { left: [], center: [], right: [], bottom: [] };
   for (const p of PANELS) zones[p.defaultZone].push(p.id);
@@ -113,7 +116,12 @@ function renderZone(zoneId) {
   for (const id of z.panelIds) {
     ensureMounted(id);
     const body = panelBodyEl(id);
-    if (body) body.classList.toggle('dock-panel-active', id === z.activeId);
+    if (body) {
+      // El modo móvil puede haber movido este nodo a una de sus 2 franjas;
+      // al volver a desktop hay que re-anclarlo a su zona lógica.
+      if (body.parentElement !== content) content.appendChild(body);
+      body.classList.toggle('dock-panel-active', id === z.activeId);
+    }
   }
 
   content.querySelectorAll('.dock-empty').forEach((e) => e.remove());
@@ -347,6 +355,145 @@ function onTabPointerUp(e, tabEl) {
   dragState = null;
 }
 
+// ── Modo celular: 2 franjas apiladas, cada una puede mostrar cualquier panel ──
+// A diferencia de las zonas de desktop (donde cada panel pertenece a una zona
+// fija), en móvil las 2 franjas comparten la lista completa de paneles: tocar
+// una pestaña la muestra ahí. Si ese panel ya estaba en la otra franja, se
+// intercambian — así nunca hay una franja vacía ni dos franjas mostrando lo mismo.
+
+let mobileState = null; // { a: panelId, b: panelId, split: 50 }
+let mobileZoneEls = {};
+let mobileSaveTimer = null;
+const mobileMql = typeof window !== 'undefined' && window.matchMedia
+  ? window.matchMedia(MOBILE_BREAKPOINT) : null;
+
+function defaultMobileLayout() {
+  return { version: 1, a: 'editor', b: 'arena', split: 50 };
+}
+
+function loadMobileLayout() {
+  try {
+    const raw = localStorage.getItem(MOBILE_LAYOUT_KEY);
+    if (!raw) return defaultMobileLayout();
+    const parsed = JSON.parse(raw);
+    if (!parsed || parsed.version !== 1 || !getPanel(parsed.a) || !getPanel(parsed.b)) return defaultMobileLayout();
+    return parsed;
+  } catch (_) {
+    return defaultMobileLayout();
+  }
+}
+
+function saveMobileLayoutDebounced() {
+  clearTimeout(mobileSaveTimer);
+  mobileSaveTimer = setTimeout(() => {
+    try { localStorage.setItem(MOBILE_LAYOUT_KEY, JSON.stringify(mobileState)); } catch (_) {}
+  }, 300);
+}
+
+function renderMobileZone(key) {
+  const { tabstrip, content } = mobileZoneEls[key];
+  const activeId = mobileState[key];
+
+  tabstrip.innerHTML = '';
+  for (const def of PANELS) {
+    const tab = document.createElement('div');
+    tab.className = 'dock-tab' + (def.id === activeId ? ' active' : '');
+    tab.innerHTML =
+      '<span class="dock-tab-icon">' + (def.icon || '') + '</span>' +
+      '<span class="dock-tab-title">' + def.title + '</span>';
+    tab.addEventListener('click', () => setMobileActive(key, def.id));
+    tabstrip.appendChild(tab);
+  }
+
+  ensureMounted(activeId);
+  const body = panelBodyEl(activeId);
+  if (body) {
+    if (body.parentElement !== content) content.appendChild(body);
+    for (const child of content.children) child.classList.toggle('dock-panel-active', child === body);
+  }
+}
+
+function renderMobileAll() {
+  renderMobileZone('a');
+  renderMobileZone('b');
+  applyMobileSplit();
+}
+
+function setMobileActive(key, panelId) {
+  if (mobileState[key] === panelId) return;
+  const otherKey = key === 'a' ? 'b' : 'a';
+  if (mobileState[otherKey] === panelId) {
+    // El panel ya se ve en la otra franja: intercambiar en vez de dejarla vacía.
+    mobileState[otherKey] = mobileState[key];
+  }
+  mobileState[key] = panelId;
+  renderMobileAll();
+  saveMobileLayoutDebounced();
+  requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+}
+
+function applyMobileSplit() {
+  const pct = mobileState.split || 50;
+  mobileZoneEls.a.root.style.flex = '0 0 ' + pct + '%';
+  mobileZoneEls.b.root.style.flex = '1 1 ' + (100 - pct) + '%';
+}
+
+function wireMobileResizer(rootEl) {
+  const handle = rootEl.querySelector('[data-mresizer="split"]');
+  if (!handle) return;
+  let dragging = false;
+  handle.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    dragging = true;
+    handle.classList.add('dragging');
+    handle.setPointerCapture(e.pointerId);
+  });
+  handle.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const total = rootEl.offsetHeight;
+    const rect = rootEl.getBoundingClientRect();
+    const pct = Math.max(20, Math.min(80, ((e.clientY - rect.top) / total) * 100));
+    mobileState.split = pct;
+    applyMobileSplit();
+  });
+  const end = () => {
+    if (!dragging) return;
+    dragging = false;
+    handle.classList.remove('dragging');
+    saveMobileLayoutDebounced();
+    requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+  };
+  handle.addEventListener('pointerup', end);
+  handle.addEventListener('pointercancel', end);
+}
+
+function initMobileDock(rootEl) {
+  if (!rootEl) return;
+  mobileState = loadMobileLayout();
+  mobileZoneEls = {
+    a: {
+      root: rootEl.querySelector('[data-mzone="a"]'),
+      tabstrip: rootEl.querySelector('[data-mzone="a"] .dock-tabstrip'),
+      content: rootEl.querySelector('[data-mzone="a"] .dock-content'),
+    },
+    b: {
+      root: rootEl.querySelector('[data-mzone="b"]'),
+      tabstrip: rootEl.querySelector('[data-mzone="b"] .dock-tabstrip'),
+      content: rootEl.querySelector('[data-mzone="b"] .dock-content'),
+    },
+  };
+  wireMobileResizer(rootEl);
+  if (mobileMql && mobileMql.matches) renderMobileAll();
+  if (mobileMql) {
+    const onChange = (e) => {
+      if (e.matches) renderMobileAll(); else renderAll();
+      requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+    };
+    if (mobileMql.addEventListener) mobileMql.addEventListener('change', onChange);
+    else mobileMql.addListener(onChange); // Safari viejo
+  }
+}
+
 // ── Arranque ─────────────────────────────────────────────────────────────
 
 export function initDock(rootEl) {
@@ -363,4 +510,6 @@ export function initDock(rootEl) {
   renderAll();
   wireResizers(rootEl);
   window.addEventListener('resize', applySizes);
+
+  initMobileDock(document.getElementById('dockRootMobile'));
 }

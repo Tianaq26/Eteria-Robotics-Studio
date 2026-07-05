@@ -39,7 +39,7 @@ usándose como término genérico del robot/dominio, no como marca).
 
 ```
 SumobotArenaIDE/
-├── index.html                    # layout 3 paneles + importmap Three.js + SEO/GTM/aviso móvil
+├── index.html                    # layout 3 paneles + dock móvil (2 franjas) + importmap Three.js + SEO/GTM
 ├── package.json                  # type:module, scripts test/serve
 ├── tools/serve.js                # servidor estático con cabeceras COOP/COEP
 ├── tests/headless.js             # prueba determinismo + batallas batch
@@ -206,13 +206,49 @@ Al ser una SPA de una sola página, no hay más superficie que optimizar sin agr
 - Cualquier cambio en GTM (nueva etiqueta, activador) necesita **Enviar → Publicar** en el contenedor
   para que tenga efecto — no basta con guardarlo.
 
-## Aviso de "mejor en computadora" (mobile notice)
+## Modo celular: 2 ventanas apiladas (`dockManager.js`)
 
-El dock de 3 paneles (editor/consola, visualización 3D, control) no es usable en pantallas angostas
-(sin diseño responsive para ese layout). `#mobileNotice` en `index.html` + CSS en `styles.css`
-(`@media (max-width:820px)`) muestra un overlay a pantalla completa explicando esto, con un botón
-("Entendido, continuar de todos modos") que solo le agrega la clase `.hidden` — no bloquea la app,
-solo avisa. En desktop (>820px) el overlay tiene `display:none` y nunca se ve.
+Bajo `@media (max-width:820px)` el dock de escritorio (`#dockRoot`, 4 zonas left/center/right/bottom)
+se oculta y se muestra `#dockRootMobile` en su lugar: 2 franjas apiladas (`data-mzone="a"` arriba,
+`"b"` abajo) separadas por un resizer vertical arrastrable. A diferencia de las zonas de desktop
+(donde cada panel pertenece a una zona fija), en móvil **las 2 franjas comparten la lista completa
+de los 8 paneles** — cada franja tiene su propia barra de pestañas y puede mostrar cualquiera. Tocar
+una pestaña que ya está visible en la otra franja las intercambia (nunca queda una franja vacía).
+Por defecto: Editor arriba (para que el teclado virtual no lo tape al escribir), Arena 3D abajo.
+
+El truco que hace esto seguro: los nodos de cada panel (`.dock-panel-body`) nunca se destruyen, solo
+se mueven con `appendChild` entre el contenedor de su zona de desktop y el de su franja móvil —
+`renderZone()` (desktop) y `renderMobileZone()` (móvil) re-anclan el nodo a su contenedor lógico en
+cada render, así que cruzar el breakpoint (rotar el celular, redimensionar la ventana) nunca deja un
+panel huérfano. Persistencia en `localStorage` separada de la de desktop (`sumobot_mobile_layout_v1`
+vs `sumobot_layout_v1`), y el menú "Ventanas" (que oculta/muestra paneles por zona) se esconde en
+móvil porque ese concepto no aplica al selector de pestañas de las 2 franjas.
+
+El aviso previo de "mejor en computadora" (`#mobileNotice`) se eliminó junto con este cambio — ya no
+hace falta desalentar el uso en celular.
+
+### Otros paneles adaptados a `@media (max-width:820px)`
+
+- **Toolbar del editor y de consola/serie/archivos** (`.toolbar`, `.console-toolbar`): en vez de
+  envolver el texto de los botones en varias filas, se vuelven una sola fila con scroll horizontal
+  (`overflow-x:auto` + `flex-shrink:0` en los botones).
+- **Editor de pintura** (`#paintEditor`): este era el más roto de todos — `.pe-props` (panel de
+  color/tamaño/piezas) tiene `flex-shrink:0` y su `.pe-main` es una columna con altura fija; en
+  pantallas angostas su contenido natural (869px) superaba el alto disponible y **`.pe-canvaswrap`
+  (el lienzo) colapsaba a 0px de alto** — quedaba invisible e inusable. Arreglado con: `.pe-top` en
+  una sola fila desplazable (en vez de envolver en 3-4 filas de 200px), `.pe-rail` con scroll
+  horizontal en vez de encoger sus botones a ~2px, y `.pe-props` con `max-height:34vh` + scroll
+  interno para que el lienzo siempre se quede con espacio real (`min-height:180px`). El texto de
+  ayuda para mouse (`.pe-hint`, clic derecho/rueda/botón central) se oculta en touch.
+- **Diálogos centrados** (`.sol-box`, `.ro-box`, `.lu-box` — confirmar solución, resultado de
+  misión, subir de nivel): no tenían padding en su contenedor `position:fixed`, así que la tarjeta
+  tocaba los bordes de la pantalla exactamente en 0px. Se agregó `padding:16px` al contenedor y
+  `max-width:100%; box-sizing:border-box` a la tarjeta.
+- **Mapa de misiones** (`.mm-box`), **panel de control** (`.stat-grid`, con `1fr 1fr`) y **toast de
+  logro** (`#achievementToast`, `min-width:240px`) ya eran responsive de antes (usan `%`/`vw`/`fr` o
+  min-width que cabe en 320px+) — no necesitaron cambios.
+- **pyblock (Blockly)**: el workspace SVG es más ancho que el viewport a propósito — es un lienzo
+  pannable/zoomable con soporte táctil nativo de Blockly, no un bug de layout.
 
 ---
 

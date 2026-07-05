@@ -52,22 +52,6 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ── AVISO: la app requiere pantalla de computadora ── -->
-  <div id="mobileNotice" role="dialog" aria-label="Aviso de compatibilidad">
-    <div class="mn-card">
-      <div class="mn-icon">🖥️</div>
-      <h2>Mejor en una computadora</h2>
-      <p>Eteria Robotics Studio es un editor de código con simulador 3D: usa varios paneles, teclado y mouse a la vez. En una pantalla de celular no vas a poder usarlo bien.</p>
-      <p class="mn-tip">Ábrelo desde una laptop o PC para programar y combatir tu sumobot sin problemas.</p>
-      <button id="mnDismiss" type="button">Entendido, continuar de todos modos</button>
-    </div>
-  </div>
-  <script>
-    document.getElementById('mnDismiss').addEventListener('click', () => {
-      document.getElementById('mobileNotice').classList.add('hidden');
-    });
-  </script>
-
   <!-- ── PÁGINA DE INICIO ── -->
   <div id="landing">
     <div class="land-brand">
@@ -165,6 +149,21 @@
     </div>
     <div class="dock-resizer-h" data-resizer="bottom"></div>
     <div class="dock-zone dock-zone-bottom" data-zone="bottom">
+      <div class="dock-tabstrip"></div>
+      <div class="dock-content"></div>
+    </div>
+  </div>
+
+  <!-- ── Modo celular: 2 ventanas apiladas, cada una con su propia barra de
+       pestañas que puede mostrar cualquier panel — dockManager.js las controla.
+       Solo se muestra por CSS bajo el breakpoint móvil; dockRoot se oculta. ── -->
+  <div class="dock-root-mobile" id="dockRootMobile">
+    <div class="dock-zone" data-mzone="a">
+      <div class="dock-tabstrip"></div>
+      <div class="dock-content"></div>
+    </div>
+    <div class="dock-resizer-h" data-mresizer="split"></div>
+    <div class="dock-zone" data-mzone="b">
       <div class="dock-tabstrip"></div>
       <div class="dock-content"></div>
     </div>

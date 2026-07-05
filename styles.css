@@ -954,32 +954,6 @@
       }
     }
 
-    /* ══ Aviso de "mejor en computadora" (solo pantallas angostas) ══ */
-    #mobileNotice { display:none; }
-    @media (max-width:820px) {
-      #mobileNotice {
-        display:flex; position:fixed; inset:0; z-index:10000;
-        align-items:center; justify-content:center; padding:24px;
-        background:#05060ae6; backdrop-filter:blur(6px);
-      }
-      #mobileNotice.hidden { display:none; }
-    }
-    .mn-card {
-      max-width:360px; text-align:center; background:var(--panel);
-      border:1px solid var(--border2); border-radius:16px; padding:28px 22px;
-      box-shadow:0 20px 60px #000000aa;
-    }
-    .mn-icon { font-size:40px; margin-bottom:10px; }
-    .mn-card h2 { font-size:18px; margin:0 0 12px; }
-    .mn-card p { font-size:13px; line-height:1.55; color:var(--muted2); margin:0 0 10px; }
-    .mn-tip { color:var(--text) !important; }
-    #mnDismiss {
-      margin-top:12px; font:inherit; font-size:13px; font-weight:600;
-      padding:9px 16px; border-radius:8px; border:1px solid var(--border2);
-      background:var(--panel2); color:var(--text); cursor:pointer;
-    }
-    #mnDismiss:hover { background:var(--border2); }
-
     /* ══ Página de inicio (landing) ══ */
     #landing {
       position:fixed; inset:0; z-index:5000;
@@ -1167,9 +1141,24 @@
     .pe-cp-savebtn { justify-content:center; }
 
     @media (max-width:820px) {
+      /* La barra superior pasa a una sola fila desplazable en vez de envolver
+         en 3-4 filas — eso le devuelve al lienzo la altura que necesita. */
+      .pe-top { flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+      .pe-top > * { flex-shrink:0; }
+      .pe-hint { display:none; } /* instrucciones de mouse: no aplican en touch */
+
       .pe-main { flex-direction:column; }
-      .pe-rail { width:100%; flex-direction:row; border-right:none; border-bottom:1px solid var(--border); }
-      .pe-props { width:100%; border-left:none; border-top:1px solid var(--border); }
+      .pe-rail {
+        width:100%; flex-direction:row; border-right:none; border-bottom:1px solid var(--border);
+        overflow-x:auto; -webkit-overflow-scrolling:touch;
+      }
+      .pe-rail-btn { flex-shrink:0; }
+      .pe-props {
+        width:100%; border-left:none; border-top:1px solid var(--border);
+        max-height:34vh; flex-shrink:0;
+      }
+      /* El lienzo es el contenido principal: garantizar que le quede espacio real */
+      .pe-canvaswrap { min-height:180px; }
     }
 
     /* ══════════════════════════════════════════════════════════════════
@@ -1296,6 +1285,41 @@
       position:fixed; z-index:9999; pointer-events:none; padding:5px 12px; border-radius:6px;
       background:var(--panel); border:1px solid var(--accent); color:var(--text); font-size:11px;
       font-weight:600; box-shadow:0 8px 20px #00000066; transform:translate(-50%,-50%);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       Modo celular: 2 ventanas apiladas con pestañas (dockManager.js)
+       ══════════════════════════════════════════════════════════════════ */
+    .dock-root-mobile { display:none; }
+    @media (max-width:820px) {
+      #dockRoot { display:none; }
+      .dock-root-mobile {
+        display:flex; flex-direction:column; height:calc(100vh - 46px - 28px);
+      }
+      .dock-root-mobile .dock-zone { width:100%; min-width:0; flex:1 1 50%; }
+      .dock-root-mobile .dock-tabstrip { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+      .dock-root-mobile .dock-tab {
+        min-height:38px; padding:0 12px; font-size:11.5px; flex-shrink:0;
+      }
+      .dock-root-mobile .dock-tab .dock-tab-close { display:none; }
+      .dock-root-mobile .dock-resizer-h { touch-action:none; }
+
+      /* Header / menú: más compactos y desplazables en horizontal */
+      header { padding:0 8px; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+      header > * { flex-shrink:0; }
+      header .version { display:none; }
+      #sectionChip { display:none; }
+      .menubar-btn[data-menu="ventanas"] { display:none; }
+
+      /* Barras de botones (toolbar del editor, consola/serie/archivos):
+         desplazables en horizontal en vez de envolver el texto de los botones */
+      .toolbar, .console-toolbar { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+      .toolbar button, .console-toolbar button { white-space:nowrap; flex-shrink:0; }
+
+      /* Diálogos centrados (confirmación de solución, resultado, subir de
+         nivel): sin este padding la tarjeta toca los bordes de la pantalla */
+      #solConfirm, #resultOverlay, #levelUpOverlay { padding:16px; }
+      .sol-box, .ro-box, .lu-box { max-width:100%; box-sizing:border-box; }
     }
 
     /* ══════════════════════════════════════════════════════════════════
