@@ -5,7 +5,7 @@
 
 import { getPanelList, togglePanel, restoreDefaultLayout } from './dockManager.js';
 import { getSettings, setTheme, setAccent, setSfxMuted } from '../settings.js';
-import { startTour, TOUR_INTERFAZ, TOUR_PRIMERA_MISION, TOUR_PYBLOCK } from '../tour.js';
+import { startTour, TOUR_INTERFAZ, TOUR_PRIMERA_MISION, TOUR_PYBLOCK, TOUR_PINTAR_BOT } from '../tour.js';
 
 const ACCENTS = [
   { id: 'azul',    label: 'Azul',    color: '#3c82f0' },
@@ -117,6 +117,14 @@ function renderTutoriales(dropdown) {
           sel.value = 'blocks';
           sel.dispatchEvent(new Event('change'));
           await new Promise(r => setTimeout(r, 450));
+        }
+      } },
+    { title: 'Pintar el bot', desc: 'Herramientas, colores, vista 3D/2D y como aplicar el diseno al robot virtual.', steps: TOUR_PINTAR_BOT,
+      prepare: async () => {
+        const editor = document.getElementById('paintEditor');
+        if (!editor || !editor.classList.contains('open')) {
+          document.getElementById('btnPaint')?.click();
+          await new Promise(r => setTimeout(r, 550));
         }
       } },
     { title: 'Tour de la interfaz', desc: 'Conoce la barra de menú, el editor, la arena y el panel de control.', steps: TOUR_INTERFAZ },

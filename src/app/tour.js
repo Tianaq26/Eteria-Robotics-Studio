@@ -162,6 +162,21 @@ export const TOUR_PYBLOCK = [
   { selector: '#sbPreviewBtn', title: 'Ver codigo', text: 'Este boton muestra el CircuitPython generado por tus bloques.', placement: 'top' },
 ];
 
+export const TOUR_PINTAR_BOT = [
+  { selector: '#paintEditor .pe-title', title: 'Editor de pintura', text: 'Aqui personalizas la apariencia del sumobot virtual. Puedes pintar directamente sobre el modelo 3D o usar la vista 2D desplegada.', placement: 'bottom' },
+  { selector: '#peView3d', title: 'Vista 3D', text: 'Esta vista sirve para pintar el robot como lo verias en la arena. Clic izquierdo pinta, clic derecho gira y la rueda hace zoom.', placement: 'bottom' },
+  { selector: '#peViewport3d', title: 'Lienzo del robot', text: 'Pasa el cursor sobre una pieza y pinta encima. El editor detecta la superficie del modelo y coloca el color en la textura correcta.', placement: 'left' },
+  { selector: '#peRail', title: 'Herramientas', text: 'Usa pincel, goma, balde, figuras, difuminar, arrastrar color o gotero segun el tipo de diseno que quieras hacer.', placement: 'right' },
+  { selector: '#peBrush', title: 'Pincel', text: 'El pincel es la herramienta basica para dibujar lineas y detalles. Si quieres borrar, cambia a Goma.', placement: 'right' },
+  { selector: '#peColorPicker', title: 'Color', text: 'Elige el color con el selector, escribe un valor hexadecimal o guarda colores frecuentes como muestras.', placement: 'left' },
+  { selector: '#peSize', title: 'Tamano del trazo', text: 'Ajusta el tamano, dureza, opacidad y espaciado para pasar de trazos finos a areas grandes.', placement: 'left' },
+  { selector: '#peMirror', title: 'Espejo', text: 'Activa Espejo para pintar simetricamente. Es util para patrones iguales en ambos lados del robot.', placement: 'right' },
+  { selector: '#peView2d', title: 'Vista 2D', text: 'La vista 2D muestra las piezas desplegadas. Sirve para limpiar bordes, trabajar por pieza o hacer detalles mas precisos.', placement: 'bottom' },
+  { selector: '#pePartsList', title: 'Piezas', text: 'Toca una pieza para enfocarla en 2D. Asi puedes pintar tapa, laterales u otras superficies por separado.', placement: 'left' },
+  { selector: '#peApply', title: 'Aplicar al robot', text: 'Cuando el diseno te guste, pulsa Aplicar al robot para verlo en el sumobot de la simulacion.', placement: 'bottom' },
+  { selector: '#peClose', title: 'Cerrar', text: 'Cierra el editor para volver al laboratorio. El ultimo diseno aplicado queda visible en la arena.', placement: 'left' },
+];
+
 export const TOUR_PRIMERA_MISION = [
   { selector: '#btnLearn', title: 'Entra a Aprender', text: 'Haz clic aquí para ver el mapa de misiones a pantalla completa.', placement: 'bottom' },
   { selector: '#mmBody', title: 'Elige una misión', text: 'Toca el primer círculo desbloqueado del mapa para empezar.', placement: 'top' },
