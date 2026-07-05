@@ -483,13 +483,62 @@ export function createScene(canvas, onBotSize) {
     entry.discMat.opacity = r.out ? 0.35 : 0.7;
   }
 
+  function angleDelta(a, b) {
+    let d = a - b;
+    while (d > Math.PI) d -= Math.PI * 2;
+    while (d < -Math.PI) d += Math.PI * 2;
+    return d;
+  }
+
+  function motorAnimSpeed(r) {
+    const avg = (r.left + r.right) * 0.5;
+    if (Math.abs(avg) > 0.05) return avg;
+    const turn = (r.right - r.left) * 0.5;
+    return Math.abs(turn) > 0.05 ? turn : 0;
+  }
+
   function updateAnim(entry, r, dt) {
     if (!entry.mixer || !entry.action) return;
-    // Velocidad con signo: avanzar = +, retroceder = - (anim en reversa)
-    const vel    = (r.left + r.right) / 2;
-    const moving = Math.abs(vel) > 0.05;
+
+    if (dt <= 0 || r.out) {
+      entry.animPrev = { x: r.pos.x, y: r.pos.y, th: r.th };
+      entry.action.paused = true;
+      return;
+    }
+
+    let animSpeed = 0;
+    const prev = entry.animPrev;
+    if (prev) {
+      const dx = r.pos.x - prev.x;
+      const dy = r.pos.y - prev.y;
+      const dth = angleDelta(r.th, prev.th);
+      const dist = Math.hypot(dx, dy);
+
+      // Saltos grandes vienen de reinicios/cambios de ronda, no de movimiento fisico.
+      if (dist < 30 && Math.abs(dth) < Math.PI * 0.75) {
+        const midTh = prev.th + dth * 0.5;
+        const forward = dx * Math.cos(midTh) + dy * Math.sin(midTh);
+        const halfBase = ROBOT.WHEEL_BASE * 0.5;
+        const leftTravel = forward - dth * halfBase;
+        const rightTravel = forward + dth * halfBase;
+        const wheelTravel = (Math.abs(leftTravel) + Math.abs(rightTravel)) * 0.5;
+        const sign = Math.abs(forward) > 0.01
+          ? Math.sign(forward)
+          : Math.sign(dth || (r.right - r.left));
+        animSpeed = sign * wheelTravel / Math.max(ROBOT.WHEEL_VMAX * dt, 1e-6);
+      }
+    }
+
+    entry.animPrev = { x: r.pos.x, y: r.pos.y, th: r.th };
+
+    // Si el robot esta empujando pero la pose casi no cambia, las ruedas siguen girando.
+    const motorSpeed = motorAnimSpeed(r);
+    if (Math.abs(animSpeed) < 0.05 && Math.abs(motorSpeed) > 0.05) animSpeed = motorSpeed;
+    animSpeed = Math.max(-12, Math.min(12, animSpeed));
+
+    const moving = Math.abs(animSpeed) > 0.05;
     entry.action.paused    = !moving;
-    entry.action.timeScale = vel;   // negativo → AnimationMixer reproduce al revés
+    entry.action.timeScale = animSpeed; // negativo -> AnimationMixer reproduce al reves
     if (moving) entry.mixer.update(dt);
   }
 
