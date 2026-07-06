@@ -1,0 +1,1809 @@
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00000.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00001.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00002.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00003.jpg'
+duration 0.0143
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00004.jpg'
+duration 0.0157
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00005.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00006.jpg'
+duration 0.0159
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00007.jpg'
+duration 0.0311
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00008.jpg'
+duration 0.0298
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00009.jpg'
+duration 0.0579
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00010.jpg'
+duration 0.0353
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00011.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00012.jpg'
+duration 0.0156
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00013.jpg'
+duration 0.0172
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00014.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00015.jpg'
+duration 0.0330
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00016.jpg'
+duration 0.1669
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00017.jpg'
+duration 0.2980
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00018.jpg'
+duration 0.0333
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00019.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00020.jpg'
+duration 0.0329
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00021.jpg'
+duration 0.0348
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00022.jpg'
+duration 0.0320
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00023.jpg'
+duration 0.0167
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00024.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00025.jpg'
+duration 0.0344
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00026.jpg'
+duration 0.0491
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00027.jpg'
+duration 0.0178
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00028.jpg'
+duration 0.0323
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00029.jpg'
+duration 0.0344
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00030.jpg'
+duration 0.0490
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00031.jpg'
+duration 0.1167
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00032.jpg'
+duration 0.0181
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00033.jpg'
+duration 0.0159
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00034.jpg'
+duration 0.0491
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00035.jpg'
+duration 0.1502
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00036.jpg'
+duration 0.0330
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00037.jpg'
+duration 0.0502
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00038.jpg'
+duration 0.0510
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00039.jpg'
+duration 0.4175
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00040.jpg'
+duration 0.0159
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00041.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00042.jpg'
+duration 0.0166
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00043.jpg'
+duration 0.0332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00044.jpg'
+duration 0.0164
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00045.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00046.jpg'
+duration 0.0167
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00047.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00048.jpg'
+duration 0.0164
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00049.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00050.jpg'
+duration 0.0172
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00051.jpg'
+duration 0.8326
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00052.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00053.jpg'
+duration 0.0183
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00054.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00055.jpg'
+duration 0.0464
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00056.jpg'
+duration 0.0193
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00057.jpg'
+duration 0.0174
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00058.jpg'
+duration 0.0543
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00059.jpg'
+duration 0.0290
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00060.jpg'
+duration 0.0311
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00061.jpg'
+duration 0.0327
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00062.jpg'
+duration 0.0187
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00063.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00064.jpg'
+duration 0.0407
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00065.jpg'
+duration 0.0427
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00066.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00067.jpg'
+duration 1.1653
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00068.jpg'
+duration 0.9865
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00069.jpg'
+duration 0.5816
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00070.jpg'
+duration 0.0494
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00071.jpg'
+duration 0.0500
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00072.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00073.jpg'
+duration 0.0844
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00074.jpg'
+duration 0.0182
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00075.jpg'
+duration 0.0157
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00076.jpg'
+duration 0.0185
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00077.jpg'
+duration 0.5959
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00078.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00079.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00080.jpg'
+duration 0.0172
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00081.jpg'
+duration 0.0659
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00082.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00083.jpg'
+duration 0.6668
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00084.jpg'
+duration 2.0013
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00085.jpg'
+duration 2.5669
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00086.jpg'
+duration 0.0831
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00087.jpg'
+duration 0.0175
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00088.jpg'
+duration 0.0148
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00089.jpg'
+duration 0.0699
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00090.jpg'
+duration 1.7799
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00091.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00092.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00093.jpg'
+duration 0.0498
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00094.jpg'
+duration 0.0174
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00095.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00096.jpg'
+duration 0.0827
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00097.jpg'
+duration 0.1837
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00098.jpg'
+duration 0.1018
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00099.jpg'
+duration 0.0215
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00100.jpg'
+duration 2.0946
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00101.jpg'
+duration 1.2159
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00102.jpg'
+duration 0.5345
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00103.jpg'
+duration 0.0201
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00104.jpg'
+duration 0.1297
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00105.jpg'
+duration 0.1357
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00106.jpg'
+duration 0.2206
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00107.jpg'
+duration 0.0311
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00108.jpg'
+duration 0.0936
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00109.jpg'
+duration 0.0622
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00110.jpg'
+duration 0.2883
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00111.jpg'
+duration 0.0823
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00112.jpg'
+duration 0.0747
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00113.jpg'
+duration 0.4191
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00114.jpg'
+duration 0.0472
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00115.jpg'
+duration 0.0254
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00116.jpg'
+duration 0.0167
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00117.jpg'
+duration 0.0508
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00118.jpg'
+duration 0.0485
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00119.jpg'
+duration 0.0462
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00120.jpg'
+duration 0.0311
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00121.jpg'
+duration 0.0904
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00122.jpg'
+duration 0.0328
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00123.jpg'
+duration 0.0172
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00124.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00125.jpg'
+duration 0.0157
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00126.jpg'
+duration 0.0614
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00127.jpg'
+duration 0.0317
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00128.jpg'
+duration 0.0407
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00129.jpg'
+duration 0.0337
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00130.jpg'
+duration 0.0816
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00131.jpg'
+duration 0.0610
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00132.jpg'
+duration 0.0240
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00133.jpg'
+duration 0.0166
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00134.jpg'
+duration 0.0173
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00135.jpg'
+duration 0.0340
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00136.jpg'
+duration 0.0509
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00137.jpg'
+duration 0.0354
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00138.jpg'
+duration 0.0616
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00139.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00140.jpg'
+duration 0.2568
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00141.jpg'
+duration 0.0420
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00142.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00143.jpg'
+duration 0.0234
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00144.jpg'
+duration 0.0436
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00145.jpg'
+duration 0.0369
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00146.jpg'
+duration 0.0485
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00147.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00148.jpg'
+duration 0.0206
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00149.jpg'
+duration 1.4194
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00150.jpg'
+duration 0.0153
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00151.jpg'
+duration 0.0174
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00152.jpg'
+duration 0.0161
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00153.jpg'
+duration 0.0380
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00154.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00155.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00156.jpg'
+duration 0.0178
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00157.jpg'
+duration 0.0664
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00158.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00159.jpg'
+duration 0.0326
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00160.jpg'
+duration 0.0382
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00161.jpg'
+duration 0.0116
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00162.jpg'
+duration 0.0336
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00163.jpg'
+duration 0.0560
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00164.jpg'
+duration 0.0440
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00165.jpg'
+duration 0.0179
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00166.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00167.jpg'
+duration 0.0648
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00168.jpg'
+duration 0.0452
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00169.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00170.jpg'
+duration 0.0544
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00171.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00172.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00173.jpg'
+duration 0.0710
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00174.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00175.jpg'
+duration 0.0146
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00176.jpg'
+duration 0.0491
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00177.jpg'
+duration 0.0123
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00178.jpg'
+duration 0.0523
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00179.jpg'
+duration 0.0127
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00180.jpg'
+duration 0.0384
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00181.jpg'
+duration 1.1165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00182.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00183.jpg'
+duration 0.0643
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00184.jpg'
+duration 0.0194
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00185.jpg'
+duration 0.3182
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00186.jpg'
+duration 0.0278
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00187.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00188.jpg'
+duration 0.0323
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00189.jpg'
+duration 0.0373
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00190.jpg'
+duration 0.0306
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00191.jpg'
+duration 0.0155
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00192.jpg'
+duration 0.0363
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00193.jpg'
+duration 0.1124
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00194.jpg'
+duration 0.0188
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00195.jpg'
+duration 0.0501
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00196.jpg'
+duration 0.0267
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00197.jpg'
+duration 0.0596
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00198.jpg'
+duration 0.0182
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00199.jpg'
+duration 0.0284
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00200.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00201.jpg'
+duration 0.0467
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00202.jpg'
+duration 0.0356
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00203.jpg'
+duration 0.8177
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00204.jpg'
+duration 0.0154
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00205.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00206.jpg'
+duration 0.0494
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00207.jpg'
+duration 0.0534
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00208.jpg'
+duration 0.0146
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00209.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00210.jpg'
+duration 0.0155
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00211.jpg'
+duration 0.0495
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00212.jpg'
+duration 0.0642
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00213.jpg'
+duration 0.0361
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00214.jpg'
+duration 0.0194
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00215.jpg'
+duration 0.0143
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00216.jpg'
+duration 0.0339
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00217.jpg'
+duration 0.0493
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00218.jpg'
+duration 0.0197
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00219.jpg'
+duration 0.0308
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00220.jpg'
+duration 0.0191
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00221.jpg'
+duration 0.0143
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00222.jpg'
+duration 0.0179
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00223.jpg'
+duration 0.0185
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00224.jpg'
+duration 0.0136
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00225.jpg'
+duration 0.0176
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00226.jpg'
+duration 0.0155
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00227.jpg'
+duration 0.0356
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00228.jpg'
+duration 0.0152
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00229.jpg'
+duration 0.0836
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00230.jpg'
+duration 0.0149
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00231.jpg'
+duration 0.0847
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00232.jpg'
+duration 0.0219
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00233.jpg'
+duration 0.0276
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00234.jpg'
+duration 0.0161
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00235.jpg'
+duration 0.0671
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00236.jpg'
+duration 0.0488
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00237.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00238.jpg'
+duration 0.0249
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00239.jpg'
+duration 0.1089
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00240.jpg'
+duration 0.0199
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00241.jpg'
+duration 0.0162
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00242.jpg'
+duration 0.0137
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00243.jpg'
+duration 0.0616
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00244.jpg'
+duration 0.0548
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00245.jpg'
+duration 0.0362
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00246.jpg'
+duration 0.0139
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00247.jpg'
+duration 0.0798
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00248.jpg'
+duration 0.0527
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00249.jpg'
+duration 0.0346
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00250.jpg'
+duration 0.0342
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00251.jpg'
+duration 0.0483
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00252.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00253.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00254.jpg'
+duration 0.0343
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00255.jpg'
+duration 0.0336
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00256.jpg'
+duration 0.0332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00257.jpg'
+duration 0.0322
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00258.jpg'
+duration 0.0498
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00259.jpg'
+duration 0.0511
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00260.jpg'
+duration 0.0852
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00261.jpg'
+duration 0.0151
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00262.jpg'
+duration 0.0330
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00263.jpg'
+duration 1.0501
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00264.jpg'
+duration 0.7993
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00265.jpg'
+duration 0.0261
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00266.jpg'
+duration 0.1987
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00267.jpg'
+duration 0.0421
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00268.jpg'
+duration 0.0211
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00269.jpg'
+duration 0.0282
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00270.jpg'
+duration 0.0191
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00271.jpg'
+duration 0.0325
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00272.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00273.jpg'
+duration 0.0343
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00274.jpg'
+duration 0.0829
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00275.jpg'
+duration 0.0337
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00276.jpg'
+duration 0.0158
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00277.jpg'
+duration 0.0183
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00278.jpg'
+duration 0.0496
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00279.jpg'
+duration 0.0239
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00280.jpg'
+duration 0.0105
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00281.jpg'
+duration 0.0306
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00282.jpg'
+duration 0.0679
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00283.jpg'
+duration 0.0162
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00284.jpg'
+duration 0.0198
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00285.jpg'
+duration 0.0267
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00286.jpg'
+duration 0.0477
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00287.jpg'
+duration 0.0774
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00288.jpg'
+duration 0.0119
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00289.jpg'
+duration 0.0180
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00290.jpg'
+duration 0.0503
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00291.jpg'
+duration 0.0753
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00292.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00293.jpg'
+duration 0.0162
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00294.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00295.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00296.jpg'
+duration 0.0335
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00297.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00298.jpg'
+duration 0.2996
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00299.jpg'
+duration 0.0501
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00300.jpg'
+duration 0.0186
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00301.jpg'
+duration 0.0312
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00302.jpg'
+duration 0.0175
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00303.jpg'
+duration 0.0844
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00304.jpg'
+duration 0.0153
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00305.jpg'
+duration 0.0365
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00306.jpg'
+duration 0.0136
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00307.jpg'
+duration 0.1189
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00308.jpg'
+duration 0.0142
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00309.jpg'
+duration 0.0510
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00310.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00311.jpg'
+duration 0.0643
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00312.jpg'
+duration 0.0876
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00313.jpg'
+duration 0.0460
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00314.jpg'
+duration 0.0173
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00315.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00316.jpg'
+duration 0.0494
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00317.jpg'
+duration 0.0811
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00318.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00319.jpg'
+duration 1.0474
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00320.jpg'
+duration 1.8047
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00321.jpg'
+duration 0.0287
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00322.jpg'
+duration 0.0178
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00323.jpg'
+duration 0.0175
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00324.jpg'
+duration 0.4064
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00325.jpg'
+duration 0.0602
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00326.jpg'
+duration 0.0159
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00327.jpg'
+duration 0.0329
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00328.jpg'
+duration 0.0671
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00329.jpg'
+duration 0.0499
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00330.jpg'
+duration 0.0178
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00331.jpg'
+duration 0.0661
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00332.jpg'
+duration 0.0316
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00333.jpg'
+duration 0.0628
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00334.jpg'
+duration 0.0217
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00335.jpg'
+duration 0.0979
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00336.jpg'
+duration 0.0514
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00337.jpg'
+duration 0.0493
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00338.jpg'
+duration 0.0240
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00339.jpg'
+duration 0.0619
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00340.jpg'
+duration 0.0159
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00341.jpg'
+duration 0.0321
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00342.jpg'
+duration 0.0180
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00343.jpg'
+duration 0.0486
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00344.jpg'
+duration 0.0340
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00345.jpg'
+duration 0.0653
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00346.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00347.jpg'
+duration 0.0405
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00348.jpg'
+duration 0.0420
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00349.jpg'
+duration 0.0151
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00350.jpg'
+duration 0.0661
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00351.jpg'
+duration 0.0355
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00352.jpg'
+duration 0.0155
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00353.jpg'
+duration 0.0158
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00354.jpg'
+duration 0.0257
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00355.jpg'
+duration 0.0470
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00356.jpg'
+duration 0.0783
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00357.jpg'
+duration 0.0311
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00358.jpg'
+duration 0.0466
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00359.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00360.jpg'
+duration 0.0655
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00361.jpg'
+duration 0.0167
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00362.jpg'
+duration 0.0498
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00363.jpg'
+duration 0.0177
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00364.jpg'
+duration 0.0502
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00365.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00366.jpg'
+duration 0.0334
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00367.jpg'
+duration 0.0166
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00368.jpg'
+duration 0.0502
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00369.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00370.jpg'
+duration 0.0626
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00371.jpg'
+duration 0.0196
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00372.jpg'
+duration 0.0568
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00373.jpg'
+duration 0.4269
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00374.jpg'
+duration 0.0204
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00375.jpg'
+duration 0.0278
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00376.jpg'
+duration 1.7678
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00377.jpg'
+duration 3.4186
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00378.jpg'
+duration 0.2501
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00379.jpg'
+duration 0.0151
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00380.jpg'
+duration 0.0330
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00381.jpg'
+duration 0.1187
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00382.jpg'
+duration 0.0325
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00383.jpg'
+duration 0.0161
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00384.jpg'
+duration 0.0184
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00385.jpg'
+duration 0.0648
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00386.jpg'
+duration 0.0188
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00387.jpg'
+duration 0.0469
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00388.jpg'
+duration 0.0502
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00389.jpg'
+duration 0.4387
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00390.jpg'
+duration 0.0446
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00391.jpg'
+duration 2.1008
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00392.jpg'
+duration 0.5982
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00393.jpg'
+duration 0.8172
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00394.jpg'
+duration 0.0328
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00395.jpg'
+duration 0.7182
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00396.jpg'
+duration 0.0668
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00397.jpg'
+duration 0.0670
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00398.jpg'
+duration 0.0505
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00399.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00400.jpg'
+duration 0.2670
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00401.jpg'
+duration 0.0650
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00402.jpg'
+duration 0.0334
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00403.jpg'
+duration 0.0334
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00404.jpg'
+duration 0.1028
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00405.jpg'
+duration 0.0466
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00406.jpg'
+duration 0.0230
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00407.jpg'
+duration 0.0272
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00408.jpg'
+duration 0.0513
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00409.jpg'
+duration 0.0918
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00410.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00411.jpg'
+duration 0.0961
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00412.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00413.jpg'
+duration 0.0665
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00414.jpg'
+duration 0.0341
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00415.jpg'
+duration 0.0712
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00416.jpg'
+duration 0.0244
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00417.jpg'
+duration 0.0351
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00418.jpg'
+duration 0.0495
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00419.jpg'
+duration 0.0486
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00420.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00421.jpg'
+duration 0.1002
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00422.jpg'
+duration 0.0504
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00423.jpg'
+duration 0.0175
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00424.jpg'
+duration 0.0487
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00425.jpg'
+duration 0.0838
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00426.jpg'
+duration 0.0358
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00427.jpg'
+duration 0.0146
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00428.jpg'
+duration 0.0329
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00429.jpg'
+duration 0.1179
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00430.jpg'
+duration 0.0319
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00431.jpg'
+duration 0.0505
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00432.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00433.jpg'
+duration 0.0826
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00434.jpg'
+duration 0.0336
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00435.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00436.jpg'
+duration 0.0332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00437.jpg'
+duration 0.0672
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00438.jpg'
+duration 0.0332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00439.jpg'
+duration 0.0495
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00440.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00441.jpg'
+duration 0.0837
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00442.jpg'
+duration 0.0161
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00443.jpg'
+duration 0.0666
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00444.jpg'
+duration 0.0673
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00445.jpg'
+duration 0.0490
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00446.jpg'
+duration 0.0336
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00447.jpg'
+duration 0.0500
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00448.jpg'
+duration 0.0332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00449.jpg'
+duration 0.0667
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00450.jpg'
+duration 0.0330
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00451.jpg'
+duration 0.0495
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00452.jpg'
+duration 0.0677
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00453.jpg'
+duration 0.0326
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00454.jpg'
+duration 0.0347
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00455.jpg'
+duration 0.0317
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00456.jpg'
+duration 0.0673
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00457.jpg'
+duration 0.0162
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00458.jpg'
+duration 0.0682
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00459.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00460.jpg'
+duration 0.0667
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00461.jpg'
+duration 0.0496
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00462.jpg'
+duration 0.0202
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00463.jpg'
+duration 0.0302
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00464.jpg'
+duration 0.0828
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00465.jpg'
+duration 0.0669
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00466.jpg'
+duration 0.0240
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00467.jpg'
+duration 0.0263
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00468.jpg'
+duration 0.0334
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00469.jpg'
+duration 0.1009
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00470.jpg'
+duration 0.0480
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00471.jpg'
+duration 0.0836
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00472.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00473.jpg'
+duration 0.0668
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00474.jpg'
+duration 0.0162
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00475.jpg'
+duration 0.0685
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00476.jpg'
+duration 0.0314
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00477.jpg'
+duration 0.0186
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00478.jpg'
+duration 0.0486
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00479.jpg'
+duration 0.0666
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00480.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00481.jpg'
+duration 0.0505
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00482.jpg'
+duration 0.0344
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00483.jpg'
+duration 0.0328
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00484.jpg'
+duration 0.1318
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00485.jpg'
+duration 0.0497
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00486.jpg'
+duration 0.0186
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00487.jpg'
+duration 0.0156
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00488.jpg'
+duration 0.4499
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00489.jpg'
+duration 0.0173
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00490.jpg'
+duration 0.0481
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00491.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00492.jpg'
+duration 0.0820
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00493.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00494.jpg'
+duration 0.0336
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00495.jpg'
+duration 0.0162
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00496.jpg'
+duration 0.0518
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00497.jpg'
+duration 0.0497
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00498.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00499.jpg'
+duration 0.0480
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00500.jpg'
+duration 0.0508
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00501.jpg'
+duration 0.0342
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00502.jpg'
+duration 0.0318
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00503.jpg'
+duration 0.0347
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00504.jpg'
+duration 0.0671
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00505.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00506.jpg'
+duration 0.0315
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00507.jpg'
+duration 0.0510
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00508.jpg'
+duration 0.0489
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00509.jpg'
+duration 0.0535
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00510.jpg'
+duration 0.0139
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00511.jpg'
+duration 0.0161
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00512.jpg'
+duration 0.1195
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00513.jpg'
+duration 0.0819
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00514.jpg'
+duration 0.0188
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00515.jpg'
+duration 0.0139
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00516.jpg'
+duration 0.0347
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00517.jpg'
+duration 0.0982
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00518.jpg'
+duration 0.0493
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00519.jpg'
+duration 0.0179
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00520.jpg'
+duration 0.0340
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00521.jpg'
+duration 0.0811
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00522.jpg'
+duration 0.0511
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00523.jpg'
+duration 0.0166
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00524.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00525.jpg'
+duration 0.0823
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00526.jpg'
+duration 0.0330
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00527.jpg'
+duration 0.3831
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00528.jpg'
+duration 0.0339
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00529.jpg'
+duration 3.1003
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00530.jpg'
+duration 0.3657
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00531.jpg'
+duration 1.4173
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00532.jpg'
+duration 2.7000
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00533.jpg'
+duration 0.2018
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00534.jpg'
+duration 2.2841
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00535.jpg'
+duration 0.0159
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00536.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00537.jpg'
+duration 0.0164
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00538.jpg'
+duration 0.1162
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00539.jpg'
+duration 0.0249
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00540.jpg'
+duration 0.0247
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00541.jpg'
+duration 0.0508
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00542.jpg'
+duration 0.0178
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00543.jpg'
+duration 0.1144
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00544.jpg'
+duration 0.1001
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00545.jpg'
+duration 0.2336
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00546.jpg'
+duration 0.0537
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00547.jpg'
+duration 0.0461
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00548.jpg'
+duration 0.0996
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00549.jpg'
+duration 0.0333
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00550.jpg'
+duration 0.0834
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00551.jpg'
+duration 0.0369
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00552.jpg'
+duration 0.0319
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00553.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00554.jpg'
+duration 0.2487
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00555.jpg'
+duration 0.0755
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00556.jpg'
+duration 0.0269
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00557.jpg'
+duration 0.0390
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00558.jpg'
+duration 0.0410
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00559.jpg'
+duration 0.0509
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00560.jpg'
+duration 0.0475
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00561.jpg'
+duration 0.0523
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00562.jpg'
+duration 0.0500
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00563.jpg'
+duration 0.0178
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00564.jpg'
+duration 0.0549
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00565.jpg'
+duration 0.1123
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00566.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00567.jpg'
+duration 0.0154
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00568.jpg'
+duration 0.0404
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00569.jpg'
+duration 0.0265
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00570.jpg'
+duration 0.0775
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00571.jpg'
+duration 0.0227
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00572.jpg'
+duration 0.0493
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00573.jpg'
+duration 0.0174
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00574.jpg'
+duration 0.0348
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00575.jpg'
+duration 0.0564
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00576.jpg'
+duration 0.0269
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00577.jpg'
+duration 0.0150
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00578.jpg'
+duration 0.0917
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00579.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00580.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00581.jpg'
+duration 0.1043
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00582.jpg'
+duration 0.0123
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00583.jpg'
+duration 0.0316
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00584.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00585.jpg'
+duration 0.0811
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00586.jpg'
+duration 0.0529
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00587.jpg'
+duration 0.0196
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00588.jpg'
+duration 0.0300
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00589.jpg'
+duration 0.0771
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00590.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00591.jpg'
+duration 0.0515
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00592.jpg'
+duration 0.0490
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00593.jpg'
+duration 0.0600
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00594.jpg'
+duration 0.0748
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00595.jpg'
+duration 0.0175
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00596.jpg'
+duration 0.0307
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00597.jpg'
+duration 0.0847
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00598.jpg'
+duration 0.0313
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00599.jpg'
+duration 0.0342
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00600.jpg'
+duration 0.0320
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00601.jpg'
+duration 0.0674
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00602.jpg'
+duration 0.0661
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00603.jpg'
+duration 0.0335
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00604.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00605.jpg'
+duration 0.0838
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00606.jpg'
+duration 0.0174
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00607.jpg'
+duration 0.0320
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00608.jpg'
+duration 0.0332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00609.jpg'
+duration 0.0667
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00610.jpg'
+duration 0.0184
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00611.jpg'
+duration 0.0494
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00612.jpg'
+duration 0.0350
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00613.jpg'
+duration 0.0843
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00614.jpg'
+duration 0.0313
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00615.jpg'
+duration 0.0441
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00616.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00617.jpg'
+duration 0.0568
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00618.jpg'
+duration 0.0779
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00619.jpg'
+duration 0.0722
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00620.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00621.jpg'
+duration 0.0202
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00622.jpg'
+duration 0.0513
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00623.jpg'
+duration 0.0753
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00624.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00625.jpg'
+duration 0.0869
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00626.jpg'
+duration 0.0191
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00627.jpg'
+duration 0.0739
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00628.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00629.jpg'
+duration 0.0490
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00630.jpg'
+duration 0.1238
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00631.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00632.jpg'
+duration 0.0356
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00633.jpg'
+duration 0.0134
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00634.jpg'
+duration 0.0755
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00635.jpg'
+duration 0.0595
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00636.jpg'
+duration 0.0320
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00637.jpg'
+duration 0.0346
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00638.jpg'
+duration 0.1066
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00639.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00640.jpg'
+duration 0.0672
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00641.jpg'
+duration 0.0198
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00642.jpg'
+duration 0.6466
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00643.jpg'
+duration 0.0827
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00644.jpg'
+duration 0.0167
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00645.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00646.jpg'
+duration 0.0515
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00647.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00648.jpg'
+duration 0.0104
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00649.jpg'
+duration 0.0186
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00650.jpg'
+duration 0.0378
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00651.jpg'
+duration 0.0828
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00652.jpg'
+duration 0.0280
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00653.jpg'
+duration 0.0155
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00654.jpg'
+duration 0.0487
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00655.jpg'
+duration 0.0763
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00656.jpg'
+duration 0.0578
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00657.jpg'
+duration 0.0174
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00658.jpg'
+duration 0.0180
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00659.jpg'
+duration 0.0880
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00660.jpg'
+duration 0.0618
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00661.jpg'
+duration 0.0153
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00662.jpg'
+duration 0.0179
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00663.jpg'
+duration 0.1033
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00664.jpg'
+duration 0.0449
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00665.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00666.jpg'
+duration 0.0171
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00667.jpg'
+duration 0.0843
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00668.jpg'
+duration 0.0319
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00669.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00670.jpg'
+duration 0.0344
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00671.jpg'
+duration 0.0784
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00672.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00673.jpg'
+duration 0.0486
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00674.jpg'
+duration 0.0334
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00675.jpg'
+duration 0.0900
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00676.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00677.jpg'
+duration 0.0405
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00678.jpg'
+duration 0.0940
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00679.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00680.jpg'
+duration 0.0343
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00681.jpg'
+duration 0.0319
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00682.jpg'
+duration 0.0343
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00683.jpg'
+duration 0.1332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00684.jpg'
+duration 0.0179
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00685.jpg'
+duration 0.0196
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00686.jpg'
+duration 0.0137
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00687.jpg'
+duration 0.0863
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00688.jpg'
+duration 0.0292
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00689.jpg'
+duration 0.0173
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00690.jpg'
+duration 0.0187
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00691.jpg'
+duration 0.0383
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00692.jpg'
+duration 0.0396
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00693.jpg'
+duration 0.0450
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00694.jpg'
+duration 0.0253
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00695.jpg'
+duration 0.0327
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00696.jpg'
+duration 0.0340
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00697.jpg'
+duration 0.0680
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00698.jpg'
+duration 0.0648
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00699.jpg'
+duration 0.0163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00700.jpg'
+duration 0.0352
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00701.jpg'
+duration 0.0563
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00702.jpg'
+duration 0.0424
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00703.jpg'
+duration 0.0332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00704.jpg'
+duration 0.0345
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00705.jpg'
+duration 0.7489
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00706.jpg'
+duration 0.6823
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00707.jpg'
+duration 1.0166
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00708.jpg'
+duration 0.6005
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00709.jpg'
+duration 0.4348
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00710.jpg'
+duration 0.0648
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00711.jpg'
+duration 0.0506
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00712.jpg'
+duration 0.0416
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00713.jpg'
+duration 0.0248
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00714.jpg'
+duration 0.0501
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00715.jpg'
+duration 0.0343
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00716.jpg'
+duration 0.4504
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00717.jpg'
+duration 0.0336
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00718.jpg'
+duration 0.0312
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00719.jpg'
+duration 0.0509
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00720.jpg'
+duration 0.0670
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00721.jpg'
+duration 0.0176
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00722.jpg'
+duration 0.0303
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00723.jpg'
+duration 0.0594
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00724.jpg'
+duration 0.0597
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00725.jpg'
+duration 0.0164
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00726.jpg'
+duration 0.0712
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00727.jpg'
+duration 0.0280
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00728.jpg'
+duration 0.0424
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00729.jpg'
+duration 0.1155
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00730.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00731.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00732.jpg'
+duration 0.0745
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00733.jpg'
+duration 0.0662
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00734.jpg'
+duration 0.0421
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00735.jpg'
+duration 0.0657
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00736.jpg'
+duration 0.0497
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00737.jpg'
+duration 0.0687
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00738.jpg'
+duration 0.0164
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00739.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00740.jpg'
+duration 0.0507
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00741.jpg'
+duration 0.0806
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00742.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00743.jpg'
+duration 0.0661
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00744.jpg'
+duration 0.0502
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00745.jpg'
+duration 0.0157
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00746.jpg'
+duration 0.3163
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00747.jpg'
+duration 0.0821
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00748.jpg'
+duration 0.0176
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00749.jpg'
+duration 0.0336
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00750.jpg'
+duration 0.0280
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00751.jpg'
+duration 0.0779
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00752.jpg'
+duration 0.0428
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00753.jpg'
+duration 0.0505
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00754.jpg'
+duration 0.0619
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00755.jpg'
+duration 0.0225
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00756.jpg'
+duration 0.0845
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00757.jpg'
+duration 0.0667
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00758.jpg'
+duration 0.0151
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00759.jpg'
+duration 0.0182
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00760.jpg'
+duration 0.0498
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00761.jpg'
+duration 0.0837
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00762.jpg'
+duration 0.0636
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00763.jpg'
+duration 0.0345
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00764.jpg'
+duration 0.0497
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00765.jpg'
+duration 0.1039
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00766.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00767.jpg'
+duration 0.0138
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00768.jpg'
+duration 0.0575
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00769.jpg'
+duration 0.0566
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00770.jpg'
+duration 0.0662
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00771.jpg'
+duration 0.0173
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00772.jpg'
+duration 0.0585
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00773.jpg'
+duration 0.0357
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00774.jpg'
+duration 0.3220
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00775.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00776.jpg'
+duration 0.0508
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00777.jpg'
+duration 0.0318
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00778.jpg'
+duration 0.0672
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00779.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00780.jpg'
+duration 0.0662
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00781.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00782.jpg'
+duration 0.0666
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00783.jpg'
+duration 0.0667
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00784.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00785.jpg'
+duration 0.0330
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00786.jpg'
+duration 0.0500
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00787.jpg'
+duration 0.0666
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00788.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00789.jpg'
+duration 0.0499
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00790.jpg'
+duration 0.0341
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00791.jpg'
+duration 0.0662
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00792.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00793.jpg'
+duration 0.3155
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00794.jpg'
+duration 0.3367
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00795.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00796.jpg'
+duration 0.0499
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00797.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00798.jpg'
+duration 0.5678
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00799.jpg'
+duration 0.0475
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00800.jpg'
+duration 0.0176
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00801.jpg'
+duration 0.0522
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00802.jpg'
+duration 0.0303
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00803.jpg'
+duration 0.3169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00804.jpg'
+duration 0.0523
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00805.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00806.jpg'
+duration 0.0304
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00807.jpg'
+duration 0.3176
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00808.jpg'
+duration 0.0691
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00809.jpg'
+duration 0.0141
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00810.jpg'
+duration 0.0330
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00811.jpg'
+duration 0.3168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00812.jpg'
+duration 0.0655
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00813.jpg'
+duration 0.0333
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00814.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00815.jpg'
+duration 0.3668
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00816.jpg'
+duration 0.3831
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00817.jpg'
+duration 0.0186
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00818.jpg'
+duration 0.0140
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00819.jpg'
+duration 0.0506
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00820.jpg'
+duration 0.1174
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00821.jpg'
+duration 0.0157
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00822.jpg'
+duration 0.2832
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00823.jpg'
+duration 0.0329
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00824.jpg'
+duration 0.0513
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00825.jpg'
+duration 0.0307
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00826.jpg'
+duration 0.0520
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00827.jpg'
+duration 0.0354
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00828.jpg'
+duration 0.2253
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00829.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00830.jpg'
+duration 0.0498
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00831.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00832.jpg'
+duration 0.0659
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00833.jpg'
+duration 0.0176
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00834.jpg'
+duration 0.0612
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00835.jpg'
+duration 0.0100
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00836.jpg'
+duration 0.0323
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00837.jpg'
+duration 0.5332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00838.jpg'
+duration 0.0494
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00839.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00840.jpg'
+duration 0.0494
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00841.jpg'
+duration 0.0177
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00842.jpg'
+duration 1.2158
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00843.jpg'
+duration 1.7672
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00844.jpg'
+duration 0.0177
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00845.jpg'
+duration 0.0327
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00846.jpg'
+duration 0.0326
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00847.jpg'
+duration 0.1499
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00848.jpg'
+duration 0.0655
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00849.jpg'
+duration 0.0180
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00850.jpg'
+duration 0.0335
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00851.jpg'
+duration 0.0497
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00852.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00853.jpg'
+duration 0.0500
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00854.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00855.jpg'
+duration 0.0442
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00856.jpg'
+duration 0.3554
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00857.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00858.jpg'
+duration 0.0315
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00859.jpg'
+duration 0.0229
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00860.jpg'
+duration 0.0616
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00861.jpg'
+duration 0.0460
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00862.jpg'
+duration 0.0317
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00863.jpg'
+duration 0.0558
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00864.jpg'
+duration 1.0839
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00865.jpg'
+duration 0.7166
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00866.jpg'
+duration 0.0175
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00867.jpg'
+duration 0.0424
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00868.jpg'
+duration 0.0403
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00869.jpg'
+duration 0.0834
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00870.jpg'
+duration 0.0173
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00871.jpg'
+duration 0.3674
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00872.jpg'
+duration 0.0317
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00873.jpg'
+duration 0.0175
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00874.jpg'
+duration 0.0345
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00875.jpg'
+duration 0.0321
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00876.jpg'
+duration 0.0328
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00877.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00878.jpg'
+duration 0.0327
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00879.jpg'
+duration 0.0339
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00880.jpg'
+duration 0.0335
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00881.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00882.jpg'
+duration 0.0658
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00883.jpg'
+duration 0.0506
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00884.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00885.jpg'
+duration 0.0499
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00886.jpg'
+duration 0.0332
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00887.jpg'
+duration 0.0499
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00888.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00889.jpg'
+duration 0.0328
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00890.jpg'
+duration 0.0676
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00891.jpg'
+duration 0.0169
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00892.jpg'
+duration 0.0170
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00893.jpg'
+duration 0.0323
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00894.jpg'
+duration 0.0331
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00895.jpg'
+duration 0.0168
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00896.jpg'
+duration 0.0339
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00897.jpg'
+duration 0.3157
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00898.jpg'
+duration 0.0333
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00899.jpg'
+duration 0.0338
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00900.jpg'
+duration 0.0165
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00901.jpg'
+duration 0.0514
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00902.jpg'
+duration 0.3904
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00903.jpg'
+duration 0.1500
+file 'D:/Datos/Proyectos Web/SumobotArenaIDE/social/.capture/pintura/f00903.jpg'

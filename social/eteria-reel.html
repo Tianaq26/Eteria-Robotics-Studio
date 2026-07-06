@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eteria Robotics Studio Reel</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: #05070d;
+      color: #eef6ff;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    canvas#reel {
+      width: min(100vw, 405px);
+      height: min(100vh, 720px);
+      background: #05070d;
+      box-shadow: 0 24px 80px #000b;
+    }
+
+    #status {
+      position: fixed;
+      left: 14px;
+      bottom: 12px;
+      font-size: 12px;
+      color: #91a3bc;
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./node_modules/three/build/three.module.js",
+      "three/addons/": "./node_modules/three/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="reel" width="1080" height="1920"></canvas>
+  <div id="status">Preparando render 3D...</div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    const canvas = document.getElementById('reel');
+    const ctx = canvas.getContext('2d');
+    const statusEl = document.getElementById('status');
+    const W = canvas.width;
+    const H = canvas.height;
+    const FPS = 60;
+    const DURATION = 28;
+    const FRAME_DELAY_MS = 1000 / FPS;
+    const TAU = Math.PI * 2;
+
+    const scenes = [
+      { start: 0, end: 4.8 },
+      { start: 4.8, end: 10.2 },
+      { start: 10.2, end: 16.4 },
+      { start: 16.4, end: 22.6 },
+      { start: 22.6, end: 28 }
+    ];
+
+    const pyLines = [
+      'from ideaboard import IdeaBoard',
+      'ib = IdeaBoard()',
+      'sonar = HCSR04(board.IO25, board.IO26)',
+      '',
+      'while True:',
+      '    if sonar.dist_cm() < 25:',
+      '        ib.motor_1.throttle = 1',
+      '        ib.motor_2.throttle = 1',
+      '    else:',
+      '        ib.motor_1.throttle = .45',
+      '        ib.motor_2.throttle = -.45'
+    ];
+
+    function clamp(v, a = 0, b = 1) { return Math.max(a, Math.min(b, v)); }
+    function out(t) { return 1 - Math.pow(1 - clamp(t), 3); }
+    function smooth(t) { return .5 - .5 * Math.cos(Math.PI * clamp(t)); }
+    function sceneProgress(i, time) {
+      const s = scenes[i];
+      return clamp((time - s.start) / (s.end - s.start));
+    }
+
+    function roundedRect(x, y, w, h, r, fill, stroke, line = 2) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+      if (fill) {
+        ctx.fillStyle = fill;
+        ctx.fill();
+      }
+      if (stroke) {
+        ctx.lineWidth = line;
+        ctx.strokeStyle = stroke;
+        ctx.stroke();
+      }
+    }
+
+    function text(str, x, y, size, color = '#f6fbff', weight = 800, align = 'left', alpha = 1) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = color;
+      ctx.font = `${weight} ${size}px Inter, Segoe UI, sans-serif`;
+      ctx.textAlign = align;
+      ctx.textBaseline = 'top';
+      ctx.fillText(str, x, y);
+      ctx.restore();
+    }
+
+    function multiline(lines, x, y, size, gap, color = '#f6fbff', weight = 900, alpha = 1) {
+      lines.forEach((line, i) => text(line, x, y + i * (size + gap), size, color, weight, 'left', alpha));
+    }
+
+    function bg(time) {
+      const g = ctx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, '#08111e');
+      g.addColorStop(.45, '#070b12');
+      g.addColorStop(1, '#05070d');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.save();
+      ctx.globalAlpha = .22;
+      for (let i = 0; i < 32; i++) {
+        const x = (i * 151 + time * 26) % (W + 180) - 90;
+        const y = (i * 283 + Math.sin(time * .8 + i) * 26) % H;
+        ctx.strokeStyle = i % 4 === 0 ? '#32d4ff55' : '#6de7b733';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + 82, y - 36);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function logo(x, y, scale = 1, alpha = 1) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(scale, scale);
+      ctx.globalAlpha = alpha;
+      roundedRect(0, 14, 86, 54, 13, '#101827', '#32d4ff', 5);
+      ctx.strokeStyle = '#32d4ff';
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(22, 14);
+      ctx.lineTo(22, 4);
+      ctx.quadraticCurveTo(22, -5, 31, -5);
+      ctx.lineTo(55, -5);
+      ctx.quadraticCurveTo(64, -5, 64, 4);
+      ctx.lineTo(64, 14);
+      ctx.stroke();
+      ctx.fillStyle = '#32d4ff';
+      ctx.beginPath();
+      ctx.arc(29, 42, 6, 0, TAU);
+      ctx.arc(57, 42, 6, 0, TAU);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawHeader() {
+      text('@eteriatech', 82, 76, 30, '#91a3bc', 800);
+      logo(82, 128, .78, .95);
+      text('Eteria', 172, 130, 34, '#eef6ff', 900);
+      text('Robotics Studio', 172, 170, 24, '#6de7b7', 800);
+    }
+
+    function drawProgress(time) {
+      const barW = 916;
+      roundedRect(82, 1810, barW, 8, 4, '#172235', null);
+      roundedRect(82, 1810, barW * clamp(time / DURATION), 8, 4, '#32d4ff', null);
+    }
+
+    function fitDraw(source, x, y, w, h, r = 26, alpha = 1) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.clip();
+      ctx.drawImage(source, x, y, w, h);
+      ctx.restore();
+    }
+
+    function makeTexture(color = '#c8c8cc') {
+      const c = document.createElement('canvas');
+      c.width = c.height = 1024;
+      const g = c.getContext('2d');
+      g.fillStyle = color;
+      g.fillRect(0, 0, c.width, c.height);
+      const tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.flipY = true;
+      return { canvas: c, ctx: g, texture: tex };
+    }
+
+    function paintStroke(tex, t, color, phase) {
+      const p = clamp((t - phase) * 1.6);
+      if (p <= 0) return;
+      const g = tex.ctx;
+      g.save();
+      g.lineCap = 'round';
+      g.lineJoin = 'round';
+      g.lineWidth = 90;
+      g.strokeStyle = color;
+      g.globalAlpha = .9;
+      g.beginPath();
+      const points = [];
+      for (let i = 0; i < 24; i++) {
+        const u = i / 23;
+        points.push({
+          x: 180 + u * 680,
+          y: 520 + Math.sin(u * Math.PI * 2 + phase * 3) * 210
+        });
+      }
+      const end = Math.max(2, Math.floor(points.length * p));
+      g.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < end; i++) g.lineTo(points[i].x, points[i].y);
+      g.stroke();
+      g.restore();
+      tex.texture.needsUpdate = true;
+    }
+
+    async function loadRobotModel(paintTextures = null) {
+      const loader = new GLTFLoader();
+      const gltf = await loader.loadAsync('./modelos3D/sumobot.glb');
+      const model = gltf.scene;
+      model.updateWorldMatrix(false, true);
+      const b0 = new THREE.Box3().setFromObject(model);
+      const s0 = new THREE.Vector3();
+      b0.getSize(s0);
+      if (Math.max(s0.x, s0.z) < 1) model.scale.setScalar(100);
+
+      model.traverse((node) => {
+        if (node.isLight) node.intensity = 0;
+        if (!node.isMesh || !node.material || Array.isArray(node.material)) return;
+        node.material = node.material.clone();
+        node.material.roughness = Math.min(1, (node.material.roughness ?? .6) + .08);
+      });
+
+      if (paintTextures) {
+        for (const [partId, tex] of Object.entries(paintTextures)) {
+          const owner = model.getObjectByName(partId);
+          owner?.traverse((node) => {
+            if (!node.isMesh || !node.material || Array.isArray(node.material)) return;
+            node.material = node.material.clone();
+            node.material.map = tex.texture;
+            node.material.color.setRGB(1, 1, 1);
+            node.material.needsUpdate = true;
+          });
+        }
+      }
+
+      model.updateWorldMatrix(false, true);
+      const box = new THREE.Box3().setFromObject(model);
+      const size = new THREE.Vector3();
+      const center = new THREE.Vector3();
+      box.getSize(size);
+      box.getCenter(center);
+      model.position.x -= center.x;
+      model.position.z -= center.z;
+      model.position.y -= box.min.y;
+      return model;
+    }
+
+    class FightRenderer {
+      constructor() {
+        this.canvas = document.createElement('canvas');
+        this.canvas.width = 960;
+        this.canvas.height = 760;
+        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+        this.renderer.setSize(this.canvas.width, this.canvas.height, false);
+        this.renderer.setPixelRatio(1);
+        this.scene = new THREE.Scene();
+        this.scene.background = new THREE.Color(0x0b0f16);
+        this.camera = new THREE.PerspectiveCamera(42, this.canvas.width / this.canvas.height, .1, 1000);
+        this.camera.position.set(0, 82, 88);
+        this.camera.lookAt(0, 0, 0);
+        this.scene.add(new THREE.AmbientLight(0xffffff, .72));
+        const d1 = new THREE.DirectionalLight(0xffffff, 1.1);
+        d1.position.set(40, 90, 35);
+        this.scene.add(d1);
+        const d2 = new THREE.DirectionalLight(0x86d9ff, .35);
+        d2.position.set(-60, 45, -40);
+        this.scene.add(d2);
+        this.addDojo();
+      }
+
+      addDojo() {
+        const floor = new THREE.Mesh(
+          new THREE.PlaneGeometry(132, 132),
+          new THREE.MeshStandardMaterial({ color: 0x07080b, roughness: .8 })
+        );
+        floor.rotation.x = -Math.PI / 2;
+        floor.position.y = -1.2;
+        this.scene.add(floor);
+
+        const dojo = new THREE.Mesh(
+          new THREE.CylinderGeometry(45, 45, 2, 96),
+          new THREE.MeshStandardMaterial({ color: 0x111118, roughness: .7 })
+        );
+        dojo.position.y = -.5;
+        this.scene.add(dojo);
+
+        const ring = new THREE.Mesh(
+          new THREE.RingGeometry(40, 45, 96),
+          new THREE.MeshStandardMaterial({ color: 0xf5f7fa, side: THREE.DoubleSide, roughness: .55 })
+        );
+        ring.rotation.x = -Math.PI / 2;
+        ring.position.y = .62;
+        this.scene.add(ring);
+      }
+
+      async init() {
+        this.a = new THREE.Group();
+        this.b = new THREE.Group();
+        const modelA = await loadRobotModel();
+        const modelB = await loadRobotModel();
+        this.a.add(modelA);
+        this.b.add(modelB);
+        this.scene.add(this.a, this.b);
+        this.discA = this.makeDisc(0x3c82f0);
+        this.discB = this.makeDisc(0xf05046);
+        this.a.add(this.discA);
+        this.b.add(this.discB);
+      }
+
+      makeDisc(color) {
+        const disc = new THREE.Mesh(
+          new THREE.CircleGeometry(7.8, 48),
+          new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .72, side: THREE.DoubleSide })
+        );
+        disc.rotation.x = -Math.PI / 2;
+        disc.position.y = .65;
+        return disc;
+      }
+
+      render(time, intensity = 1) {
+        const a = time * 1.25;
+        const close = Math.sin(time * 1.7) * 5;
+        this.a.position.set(Math.cos(a) * 13 + close, 0, Math.sin(a) * 9);
+        this.b.position.set(Math.cos(a + Math.PI) * 14 - close, 0, Math.sin(a + Math.PI) * 10);
+        const dx = this.b.position.x - this.a.position.x;
+        const dz = this.b.position.z - this.a.position.z;
+        const th = Math.atan2(dx, dz);
+        this.a.rotation.y = th + Math.sin(time * 2.2) * .32;
+        this.b.rotation.y = th + Math.PI + Math.cos(time * 2.0) * .25;
+        this.camera.position.set(Math.sin(time * .18) * 10, 76, 88 + Math.cos(time * .22) * 6);
+        this.camera.lookAt(0, 0, 0);
+        this.renderer.render(this.scene, this.camera);
+        return this.canvas;
+      }
+    }
+
+    class PaintRenderer {
+      constructor() {
+        this.canvas = document.createElement('canvas');
+        this.canvas.width = 960;
+        this.canvas.height = 820;
+        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+        this.renderer.setSize(this.canvas.width, this.canvas.height, false);
+        this.renderer.setPixelRatio(1);
+        this.scene = new THREE.Scene();
+        this.scene.background = new THREE.Color(0x0b0f16);
+        this.camera = new THREE.PerspectiveCamera(42, this.canvas.width / this.canvas.height, .1, 1000);
+        this.camera.position.set(18, 24, 42);
+        this.scene.add(new THREE.AmbientLight(0xffffff, .85));
+        const d1 = new THREE.DirectionalLight(0xffffff, 1.15);
+        d1.position.set(30, 60, 45);
+        this.scene.add(d1);
+        const d2 = new THREE.DirectionalLight(0x32d4ff, .36);
+        d2.position.set(-30, 25, -35);
+        this.scene.add(d2);
+        this.textures = {
+          panel_frontal: makeTexture(),
+          panel_lateral_left: makeTexture(),
+          panel_lateral_right: makeTexture(),
+          panel_trasero: makeTexture()
+        };
+      }
+
+      async init() {
+        this.model = await loadRobotModel(this.textures);
+        this.scene.add(this.model);
+        this.target = new THREE.Vector3(0, 6, 0);
+      }
+
+      render(time) {
+        const t = time - scenes[3].start;
+        paintStroke(this.textures.panel_frontal, t, '#32d4ff', .15);
+        paintStroke(this.textures.panel_lateral_left, t, '#6de7b7', 1.0);
+        paintStroke(this.textures.panel_lateral_right, t, '#f973a7', 1.7);
+        paintStroke(this.textures.panel_trasero, t, '#ffd166', 2.4);
+        this.model.rotation.y = time * .85;
+        this.model.position.y = Math.sin(time * 1.3) * .12;
+        this.camera.position.set(Math.sin(time * .45) * 16 + 18, 24, Math.cos(time * .35) * 8 + 42);
+        this.camera.lookAt(this.target);
+        this.renderer.render(this.scene, this.camera);
+        return this.canvas;
+      }
+    }
+
+    function drawPythonPyblock(time, p) {
+      roundedRect(66, 565, 948, 870, 28, '#0d1420', '#26364d', 3);
+      roundedRect(96, 610, 426, 760, 22, '#070c13', '#25344a', 2);
+      roundedRect(558, 610, 426, 760, 22, '#07101b', '#25344a', 2);
+      text('Python', 126, 638, 28, '#6de7b7', 850);
+      text('pyblock', 588, 638, 28, '#32d4ff', 850);
+
+      ctx.save();
+      ctx.font = '500 22px Consolas, monospace';
+      pyLines.forEach((line, i) => {
+        const a = out(p * 3.2 - i * .18);
+        ctx.globalAlpha = a;
+        ctx.fillStyle = line.includes('throttle') ? '#6de7b7' : line.includes('if') || line.includes('while') ? '#ffd166' : '#c8d7ec';
+        ctx.fillText(line, 126, 700 + i * 44);
+      });
+      ctx.restore();
+
+      const blocks = [
+        ['al iniciar', '#7c3aed', 0, 0],
+        ['por siempre', '#2563eb', 26, 1],
+        ['si distancia < 25', '#f59e0b', 54, 2],
+        ['motores adelante', '#10b981', 82, 3],
+        ['si no: girar', '#06b6d4', 54, 4]
+      ];
+      blocks.forEach(([label, color, indent, order], i) => {
+        const a = out(p * 3 - i * .35);
+        const x = 588 + indent;
+        const y = 704 + i * 112;
+        ctx.save();
+        ctx.globalAlpha = a;
+        roundedRect(x + 8, y + 8, 342 - indent, 74, 18, '#0008', null);
+        roundedRect(x, y, 342 - indent, 74, 18, color, '#ffffff35', 3);
+        ctx.fillStyle = '#ffffff25';
+        ctx.beginPath();
+        ctx.arc(x + 42, y, 17, 0, TAU);
+        ctx.fill();
+        text(label, x + 28, y + 22, 24, '#ffffff', 850);
+        if (order > 0) {
+          ctx.strokeStyle = '#ffffff35';
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.moveTo(x - 18, y - 22);
+          ctx.lineTo(x - 18, y + 44);
+          ctx.stroke();
+        }
+        ctx.restore();
+      });
+    }
+
+    function drawScene(time) {
+      bg(time);
+      drawHeader();
+
+      if (time < scenes[1].start) {
+        const p = sceneProgress(0, time);
+        text('Nuevo proyecto de Eteria Tech', 82, 302, 34, '#6de7b7', 850, 'left', out(p - .05));
+        multiline(['Aprende robotica', 'programando', 'sumobots'], 82, 374 - out(p) * 30, 76, 10, '#f6fbff', 900, out(p));
+        text('Del codigo a la arena 3D.', 86, 690, 36, '#9fb2ca', 750, 'left', out(p - .2));
+        fitDraw(fight.render(time), 70, 820, 940, 710, 30, out(p - .15));
+      } else if (time < scenes[2].start) {
+        const p = sceneProgress(1, time);
+        text('Programa a tu nivel', 82, 330, 66, '#f6fbff', 900, 'left', out(p));
+        text('Python real o bloques pyblock.', 86, 425, 35, '#9fb2ca', 750, 'left', out(p - .15));
+        drawPythonPyblock(time, p);
+      } else if (time < scenes[3].start) {
+        const p = sceneProgress(2, time);
+        text('Simula antes', 82, 300, 76, '#f6fbff', 900, 'left', out(p));
+        text('de competir', 82, 382, 76, '#f6fbff', 900, 'left', out(p - .05));
+        roundedRect(82, 490, 410, 86, 25, '#26d07c', '#85ffc1', 3);
+        text('Ejecutar mi bot', 126, 514, 32, '#06100b', 900, 'left', out(p - .1));
+        fitDraw(fight.render(time * 1.08), 48, 650, 984, 820, 32, out(p - .1));
+        text('prueba estrategias antes del hardware real', 82, 1516, 38, '#dcecff', 850, 'left', out(p - .35));
+      } else if (time < scenes[4].start) {
+        const p = sceneProgress(3, time);
+        text('Crea tu bot', 82, 302, 73, '#f6fbff', 900, 'left', out(p));
+        text('Pintalo, entrenalo y llevalo al dojo.', 86, 398, 34, '#9fb2ca', 750, 'left', out(p - .15));
+        fitDraw(painter.render(time), 70, 520, 940, 860, 32, out(p - .1));
+        const colors = ['#32d4ff', '#6de7b7', '#f973a7', '#ffd166'];
+        colors.forEach((c, i) => {
+          ctx.save();
+          ctx.globalAlpha = out(p * 2.6 - i * .22);
+          ctx.fillStyle = c;
+          ctx.beginPath();
+          ctx.arc(190 + i * 82, 1438, 28, 0, TAU);
+          ctx.fill();
+          ctx.restore();
+        });
+      } else {
+        const p = sceneProgress(4, time);
+        fitDraw(fight.render(time * 1.2), 82, 285, 916, 650, 32, out(p));
+        text('Eteria Robotics Studio', 82, 1010, 58, '#f6fbff', 900, 'left', out(p - .02));
+        multiline(['Una app web', 'para aprender robotica', 'jugando y compitiendo'], 82, 1110, 58, 12, '#f6fbff', 900, out(p - .08));
+        text('Un lanzamiento de Eteria Tech', 82, 1352, 34, '#6de7b7', 850, 'left', out(p - .2));
+        roundedRect(82, 1445, 660, 82, 24, '#32d4ff', '#94e9ff', 3);
+        text('Pruébala gratis', 124, 1467, 34, '#041018', 900, 'left', out(p - .28));
+        text('Link en bio', 82, 1574, 42, '#6de7b7', 900, 'left', out(p - .4));
+        text('Busca: Eteria Robotics Studio', 82, 1662, 34, '#dcecff', 850, 'left', out(p - .52));
+      }
+
+      drawProgress(time);
+    }
+
+    async function record() {
+      window.REEL_STATUS = 'recording';
+      const stream = canvas.captureStream(FPS);
+      const options = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+        ? { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 16000000 }
+        : { mimeType: 'video/webm', videoBitsPerSecond: 16000000 };
+      const recorder = new MediaRecorder(stream, options);
+      const chunks = [];
+      recorder.ondataavailable = (event) => {
+        if (event.data && event.data.size) chunks.push(event.data);
+      };
+
+      const done = new Promise((resolve) => {
+        recorder.onstop = async () => {
+          const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+          statusEl.textContent = 'Guardando video...';
+          const response = await fetch('/save', {
+            method: 'POST',
+            headers: { 'Content-Type': blob.type },
+            body: blob
+          });
+          const result = await response.json();
+          window.REEL_STATUS = result.ok ? 'done' : 'error';
+          window.REEL_RESULT = result;
+          statusEl.textContent = result.ok ? `Listo: ${result.file}` : 'No se pudo guardar el video';
+          resolve();
+        };
+      });
+
+      recorder.start();
+      const totalFrames = Math.round(DURATION * FPS);
+      for (let frame = 0; frame <= totalFrames; frame++) {
+        const time = frame / FPS;
+        drawScene(time);
+        statusEl.textContent = `Grabando reel 3D... ${Math.round(frame / totalFrames * 100)}%`;
+        await new Promise((resolve) => setTimeout(resolve, FRAME_DELAY_MS));
+      }
+      recorder.stop();
+      await done;
+    }
+
+    let fight;
+    let painter;
+
+    async function boot() {
+      fight = new FightRenderer();
+      painter = new PaintRenderer();
+      await Promise.all([fight.init(), painter.init()]);
+      drawScene(0);
+      const params = new URLSearchParams(location.search);
+      if (params.has('preview')) {
+        drawScene(Number(params.get('time') || 0));
+        statusEl.textContent = `Preview ${params.get('time') || 0}s`;
+        return;
+      }
+      setTimeout(() => record().catch((error) => {
+        window.REEL_STATUS = 'error';
+        window.REEL_RESULT = { ok: false, error: String(error) };
+        statusEl.textContent = String(error);
+      }), 350);
+    }
+
+    boot().catch((error) => {
+      window.REEL_STATUS = 'error';
+      window.REEL_RESULT = { ok: false, error: String(error) };
+      statusEl.textContent = String(error);
+      console.error(error);
+    });
+  </script>
+</body>
+</html>

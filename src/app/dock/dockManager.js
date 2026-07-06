@@ -12,12 +12,12 @@
 // ======================================================
 
 import { PANELS, getPanel } from './panels.js';
+import { mobileMql } from '../../shared/mobileMedia.js';
 
 const LAYOUT_KEY = 'sumobot_layout_v1';
 const ZONE_IDS = ['left', 'center', 'right', 'bottom'];
 
 const MOBILE_LAYOUT_KEY = 'sumobot_mobile_layout_v1';
-const MOBILE_BREAKPOINT = '(max-width: 820px)';
 
 function defaultLayout() {
   const zones = { left: [], center: [], right: [], bottom: [] };
@@ -364,8 +364,6 @@ function onTabPointerUp(e, tabEl) {
 let mobileState = null; // { a: panelId, b: panelId, split: 50 }
 let mobileZoneEls = {};
 let mobileSaveTimer = null;
-const mobileMql = typeof window !== 'undefined' && window.matchMedia
-  ? window.matchMedia(MOBILE_BREAKPOINT) : null;
 
 function defaultMobileLayout() {
   return { version: 1, a: 'editor', b: 'arena', split: 50 };
@@ -442,18 +440,31 @@ function wireMobileResizer(rootEl) {
   const handle = rootEl.querySelector('[data-mresizer="split"]');
   if (!handle) return;
   let dragging = false;
+  let lastDown = 0;
   handle.addEventListener('pointerdown', (e) => {
     e.preventDefault();
+    // Doble toque en el divisor: volver al reparto 50/50
+    const now = Date.now();
+    if (now - lastDown < 350) {
+      mobileState.split = 50;
+      applyMobileSplit();
+      saveMobileLayoutDebounced();
+      requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+    }
+    lastDown = now;
     dragging = true;
     handle.classList.add('dragging');
     handle.setPointerCapture(e.pointerId);
   });
   handle.addEventListener('pointermove', (e) => {
     if (!dragging) return;
-    const total = rootEl.offsetHeight;
+    // En horizontal (landscape) las franjas van lado a lado: arrastre en X
+    const horizontal = getComputedStyle(rootEl).flexDirection === 'row';
     const rect = rootEl.getBoundingClientRect();
-    const pct = Math.max(20, Math.min(80, ((e.clientY - rect.top) / total) * 100));
-    mobileState.split = pct;
+    const raw = horizontal
+      ? ((e.clientX - rect.left) / rootEl.offsetWidth) * 100
+      : ((e.clientY - rect.top) / rootEl.offsetHeight) * 100;
+    mobileState.split = Math.max(20, Math.min(80, raw));
     applyMobileSplit();
   });
   const end = () => {
@@ -485,12 +496,21 @@ function initMobileDock(rootEl) {
   wireMobileResizer(rootEl);
   if (mobileMql && mobileMql.matches) renderMobileAll();
   if (mobileMql) {
-    const onChange = (e) => {
-      if (e.matches) renderMobileAll(); else renderAll();
+    // Cambio desktop ↔ móvil: re-renderizar para re-anclar los cuerpos de los
+    // paneles al árbol correcto. Además del evento 'change' del media query,
+    // se comprueba en cada 'resize' porque algunos entornos (viewports
+    // emulados, navegadores viejos) no disparan 'change' de forma fiable.
+    let lastMobile = mobileMql.matches;
+    const sync = () => {
+      const m = mobileMql.matches;
+      if (m === lastMobile) return;
+      lastMobile = m;
+      if (m) renderMobileAll(); else renderAll();
       requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
     };
-    if (mobileMql.addEventListener) mobileMql.addEventListener('change', onChange);
-    else mobileMql.addListener(onChange); // Safari viejo
+    if (mobileMql.addEventListener) mobileMql.addEventListener('change', sync);
+    else mobileMql.addListener(sync); // Safari viejo
+    window.addEventListener('resize', sync);
   }
 }
 

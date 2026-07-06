@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eteria Tech Launch Reel</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #04070c;
+      color: #eef6ff;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body { display: grid; place-items: center; }
+
+    canvas {
+      width: min(100vw, 405px);
+      height: min(100vh, 720px);
+      background: #04070c;
+      box-shadow: 0 24px 80px #000c;
+    }
+
+    #status {
+      position: fixed;
+      left: 12px;
+      bottom: 10px;
+      font-size: 12px;
+      color: #8da3bd;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="reel" width="1080" height="1920"></canvas>
+  <div id="status">Preparando reel 2D...</div>
+
+  <script>
+    const canvas = document.getElementById('reel');
+    const ctx = canvas.getContext('2d');
+    const statusEl = document.getElementById('status');
+    const W = canvas.width;
+    const H = canvas.height;
+    const FPS = 30;
+    const DURATION = 22;
+    const TAU = Math.PI * 2;
+
+    const scenes = [
+      { start: 0, end: 3.2 },
+      { start: 3.2, end: 6.6 },
+      { start: 6.6, end: 10.1 },
+      { start: 10.1, end: 13.8 },
+      { start: 13.8, end: 17.4 },
+      { start: 17.4, end: 22 }
+    ];
+
+    const assets = {
+      lab: './social/assets/app-real-sumolab.png',
+      mobile: './social/assets/app-production-mobile-sumolab.png',
+      code: './social/assets/reel-code-preview.png',
+      preview: './social/assets/reel-updated-preview.png'
+    };
+
+    function loadImage(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+    }
+
+    function clamp(v, a = 0, b = 1) { return Math.max(a, Math.min(b, v)); }
+    function ease(t) { return 1 - Math.pow(1 - clamp(t), 3); }
+    function soft(t) { return .5 - .5 * Math.cos(Math.PI * clamp(t)); }
+    function sceneProgress(i, time) {
+      const s = scenes[i];
+      return clamp((time - s.start) / (s.end - s.start));
+    }
+
+    function rr(x, y, w, h, r, fill, stroke, line = 2) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+      if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+      if (stroke) { ctx.lineWidth = line; ctx.strokeStyle = stroke; ctx.stroke(); }
+    }
+
+    function txt(str, x, y, size, color = '#f6fbff', weight = 900, align = 'left', alpha = 1) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = color;
+      ctx.font = `${weight} ${size}px Inter, Segoe UI, sans-serif`;
+      ctx.textAlign = align;
+      ctx.textBaseline = 'top';
+      ctx.fillText(str, x, y);
+      ctx.restore();
+    }
+
+    function multi(lines, x, y, size, gap, color = '#f6fbff', alpha = 1) {
+      lines.forEach((line, i) => txt(line, x, y + i * (size + gap), size, color, 900, 'left', alpha));
+    }
+
+    function bg(time, accent = '#32d4ff') {
+      const g = ctx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, '#07111c');
+      g.addColorStop(.56, '#05080e');
+      g.addColorStop(1, '#020409');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.save();
+      ctx.globalAlpha = .22;
+      ctx.strokeStyle = accent;
+      ctx.lineWidth = 1.5;
+      for (let i = 0; i < 18; i++) {
+        const y = 130 + i * 92 + Math.sin(time * .9 + i) * 14;
+        const x = ((time * 34 + i * 117) % 1280) - 160;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + 180, y);
+        ctx.lineTo(x + 226, y + 38);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function brandTop(alpha = 1) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      txt('ETERIA TECH', 82, 82, 28, '#6de7b7', 900);
+      ctx.fillStyle = '#32d4ff';
+      ctx.fillRect(82, 126, 138, 5);
+      txt('presenta', 236, 76, 28, '#8da3bd', 750);
+      ctx.restore();
+    }
+
+    function progress(time) {
+      rr(82, 1810, 916, 8, 4, '#172235', null);
+      rr(82, 1810, 916 * clamp(time / DURATION), 8, 4, '#6de7b7', null);
+    }
+
+    function coverImage(img, x, y, w, h, r = 28, alpha = 1) {
+      const scale = Math.max(w / img.width, h / img.height);
+      const sw = w / scale;
+      const sh = h / scale;
+      const sx = (img.width - sw) / 2;
+      const sy = (img.height - sh) / 2;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.shadowColor = '#000a';
+      ctx.shadowBlur = 36;
+      ctx.shadowOffsetY = 22;
+      rr(x, y, w, h, r, '#07101a', '#26384f', 3);
+      ctx.clip();
+      ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+      ctx.restore();
+    }
+
+    function phoneFrame(img, x, y, w, h, alpha = 1) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.shadowColor = '#000d';
+      ctx.shadowBlur = 44;
+      ctx.shadowOffsetY = 28;
+      rr(x, y, w, h, 58, '#05070c', '#33445b', 7);
+      rr(x + 24, y + 24, w - 48, h - 48, 38, '#08101a', null);
+      ctx.clip();
+      ctx.drawImage(img, x + 24, y + 24, w - 48, h - 48);
+      ctx.restore();
+    }
+
+    function chip(label, x, y, color, alpha = 1) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      rr(x, y, 220, 56, 18, color + '22', color, 2);
+      txt(label, x + 28, y + 15, 24, '#eef6ff', 850);
+      ctx.restore();
+    }
+
+    function draw(time, imgs) {
+      bg(time);
+      brandTop();
+
+      if (time < scenes[1].start) {
+        const p = sceneProgress(0, time);
+        txt('Nuevo proyecto', 82, 330 - ease(p) * 20, 72, '#f6fbff', 900, 'left', ease(p));
+        txt('de Eteria Tech', 82, 420 - ease(p) * 20, 72, '#6de7b7', 900, 'left', ease(p - .08));
+        txt('Robotica educativa, directo en el navegador.', 86, 560, 34, '#9fb2ca', 750, 'left', ease(p - .18));
+        coverImage(imgs.preview, 110, 780, 860, 560, 32, ease(p - .2));
+      } else if (time < scenes[2].start) {
+        const p = sceneProgress(1, time);
+        multi(['Programa', 'sumobots', 'con logica real'], 82, 300, 70, 10, '#f6fbff', ease(p));
+        chip('pyblock', 86, 650, '#32d4ff', ease(p - .1));
+        chip('Python', 326, 650, '#6de7b7', ease(p - .2));
+        chip('Codigo', 566, 650, '#f973a7', ease(p - .3));
+        coverImage(imgs.code, 78, 820, 924, 610, 30, ease(p - .18));
+      } else if (time < scenes[3].start) {
+        const p = sceneProgress(2, time);
+        txt('Simula', 82, 302, 82, '#f6fbff', 900, 'left', ease(p));
+        txt('antes de competir', 82, 398, 64, '#6de7b7', 900, 'left', ease(p - .08));
+        coverImage(imgs.lab, 52, 620, 976, 670, 34, ease(p - .15));
+        txt('Prueba sensores, estrategia y combate 3D.', 82, 1364, 34, '#dcecff', 800, 'left', ease(p - .34));
+      } else if (time < scenes[4].start) {
+        const p = sceneProgress(3, time);
+        txt('Disenado', 82, 300, 78, '#f6fbff', 900, 'left', ease(p));
+        txt('para aprender jugando', 82, 394, 56, '#f6fbff', 900, 'left', ease(p - .08));
+        phoneFrame(imgs.mobile, 258 + Math.sin(time) * 8, 570, 564, 900, ease(p - .1));
+        txt('Misiones, progreso y laboratorio movil.', 82, 1530, 34, '#9fb2ca', 800, 'left', ease(p - .35));
+      } else if (time < scenes[5].start) {
+        const p = sceneProgress(4, time);
+        multi(['Del navegador', 'al robot real'], 82, 318, 76, 12, '#f6fbff', ease(p));
+        txt('Conecta IdeaBoard, sube tu codigo y prueba.', 86, 560, 34, '#9fb2ca', 750, 'left', ease(p - .16));
+        rr(110, 780, 860, 430, 34, '#0b1420', '#29405a', 3);
+        txt('Conectar IdeaBoard', 174, 860, 46, '#32d4ff', 900, 'left', ease(p - .22));
+        txt('Subir al robot', 174, 960, 46, '#6de7b7', 900, 'left', ease(p - .32));
+        txt('code.py listo para ejecutar', 174, 1060, 34, '#dcecff', 800, 'left', ease(p - .42));
+      } else {
+        const p = sceneProgress(5, time);
+        coverImage(imgs.lab, 82, 250, 916, 610, 32, ease(p));
+        txt('Eteria', 82, 970, 92, '#f6fbff', 950, 'left', ease(p - .05));
+        txt('Robotics Studio', 82, 1074, 78, '#6de7b7', 950, 'left', ease(p - .12));
+        txt('Ya esta en linea', 82, 1240, 42, '#dcecff', 850, 'left', ease(p - .25));
+        rr(82, 1370, 720, 86, 26, '#32d4ff', '#94e9ff', 3);
+        txt('Buscalo en Google', 126, 1394, 36, '#041018', 950, 'left', ease(p - .36));
+        txt('Link en bio', 82, 1518, 44, '#6de7b7', 900, 'left', ease(p - .48));
+      }
+
+      progress(time);
+    }
+
+    async function record(imgs) {
+      window.REEL_STATUS = 'recording';
+      const stream = canvas.captureStream(FPS);
+      const options = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+        ? { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 9000000 }
+        : { mimeType: 'video/webm', videoBitsPerSecond: 9000000 };
+      const recorder = new MediaRecorder(stream, options);
+      const chunks = [];
+      recorder.ondataavailable = (event) => {
+        if (event.data && event.data.size) chunks.push(event.data);
+      };
+      const done = new Promise((resolve) => {
+        recorder.onstop = async () => {
+          const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+          const response = await fetch('/save-launch', {
+            method: 'POST',
+            headers: { 'Content-Type': blob.type },
+            body: blob
+          });
+          const result = await response.json();
+          window.REEL_RESULT = result;
+          window.REEL_STATUS = result.ok ? 'done' : 'error';
+          statusEl.textContent = result.ok ? `Listo: ${result.file}` : result.error;
+          resolve();
+        };
+      });
+
+      recorder.start();
+      const totalFrames = Math.round(DURATION * FPS);
+      for (let frame = 0; frame <= totalFrames; frame++) {
+        const time = frame / FPS;
+        draw(time, imgs);
+        statusEl.textContent = `Grabando reel 2D... ${Math.round(frame / totalFrames * 100)}%`;
+        await new Promise((resolve) => setTimeout(resolve, 1000 / FPS));
+      }
+      recorder.stop();
+      await done;
+    }
+
+    async function boot() {
+      const imgs = {};
+      await Promise.all(Object.entries(assets).map(async ([key, src]) => {
+        imgs[key] = await loadImage(src);
+      }));
+      const params = new URLSearchParams(location.search);
+      draw(Number(params.get('time') || 0), imgs);
+      if (params.has('record')) {
+        setTimeout(() => record(imgs).catch((error) => {
+          window.REEL_STATUS = 'error';
+          window.REEL_RESULT = { ok: false, error: String(error) };
+          statusEl.textContent = String(error);
+        }), 300);
+      } else {
+        statusEl.textContent = 'Preview listo';
+      }
+    }
+
+    boot().catch((error) => {
+      window.REEL_STATUS = 'error';
+      window.REEL_RESULT = { ok: false, error: String(error) };
+      statusEl.textContent = String(error);
+      console.error(error);
+    });
+  </script>
+</body>
+</html>

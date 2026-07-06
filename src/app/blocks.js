@@ -12,6 +12,8 @@
 // (si no, su UMD se registraría como módulo AMD y no habría global Blockly).
 // ======================================================
 
+import { isMobile } from '../shared/mobileMedia.js';
+
 const STORAGE_KEY = 'sumobloques_workspace_v2';
 
 const COL = {
@@ -51,7 +53,9 @@ let ws = null;          // workspace Blockly
 let container = null;
 let pyGen = null;       // generador Python de Blockly
 let currentMission = null;
-let guideCollapsed = false;
+// En celular la guía tapa gran parte del lienzo de bloques: arranca colapsada
+// (queda como botón "Mostrar guia") y el estudiante la abre cuando la necesita.
+let guideCollapsed = isMobile();
 let OrderNone = 99;     // python.Order.NONE (fallback numérico)
 
 // ── Definición de bloques personalizados ─────────────────────────────────────
