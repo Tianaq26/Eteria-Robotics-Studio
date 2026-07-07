@@ -31,6 +31,28 @@
   <link rel="stylesheet" href="styles.css">
   <!-- Habilita crossOriginIsolated (SharedArrayBuffer/Pyodide) en hosts sin
        cabeceras COOP/COEP configurables, como GitHub Pages. -->
+  <!-- Ajuste SOLO para Safari/WebKit: Safari (macOS) y TODOS los navegadores de
+       iOS (Chrome, Firefox… todos usan WebKit) NO soportan COEP:credentialless,
+       que es el modo que usa coi-serviceworker.js por defecto. Sin este ajuste,
+       tras la primera carga el service worker "degrada" a credentialless, Safari
+       no lo entiende y la página deja de estar aislada → SharedArrayBuffer
+       desaparece y Python (Pyodide) queda bloqueado. Aquí forzamos require-corp
+       (que Safari sí soporta desde 15.2) y desactivamos el degradado. El resto de
+       navegadores mantienen intacto el sistema credentialless anterior. -->
+  <script>
+    (function () {
+      var ua = navigator.userAgent || '';
+      var isIOS = /iP(hone|ad|od)/.test(ua) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var isSafariDesktop = /^((?!chrome|chromium|android|crios|fxios|edg|opr|samsung).)*safari/i.test(ua);
+      if (isIOS || isSafariDesktop) {
+        window.coi = {
+          coepCredentialless: function () { return false; }, // require-corp (Safari no soporta credentialless)
+          coepDegrade:        function () { return false; },  // no degradar ni recargar: quedarnos en require-corp
+        };
+      }
+    })();
+  </script>
   <script src="./coi-serviceworker.js"></script>
   <script type="application/ld+json">
   {

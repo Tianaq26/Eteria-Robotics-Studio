@@ -412,5 +412,15 @@ sin tocar `main.js` ni `sandbox.js`.
 4. **Race condition runUser**: múltiples `run` messages pueden quedar en cola. Usar `runGen` counter; el runUser más reciente cancela los anteriores.
 5. **`eval` no puede ser parámetro** en strict mode → eliminado de BLOCKED en sandbox.js.
 6. **COEP `credentialless`** (no `require-corp`) → permite cargar Pyodide desde CDN externo.
+   **Excepción Safari/WebKit:** Safari no soporta `credentialless`. Un `<script>` inline en
+   `index.html` (antes de `coi-serviceworker.js`) detecta Safari/iOS y setea
+   `window.coi = { coepCredentialless: () => false, coepDegrade: () => false }` → fuerza
+   `require-corp` (soportado en Safari 15.2+) y evita que el service worker "degrade" a
+   credentialless tras la primera carga (que dejaba la página sin aislar → Python bloqueado en
+   iPhone/Mac). Chrome/Firefox no se tocan: siguen en credentialless. Funciona porque bajo
+   `require-corp` los recursos de jsdelivr (Pyodide/Blockly/Monaco) mandan `CORP: cross-origin`
+   y Three.js (unpkg, módulos ES) pasa por CORS. Única baja en Safari: GTM (analítica) puede no
+   cargar (no manda CORP) — no rompe la app. **Pendiente de probar en Safari/iPhone real** (este
+   entorno no puede correr WebKit).
 7. **Modo solo:** B se pone en (1e6, 1e6) y `B.out = true` desde el inicio.
 8. **GLB en metros vs cm**: si el modelo mide < 1 unidad Three.js, se escala × 100 en scene.js.
