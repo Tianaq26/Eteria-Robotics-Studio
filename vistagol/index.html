@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VistaGol — Ve tu asiento antes de comprarlo</title>
+<meta name="description" content="VistaGol: visualización 3D del estadio con vista real desde cada asiento. Demo funcional para clubes de fútbol de Costa Rica." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,600..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== Landing overlay ===== -->
+<div id="landing" class="landing">
+  <div class="landing-inner">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">VISTAGOL</span>
+    </div>
+    <h1>Ve tu asiento<br /><em>antes</em> de comprarlo.</h1>
+    <p class="lede">
+      Demo funcional de boletería con vista 3D real desde cada butaca del estadio.
+      Ningún club de Primera División en Costa Rica ofrece esto hoy.
+    </p>
+    <button id="btn-enter" class="btn btn-primary">Explorar el estadio</button>
+    <p class="landing-foot">
+      Prototipo con estadio genérico · El sistema se adapta al modelo real de cada estadio
+    </p>
+  </div>
+</div>
+
+<!-- ===== 3D canvas ===== -->
+<canvas id="scene"></canvas>
+
+<!-- ===== Top bar ===== -->
+<header id="topbar" class="topbar hidden">
+  <div class="brand small">
+    <span class="brand-mark"></span>
+    <span class="brand-name">VISTAGOL</span>
+  </div>
+  <div class="topbar-hint" id="hint">Hacé clic en una sección del estadio para ver los asientos</div>
+  <button id="btn-reset" class="btn btn-ghost hidden">← Vista general</button>
+</header>
+
+<!-- ===== Section / seat panel ===== -->
+<aside id="panel" class="panel hidden">
+  <div class="panel-head">
+    <div>
+      <div class="eyebrow" id="panel-stand">—</div>
+      <h2 id="panel-section">—</h2>
+    </div>
+    <div class="price-tag">
+      <span class="price-amount" id="panel-price">—</span>
+      <span class="price-note">por entrada</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot dot-free"></i>Disponible</span>
+    <span><i class="dot dot-taken"></i>Vendido</span>
+    <span><i class="dot dot-sel"></i>Tu selección</span>
+  </div>
+
+  <div class="seatmap-wrap">
+    <div class="seatmap-pitchside">CANCHA ↑</div>
+    <div id="seatmap" class="seatmap"></div>
+  </div>
+</aside>
+
+<!-- ===== Ticket card (signature element) ===== -->
+<div id="ticket" class="ticket hidden">
+  <div class="ticket-main">
+    <div class="eyebrow">Tu asiento</div>
+    <div class="ticket-code" id="ticket-code">—</div>
+    <div class="ticket-meta" id="ticket-meta">—</div>
+  </div>
+  <div class="ticket-stub">
+    <div class="ticket-price" id="ticket-price">—</div>
+    <button id="btn-view" class="btn btn-primary">Ver desde este asiento</button>
+    <button id="btn-buy" class="btn btn-ghost">Comprar (demo)</button>
+  </div>
+</div>
+
+<!-- ===== Seat-view HUD ===== -->
+<div id="seatview-hud" class="seatview-hud hidden">
+  <div class="hud-card">
+    <span class="hud-code" id="hud-code">—</span>
+    <span class="hud-tip">Arrastrá para mirar alrededor</span>
+  </div>
+</div>
+
+<!-- ===== Purchase demo modal ===== -->
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <div class="eyebrow">Demo de compra</div>
+    <h3>Aquí continuaría el pago real</h3>
+    <p>
+      En producción, este paso conecta con la pasarela del club
+      (tarjeta, SINPE Móvil) y emite el boleto con código QR.
+      Esta demo termina aquí.
+    </p>
+    <div class="modal-seat" id="modal-seat">—</div>
+    <button id="btn-close-modal" class="btn btn-primary">Entendido</button>
+  </div>
+</div>
+
+<div id="loader" class="loader"><span></span></div>
+
+<script src="app.js"></script>
+</body>
+</html>
