@@ -353,7 +353,7 @@ async function setLang(lang) {
 
   if (!esBloques && window.SumoEditor) {
     let code;
-    if (lang === 'cpp')      code = await loadStarter('cpp', './content/starter.cpp', '// Error: no se pudo cargar content/starter.cpp');
+    if (lang === 'cpp')      code = '// C++ (Arduino/ESP32) — próximamente';
     else if (lang === 'py')  code = await loadStarter('py',  './content/starter.py',  '# Error: no se pudo cargar content/starter.py');
     else                     code = await loadStarter('js',  './content/starter.js',  '// Error: no se pudo cargar content/starter.js');
     window.SumoEditor.setValue(code);
