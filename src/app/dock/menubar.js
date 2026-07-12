@@ -6,11 +6,12 @@
 import { getPanelList, togglePanel, restoreDefaultLayout } from './dockManager.js';
 import { getSettings, setTheme, setAccent, setSfxMuted } from '../settings.js';
 import { startTour, TOUR_INTERFAZ, TOUR_PRIMERA_MISION, TOUR_PYBLOCK, TOUR_PINTAR_BOT } from '../tour.js';
+import { t, onLangChange } from '../i18n.js';
 
 const ACCENTS = [
-  { id: 'azul',    label: 'Azul',    color: '#3c82f0' },
-  { id: 'violeta', label: 'Violeta', color: '#a855f7' },
-  { id: 'verde',   label: 'Verde',   color: '#22c55e' },
+  { id: 'azul',    key: 'menu.accent.azul',    color: '#3c82f0' },
+  { id: 'violeta', key: 'menu.accent.violeta', color: '#a855f7' },
+  { id: 'verde',   key: 'menu.accent.verde',   color: '#22c55e' },
 ];
 
 let openMenu = null;
@@ -37,15 +38,15 @@ function renderArchivo(dropdown) {
   const shortcut = p.supportsFS ? ' · Ctrl+S' : '';
   dropdown.innerHTML =
     '<div class="menu-section-label">' + p.getCurrentProjectName() + '</div>' +
-    '<button class="menu-action-row" data-fm="new">🆕 Nuevo proyecto</button>' +
-    '<button class="menu-action-row" data-fm="open">📂 Abrir proyecto… <span style="margin-left:auto;color:var(--muted)">Ctrl+O</span></button>' +
-    '<button class="menu-action-row" data-fm="save">💾 Guardar<span style="margin-left:auto;color:var(--muted)">' + shortcut + '</span></button>' +
-    '<button class="menu-action-row" data-fm="saveAs">💾 Guardar como…</button>' +
+    '<button class="menu-action-row" data-fm="new">' + t('menu.file.new') + '</button>' +
+    '<button class="menu-action-row" data-fm="open">' + t('menu.file.open') + ' <span style="margin-left:auto;color:var(--muted)">Ctrl+O</span></button>' +
+    '<button class="menu-action-row" data-fm="save">' + t('menu.file.save') + '<span style="margin-left:auto;color:var(--muted)">' + shortcut + '</span></button>' +
+    '<button class="menu-action-row" data-fm="saveAs">' + t('menu.file.saveAs') + '</button>' +
     '<div class="menu-divider"></div>' +
-    '<button class="menu-action-row" data-fm="import">📥 Importar proyecto (.sumo)…</button>' +
-    '<button class="menu-action-row" data-fm="export">📤 Exportar proyecto (.sumo)</button>' +
+    '<button class="menu-action-row" data-fm="import">' + t('menu.file.import') + '</button>' +
+    '<button class="menu-action-row" data-fm="export">' + t('menu.file.export') + '</button>' +
     (!p.supportsFS
-      ? '<div class="menu-divider"></div><div class="menu-section-label">Guardado local en este navegador — usa Exportar para hacer una copia en tu equipo.</div>'
+      ? '<div class="menu-divider"></div><div class="menu-section-label">' + t('menu.file.localNote') + '</div>'
       : '');
 
   const notify = (_fileCtx && _fileCtx.notify) || (() => {});
@@ -56,12 +57,12 @@ function renderArchivo(dropdown) {
       else if (r && r.error) notify('✗ ' + r.error, 'error');
     }).catch((e) => notify('✗ ' + (e && e.message ? e.message : e), 'error'));
   };
-  dropdown.querySelector('[data-fm="new"]').onclick    = () => run(p.newProject,    () => '🆕 Nuevo proyecto');
-  dropdown.querySelector('[data-fm="open"]').onclick   = () => run(p.openProject,   (r) => `📂 Proyecto abierto: ${r.name}`);
-  dropdown.querySelector('[data-fm="save"]').onclick   = () => run(p.saveProject,   (r) => `💾 Proyecto guardado: ${r.name}`);
-  dropdown.querySelector('[data-fm="saveAs"]').onclick = () => run(p.saveProjectAs, (r) => `💾 Proyecto guardado: ${r.name}`);
-  dropdown.querySelector('[data-fm="import"]').onclick = () => run(p.importProject, (r) => `📥 Proyecto importado: ${r.name}`);
-  dropdown.querySelector('[data-fm="export"]').onclick = () => run(p.exportProject, (r) => `📤 Proyecto exportado: ${r.name}.sumo`);
+  dropdown.querySelector('[data-fm="new"]').onclick    = () => run(p.newProject,    () => t('menu.file.newDone'));
+  dropdown.querySelector('[data-fm="open"]').onclick   = () => run(p.openProject,   (r) => t('menu.file.opened',   { name: r.name }));
+  dropdown.querySelector('[data-fm="save"]').onclick   = () => run(p.saveProject,   (r) => t('menu.file.saved',    { name: r.name }));
+  dropdown.querySelector('[data-fm="saveAs"]').onclick = () => run(p.saveProjectAs, (r) => t('menu.file.saved',    { name: r.name }));
+  dropdown.querySelector('[data-fm="import"]').onclick = () => run(p.importProject, (r) => t('menu.file.imported', { name: r.name }));
+  dropdown.querySelector('[data-fm="export"]').onclick = () => run(p.exportProject, (r) => t('menu.file.exported', { name: r.name }));
 }
 
 function renderVentanas(dropdown) {
@@ -72,7 +73,7 @@ function renderVentanas(dropdown) {
   dropdown.innerHTML =
     rows +
     '<div class="menu-divider"></div>' +
-    '<button class="menu-action-row" id="btnRestoreLayout">↺ Restaurar diseño predeterminado</button>';
+    '<button class="menu-action-row" id="btnRestoreLayout">' + t('menu.windows.restore') + '</button>';
   dropdown.querySelectorAll('input[data-panel]').forEach((cb) => {
     cb.addEventListener('change', () => togglePanel(cb.dataset.panel));
   });
@@ -82,22 +83,22 @@ function renderVentanas(dropdown) {
 function renderConfiguracion(dropdown) {
   const s = getSettings();
   dropdown.innerHTML =
-    '<div class="menu-section-label">Tema</div>' +
+    '<div class="menu-section-label">' + t('menu.config.theme') + '</div>' +
     '<div class="menu-toggle-row">' +
-      '<span>Modo claro</span>' +
+      '<span>' + t('menu.config.light') + '</span>' +
       '<label class="menu-switch"><input type="checkbox" id="cfgThemeSwitch"' + (s.theme === 'light' ? ' checked' : '') + '>' +
         '<span class="menu-switch-track"></span></label>' +
     '</div>' +
-    '<div class="menu-section-label">Acento</div>' +
+    '<div class="menu-section-label">' + t('menu.config.accent') + '</div>' +
     '<div class="menu-accent-row">' +
       ACCENTS.map((a) =>
         '<button class="menu-accent-swatch' + (s.accent === a.id ? ' sel' : '') + '" data-accent="' + a.id +
-        '" title="' + a.label + '" style="background:' + a.color + '"></button>'
+        '" title="' + t(a.key) + '" style="background:' + a.color + '"></button>'
       ).join('') +
     '</div>' +
     '<div class="menu-divider"></div>' +
     '<div class="menu-toggle-row">' +
-      '<span>Silenciar sonido</span>' +
+      '<span>' + t('menu.config.mute') + '</span>' +
       '<label class="menu-switch"><input type="checkbox" id="cfgMuteSwitch"' + (s.sfxMuted ? ' checked' : '') + '>' +
         '<span class="menu-switch-track"></span></label>' +
     '</div>';
@@ -110,7 +111,7 @@ function renderConfiguracion(dropdown) {
 
 function renderTutoriales(dropdown) {
   const tours = [
-    { title: 'Aprender pyblock', desc: 'Categorias, abrir bloques, arrastrarlos al editor y usar la guia de bloques.', steps: TOUR_PYBLOCK,
+    { title: t('tour.item.pyblock.title'), desc: t('tour.item.pyblock.desc'), steps: TOUR_PYBLOCK,
       prepare: async () => {
         const sel = document.getElementById('selLang');
         if (sel && sel.value !== 'blocks') {
@@ -119,7 +120,7 @@ function renderTutoriales(dropdown) {
           await new Promise(r => setTimeout(r, 450));
         }
       } },
-    { title: 'Pintar el bot', desc: 'Herramientas, colores, vista 3D/2D y como aplicar el diseno al robot virtual.', steps: TOUR_PINTAR_BOT,
+    { title: t('tour.item.paint.title'), desc: t('tour.item.paint.desc'), steps: TOUR_PINTAR_BOT,
       prepare: async () => {
         const editor = document.getElementById('paintEditor');
         if (!editor || !editor.classList.contains('open')) {
@@ -127,14 +128,14 @@ function renderTutoriales(dropdown) {
           await new Promise(r => setTimeout(r, 550));
         }
       } },
-    { title: 'Tour de la interfaz', desc: 'Conoce la barra de menú, el editor, la arena y el panel de control.', steps: TOUR_INTERFAZ },
-    { title: 'Cómo completar tu primera misión', desc: 'Del mapa de misiones a tu primer resultado con estrellas.', steps: TOUR_PRIMERA_MISION },
+    { title: t('tour.item.interfaz.title'), desc: t('tour.item.interfaz.desc'), steps: TOUR_INTERFAZ },
+    { title: t('tour.item.primera.title'), desc: t('tour.item.primera.desc'), steps: TOUR_PRIMERA_MISION },
   ];
-  dropdown.innerHTML = tours.map((t, i) =>
+  dropdown.innerHTML = tours.map((tour, i) =>
     '<div class="menu-tour-item">' +
-      '<div class="menu-tour-title">' + t.title + '</div>' +
-      '<div class="menu-tour-desc">' + t.desc + '</div>' +
-      '<button class="menu-tour-start" data-tour="' + i + '">▶ Iniciar</button>' +
+      '<div class="menu-tour-title">' + tour.title + '</div>' +
+      '<div class="menu-tour-desc">' + tour.desc + '</div>' +
+      '<button class="menu-tour-start" data-tour="' + i + '">' + t('menu.tour.start') + '</button>' +
     '</div>' + (i < tours.length - 1 ? '<div class="menu-divider"></div>' : '')
   ).join('');
   dropdown.querySelectorAll('.menu-tour-start').forEach((btn) => {
@@ -152,17 +153,18 @@ export function initMenubar(fileCtx) {
   if (!bar) return;
 
   const entries = [
-    { name: 'archivo', label: 'Archivo', render: renderArchivo },
-    { name: 'ventanas', label: 'Ventanas', render: renderVentanas },
-    { name: 'config', label: 'Configuración', render: renderConfiguracion },
-    { name: 'tutoriales', label: 'Tutoriales', render: renderTutoriales },
+    { name: 'archivo', key: 'menu.file', render: renderArchivo },
+    { name: 'ventanas', key: 'menu.windows', render: renderVentanas },
+    { name: 'config', key: 'menu.config', render: renderConfiguracion },
+    { name: 'tutoriales', key: 'menu.tutorials', render: renderTutoriales },
   ];
 
   for (const entry of entries) {
     const btn = document.createElement('button');
     btn.className = 'menubar-btn';
-    btn.textContent = entry.label;
+    btn.textContent = t(entry.key);
     btn.dataset.menu = entry.name;
+    btn.dataset.i18nKey = entry.key;
 
     const dropdown = document.createElement('div');
     dropdown.className = 'menubar-dropdown';
@@ -176,6 +178,15 @@ export function initMenubar(fileCtx) {
     bar.appendChild(btn);
     bar.appendChild(dropdown);
   }
+
+  // Re-etiqueta los botones del menú al cambiar de idioma (los dropdowns se
+  // re-renderizan solos al abrirse, así que basta con cerrarlos).
+  onLangChange(() => {
+    closeAll();
+    bar.querySelectorAll('.menubar-btn').forEach((b) => {
+      if (b.dataset.i18nKey) b.textContent = t(b.dataset.i18nKey);
+    });
+  });
 
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.menubar')) closeAll();
