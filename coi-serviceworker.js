@@ -1,7 +1,14 @@
 /*! coi-serviceworker v0.1.7 - Guido Zuidhof and contributors, licensed under MIT */
 /* https://github.com/gzuidhof/coi-serviceworker — habilita crossOriginIsolated
    (SharedArrayBuffer para Pyodide) en hosts que no permiten configurar
-   cabeceras COOP/COEP, como GitHub Pages. */
+   cabeceras COOP/COEP, como GitHub Pages.
+
+   PARCHE LOCAL (fetch handler): el handler original hacía
+   `.catch((e) => console.error(e))`, lo que resolvía la respuesta con
+   `undefined` cuando el fetch fallaba. En Safari/iOS eso rompe la página con
+   "FetchEvent.respondWith received an error: Returned response is null" y el
+   sitio queda inaccesible. Ahora, ante un fallo, caemos a una petición de red
+   normal para que la página siempre cargue. */
 let coepCredentialless = false;
 if (typeof window === 'undefined') {
     self.addEventListener("install", () => self.skipWaiting());
@@ -57,7 +64,16 @@ if (typeof window === 'undefined') {
                         headers: newHeaders,
                     });
                 })
-                .catch((e) => console.error(e))
+                .catch((e) => {
+                    console.error(e);
+                    // Nunca resolver con null/undefined: en Safari eso rompe la
+                    // página entera con "FetchEvent.respondWith received an error:
+                    // Returned response is null" y el sitio deja de cargar. Si la
+                    // inyección de cabeceras COOP/COEP falla, caemos a una petición
+                    // de red normal: se pierde crossOriginIsolated (Python queda
+                    // degradado) pero la página sigue funcionando.
+                    return fetch(event.request);
+                })
         );
     });
 
