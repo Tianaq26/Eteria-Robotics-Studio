@@ -11,10 +11,12 @@
 // dockManager.js para que aparezca en el menú Ventanas y se pueda acoplar.
 // ======================================================
 
-function stub(title, desc) {
+import { t } from '../i18n.js';
+
+function stub(titleKey, descKey) {
   return (container) => {
     container.innerHTML =
-      '<div class="dock-stub"><h3>' + title + '</h3><p>' + desc + '</p></div>';
+      '<div class="dock-stub"><h3>' + t(titleKey) + '</h3><p>' + t(descKey) + '</p></div>';
   };
 }
 
@@ -29,6 +31,7 @@ export const PANELS = [
   {
     id: 'editor',
     title: 'Editor',
+    titleKey: 'panel.name.editor',
     icon: '📝',
     defaultZone: 'left',
     singleton: true,
@@ -37,6 +40,7 @@ export const PANELS = [
   {
     id: 'console',
     title: 'Consola',
+    titleKey: 'panel.name.console',
     icon: '🖥',
     defaultZone: 'left',
     singleton: true,
@@ -45,6 +49,7 @@ export const PANELS = [
   {
     id: 'arena',
     title: 'Visualización 3D',
+    titleKey: 'panel.name.arena',
     icon: '🟢',
     defaultZone: 'center',
     singleton: true,
@@ -53,6 +58,7 @@ export const PANELS = [
   {
     id: 'control',
     title: 'Control',
+    titleKey: 'panel.name.control',
     icon: '🎛',
     defaultZone: 'right',
     singleton: true,
@@ -61,22 +67,25 @@ export const PANELS = [
   {
     id: 'inspector',
     title: 'Inspector',
+    titleKey: 'panel.name.inspector',
     icon: '🔍',
     defaultZone: 'right',
     singleton: true,
-    mount: stub('Inspector', 'Próximamente: aquí verás las especificaciones físicas del sumobot (tamaño, velocidad máxima, masa) y detalles del bot seleccionado.'),
+    mount: stub('panel.name.inspector', 'panel.stub.inspector'),
   },
   {
     id: 'assets',
     title: 'Assets',
+    titleKey: 'panel.name.assets',
     icon: '📦',
     defaultZone: 'right',
     singleton: true,
-    mount: stub('Assets', 'Próximamente: explorador de bots preestablecidos y skins guardadas.'),
+    mount: stub('panel.name.assets', 'panel.stub.assets'),
   },
   {
     id: 'serial',
     title: 'Monitor Serie',
+    titleKey: 'panel.name.serial',
     icon: '🔌',
     defaultZone: 'bottom',
     singleton: true,
@@ -85,6 +94,7 @@ export const PANELS = [
   {
     id: 'deviceFiles',
     title: 'Archivos del robot',
+    titleKey: 'panel.name.deviceFiles',
     icon: '🗂',
     defaultZone: 'right',
     singleton: true,

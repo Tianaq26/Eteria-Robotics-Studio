@@ -22,7 +22,10 @@ import { initMenubar } from './dock/menubar.js';
 import * as ProjectManager from './projectManager.js';
 import { initDeviceUI } from './deviceUI.js';
 import './settings.js';
+import { initI18n, t, getLang, setLang as setUILang, onLangChange } from './i18n.js';
 
+initI18n();
+initLangSwitcher();
 initDock(document.getElementById('dockRoot'));
 initMenubar({
   project: {
@@ -42,6 +45,38 @@ initDeviceUI({
   openDeviceFile: (name, content) => loadDeviceFileIntoEditor(name, content),
   notify: (msg, cls) => logLine(msg, cls),
 });
+
+// ── Selector de idioma (header + landing) ────────────────────────────────────
+function initLangSwitcher() {
+  const sel = document.getElementById('selLangUI');
+  const landBtns = Array.from(document.querySelectorAll('.land-lang-btn'));
+
+  const syncControls = (lang) => {
+    if (sel) sel.value = lang;
+    landBtns.forEach((b) => b.classList.toggle('active', b.dataset.lang === lang));
+  };
+
+  if (sel) sel.addEventListener('change', () => setUILang(sel.value));
+  landBtns.forEach((b) => b.addEventListener('click', () => setUILang(b.dataset.lang)));
+  onLangChange(syncControls);
+  syncControls(getLang());
+
+  // Refresca las partes dinámicas que no se regeneran solas cada frame:
+  // etiquetas del panel de misión y los modales abiertos (mapa / logros).
+  onLangChange(() => {
+    try {
+      if (mLearn && mLearn.mission) {
+        const d = mLearn.mission;
+        $('mpWorldLabel').textContent = t('mission.worldLabel', { n: d.mundo, title: d.titulo });
+        updateHintBtn();
+      }
+      refreshXp();
+      if ($('missionModal').classList.contains('open')) {
+        if (_currentTab === 'logros') renderAchievementsTab(); else openModal();
+      }
+    } catch (_) { /* aún no inicializado */ }
+  });
+}
 
 import StraightBot from '../bots/straight.js';
 import SpinnerBot from '../bots/spinner.js';
@@ -110,20 +145,34 @@ function newMatch() {
   M.salidas = 0; M.resultMsg = ''; M.acc = 0;
   newRound();
 }
+// Traduce las razones que devuelve el motor (strings en español) a la UI activa.
+// Si es una falla de software (código del usuario), se deja tal cual para depurar.
+const REASON_KEYS = {
+  'saliste del ring': 'reason.saliste',
+  'sobreviviste el límite': 'reason.sobreviviste',
+  'doble salida': 'reason.dobleSalida',
+  'tiempo: empate': 'reason.empateTiempo',
+  'tiempo: gana el más centrado': 'reason.centrado',
+};
+function transReason(reason) {
+  if (!reason) return reason;
+  return REASON_KEYS[reason] ? t(REASON_KEYS[reason]) : reason;
+}
+
 function endRound(res) {
   if (res.winner === 'A') M.scoreA++; else if (res.winner === 'B') M.scoreB++;
-  const aName = M.botAName === USER ? 'Tu código' : M.botAName;
-  M.resultMsg = res.winner === 'draw' ? `Empate — ${res.reason}`
-    : `${res.winner === 'A' ? aName : M.botBName} gana el combate — ${res.reason}`;
+  const aName = M.botAName === USER ? t('hud.userCode') : M.botAName;
+  M.resultMsg = res.winner === 'draw' ? t('result.draw', { reason: transReason(res.reason) })
+    : t('result.win', { name: res.winner === 'A' ? aName : M.botBName, reason: transReason(res.reason) });
   if (res.reason && res.reason.includes('falla SW')) logLine(res.reason, 'error');
   M.phase = 'roundend'; M.endTimer = 1.6;
 }
 function advanceMatch() {
   if (M.scoreA >= 2 || M.scoreB >= 2 || M.round >= RULES.ROUNDS) {
     M.phase = 'matchend';
-    const aName = M.botAName === USER ? 'Tu código' : M.botAName;
-    M.resultMsg = M.scoreA > M.scoreB ? `🏆 ${aName} (azul) gana la partida`
-      : M.scoreB > M.scoreA ? `🏆 ${M.botBName} (rojo) gana la partida` : 'Partida empatada';
+    const aName = M.botAName === USER ? t('hud.userCode') : M.botAName;
+    M.resultMsg = M.scoreA > M.scoreB ? t('result.matchWinA', { name: aName })
+      : M.scoreB > M.scoreA ? t('result.matchWinB', { name: M.botBName }) : t('result.matchDraw');
   } else {
     M.round++; M.startPos = (M.startPos % 3) + 1; newRound();
   }
@@ -131,8 +180,8 @@ function advanceMatch() {
 
 function endRoundSolo(res) {
   if (res.reason && res.reason.includes('falla SW')) logLine(res.reason, 'error');
-  if (res.winner === 'out') { M.salidas++; M.resultMsg = `Saliste del ring (salidas: ${M.salidas})`; }
-  else M.resultMsg = 'Sobreviviste el límite de tiempo';
+  if (res.winner === 'out') { M.salidas++; M.resultMsg = t('result.soloOut', { n: M.salidas }); }
+  else M.resultMsg = t('result.soloSurvive');
   M.phase = 'roundend'; M.endTimer = 1.2;
 }
 
@@ -166,27 +215,26 @@ function update(realDt) {
 
 function drawHUD() {
   const st    = M.cur.getState();
-  const aName = M.botAName === USER ? 'Tu código' : M.botAName;
   const solo  = M.mode === 'solo';
   const uA    = st.sA.enemy.distance == null ? '—' : st.sA.enemy.distance.toFixed(0) + ' cm';
 
   if (solo) {
-    $('round').textContent    = 'Libre';
-    $('score').textContent    = `Salidas: ${M.salidas}`;
-    $('startpos').textContent = 'Sin rival';
+    $('round').textContent    = t('hud.free');
+    $('score').textContent    = t('hud.exits', { n: M.salidas });
+    $('startpos').textContent = t('hud.noRival');
     $('stateA').textContent   = `M: L=${st.A.left.toFixed(2)} R=${st.A.right.toFixed(2)}`;
     $('stateB').textContent   = '';
   } else {
     $('round').textContent    = `${M.round} / ${RULES.ROUNDS}`;
     $('score').textContent    = `${M.scoreA} – ${M.scoreB}`;
-    $('startpos').textContent = `Inicio: ${POS_NAME[M.startPos]}`;
+    $('startpos').textContent = t('hud.startPrefix', { pos: t('pos.' + POS_NAME[M.startPos]) });
     const uB = st.sB.enemy.distance == null ? '—' : st.sB.enemy.distance.toFixed(0) + ' cm';
     $('stateA').textContent   = `A  L=${st.A.left.toFixed(2)} R=${st.A.right.toFixed(2)}  📡${uA}`;
     $('stateB').textContent   = `B  L=${st.B.left.toFixed(2)} R=${st.B.right.toFixed(2)}  📡${uB}`;
   }
 
   $('time').textContent         = `${st.tLeft.toFixed(1)} s`;
-  $('result-panel').textContent = M.phase === 'fight' ? (M.paused ? '⏸ Pausado' : '🥊 Combatiendo') : M.resultMsg;
+  $('result-panel').textContent = M.phase === 'fight' ? (M.paused ? t('hud.paused') : t('hud.fighting')) : M.resultMsg;
   $('result').textContent       = M.phase === 'fight' ? '' : M.resultMsg;
   $('speedLabel').textContent   = `×${M.speed.toFixed(2)}`;
 
@@ -197,7 +245,7 @@ function drawHUD() {
   const btn = $('btnRun');
   btn.classList.toggle('running', active);
   btn.classList.toggle('paused',  paused);
-  $('btnRunLabel').textContent = active ? 'Ejecutando…' : paused ? 'En pausa' : 'Ejecutar mi bot';
+  $('btnRunLabel').textContent = active ? t('toolbar.run.active') : paused ? t('toolbar.run.paused') : t('toolbar.run');
 }
 
 let _bcTick = 0;
@@ -316,7 +364,7 @@ async function runPython(codeOverride, etiqueta) {
 function fillSelect(sel, val, includeUser) {
   if (includeUser) {
     const o = document.createElement('option');
-    o.value = USER; o.textContent = 'Tu código'; sel.appendChild(o);
+    o.value = USER; o.textContent = t('hud.userCode'); o.dataset.i18n = 'hud.userCode'; sel.appendChild(o);
   }
   for (const name of Object.keys(BOTS)) {
     const o = document.createElement('option');
@@ -524,7 +572,7 @@ function resetMissionProgress() {
   mLearn.liveStars = 0;
   const pct = $('mpProgressPct'); if (pct) pct.textContent = '0%';
   const fill = $('mpProgressFill'); if (fill) fill.style.width = '0%';
-  const note = $('mpProgressNote'); if (note) note.textContent = 'Pulsa Probar para medir tu avance.';
+  const note = $('mpProgressNote'); if (note) note.textContent = t('mission.progress.note');
   for (let i = 1; i <= 3; i++) {
     const star = $('mpLiveStar' + i);
     if (star) {
@@ -558,7 +606,7 @@ function updateMissionProgress(animate = true) {
   const note = $('mpProgressNote');
   if (note) {
     const next = criteria.find(c => !c.passed);
-    note.textContent = next ? ('Siguiente: ' + next.descripcion) : 'Mision completada. Puedes buscar 3 estrellas.';
+    note.textContent = next ? t('mission.progress.next', { desc: next.descripcion }) : t('mission.progress.done');
   }
 
   for (let i = 1; i <= 3; i++) {
@@ -626,7 +674,7 @@ function showResultOverlay(estrellas, feedback, xpGanado, gemasGanadas, esMejor,
       el.classList.add('earned');
     }
   }
-  $('roTitle').textContent = estrellas === 3 ? '¡Misión perfecta!' : estrellas > 0 ? 'Misión completada' : 'Sigue intentando';
+  $('roTitle').textContent = estrellas === 3 ? t('result.title.perfect') : estrellas > 0 ? t('result.title.done') : t('result.title.retry');
   $('roFeedback').textContent = feedback;
   const xpEl = $('roXp');
   if (xpGanado > 0 && esMejor) { xpEl.textContent = '+' + xpGanado + ' XP'; xpEl.style.display = 'block'; }
@@ -685,8 +733,8 @@ function refreshXp() {
   const mpLbl = $('mpNivelLabel');
   if (mpLbl) {
     mpLbl.textContent = nivel >= NIVELES_XP.length
-      ? '¡Nivel máximo!'
-      : `${xp - cur} / ${next - cur} XP para nivel ${nivel + 1}`;
+      ? t('mission.levelUp.max')
+      : t('mission.level.progress', { cur: xp - cur, next: next - cur, lvl: nivel + 1 });
   }
 }
 
@@ -702,7 +750,7 @@ async function selectMission(id) {
     M._missionLines = 0;
     resetMissionProgress();
 
-    $('mpWorldLabel').textContent = 'Mundo ' + data.mundo + ' · ' + data.titulo;
+    $('mpWorldLabel').textContent = t('mission.worldLabel', { n: data.mundo, title: data.titulo });
     $('mpTitle').textContent = data.titulo;
     $('mpTagline').textContent = data.tagline;
     $('mpObjetivo').textContent = data.objetivo;
@@ -787,7 +835,7 @@ function updateHintBtn() {
   const metrics = mLearn.lastMetrics || { distanceTraveled: 0, totalAngleChange: 0, motorsActivated: false };
   const extra   = mLearn.lastExtra   || { consoleLines: 0, pixelColor: [0,0,0], codigoActual: '' };
   const hint    = getBestHint(mLearn.mission, metrics, extra, mLearn.hintIndex);
-  $('mpHintText').textContent = hint ? 'Ver pista (' + (mLearn.hintIndex + 1) + ')' : 'No hay más pistas';
+  $('mpHintText').textContent = hint ? t('mission.hint.n', { n: mLearn.hintIndex + 1 }) : t('mission.hint.none');
   $('mpHintBtn').disabled = !hint;
 }
 
@@ -917,10 +965,12 @@ const _landing    = $('landing');
 const _sectionChip = $('sectionChip');
 function _setSectionChip(mode) {
   if (mode === 'aprende') {
-    _sectionChip.textContent = 'Aprende';
+    _sectionChip.dataset.i18n = 'header.section.learn';
+    _sectionChip.textContent = t('header.section.learn');
     _sectionChip.classList.add('learn');
   } else {
-    _sectionChip.textContent = 'SumoLab';
+    _sectionChip.dataset.i18n = 'header.section.sumolab';
+    _sectionChip.textContent = t('header.section.sumolab');
     _sectionChip.classList.remove('learn');
   }
 }
@@ -954,7 +1004,7 @@ _landBatalla.onclick = () => {
   if (cta.dataset.busy) return;
   cta.dataset.busy = '1';
   const orig = cta.textContent;
-  cta.textContent = '¡Muy pronto! 🔒';
+  cta.textContent = t('landing.battle.soon');
   _landBatalla.animate?.(
     [{ transform:'translateX(0)' }, { transform:'translateX(-5px)' },
      { transform:'translateX(5px)' }, { transform:'translateX(0)' }],
@@ -1032,7 +1082,7 @@ function drawWorldPath(pathEl, nodes, worldColor) {
 async function openModal() {
   $('missionModal').classList.add('open');
   const mmBody = $('mmBody');
-  mmBody.innerHTML = '<div style="padding:20px;color:var(--muted)">Cargando…</div>';
+  mmBody.innerHTML = '<div style="padding:20px;color:var(--muted)">' + t('map.loading') + '</div>';
   try {
     const worlds = await loadWorlds();
     const progress = getProgress();
@@ -1050,7 +1100,7 @@ async function openModal() {
       hdr.innerHTML =
         '<div class="wm-world-icon">' + (world.icono || '⚡') + '</div>' +
         '<div class="wm-world-info">' +
-          '<div class="wm-world-label">Mundo ' + world.id + '</div>' +
+          '<div class="wm-world-label">' + t('map.world', { n: world.id }) + '</div>' +
           '<div class="wm-world-name">' + world.titulo + '</div>' +
           '<div class="wm-world-sub">' + (world.tagline || '') + '</div>' +
         '</div>';
@@ -1091,7 +1141,7 @@ async function openModal() {
            done     ? ' done'   :
            !unlocked ? ' locked' : ' ready');
         bubble.textContent = unlocked ? (done ? '✓' : mId.split('.')[1]) : '🔒';
-        bubble.title = unlocked ? 'Misión ' + mId : 'Bloqueada';
+        bubble.title = unlocked ? t('map.mission', { id: mId }) : t('map.locked');
         if (unlocked) bubble.onclick = () => goToMission(mId);
         wrap.appendChild(bubble);
 
@@ -1103,7 +1153,7 @@ async function openModal() {
 
         namePromises.push(loadMission(mId).then(d => {
           nameDiv.textContent = d.titulo;
-          if (done && !active) bubble.title = d.titulo + ' (' + mp.estrellas + '★)';
+          if (done && !active) bubble.title = t('map.missionStars', { title: d.titulo, stars: mp.estrellas });
         }).catch(() => {}));
 
         path.appendChild(wrap);
@@ -1117,7 +1167,7 @@ async function openModal() {
       Promise.all(namePromises).then(() => drawWorldPath(path, nodes, world.color || '#a855f7'));
     }
   } catch (e) {
-    mmBody.innerHTML = '<div style="padding:20px;color:var(--err)">Error: ' + (e.message || e) + '</div>';
+    mmBody.innerHTML = '<div style="padding:20px;color:var(--err)">' + t('map.error', { msg: e.message || e }) + '</div>';
   }
 }
 
@@ -1156,11 +1206,9 @@ function nextToast() {
 
 // ── Level-up overlay ─────────────────────────────────
 
-const NIVEL_MSGS = ['', 'Buen comienzo', '¡Ya tienes ritmo!', 'Vas por buen camino', 'Casi un experto', 'Nivel máximo 🏆'];
-
 function showLevelUp(nivel) {
   $('luNum').textContent = nivel;
-  $('luMsg').textContent = NIVEL_MSGS[nivel] || '¡Increíble!';
+  $('luMsg').textContent = (nivel >= 1 && nivel <= 5) ? t('levelup.msg.' + nivel) : t('levelup.msg.more');
   const el = $('levelUpOverlay');
   el.classList.add('show');
   SFX.unlock();
@@ -1171,7 +1219,7 @@ function showLevelUp(nivel) {
 
 async function renderAchievementsTab() {
   const body = $('mmBodyLogros');
-  body.innerHTML = '<div style="padding:20px;color:var(--muted)">Cargando…</div>';
+  body.innerHTML = '<div style="padding:20px;color:var(--muted)">' + t('map.loading') + '</div>';
   try {
     const [todos, progress] = await Promise.all([loadAchievements(), Promise.resolve(getProgress())]);
     const earned = progress.logros || [];
@@ -1193,7 +1241,7 @@ async function renderAchievementsTab() {
     }
     body.appendChild(grid);
   } catch (e) {
-    body.innerHTML = '<div style="padding:20px;color:var(--err)">Error: ' + (e.message || e) + '</div>';
+    body.innerHTML = '<div style="padding:20px;color:var(--err)">' + t('map.error', { msg: e.message || e }) + '</div>';
   }
 }
 

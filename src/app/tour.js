@@ -8,6 +8,8 @@
 // recorrido.
 // ======================================================
 
+import { t } from './i18n.js';
+
 let overlayEl = null;
 let steps = [];
 let stepIndex = 0;
@@ -29,9 +31,9 @@ function buildOverlay() {
       '<div class="tour-tooltip-foot">' +
         '<span class="tour-tooltip-count"></span>' +
         '<div class="tour-tooltip-actions">' +
-          '<button class="tour-skip">Saltar</button>' +
-          '<button class="tour-prev">Anterior</button>' +
-          '<button class="tour-next">Siguiente</button>' +
+          '<button class="tour-skip">' + t('tour.skip') + '</button>' +
+          '<button class="tour-prev">' + t('tour.prev') + '</button>' +
+          '<button class="tour-next">' + t('tour.next') + '</button>' +
         '</div>' +
       '</div>' +
     '</div>';
@@ -89,11 +91,11 @@ function renderStep() {
   if (!target) { goTo(stepIndex + 1); return; } // el elemento no existe ahora mismo: saltar
   const rect = target.getBoundingClientRect();
   positionMasks(rect);
-  overlayEl.querySelector('.tour-tooltip-title').textContent = step.title;
-  overlayEl.querySelector('.tour-tooltip-text').textContent = step.text;
+  overlayEl.querySelector('.tour-tooltip-title').textContent = step.titleKey ? t(step.titleKey) : step.title;
+  overlayEl.querySelector('.tour-tooltip-text').textContent = step.textKey ? t(step.textKey) : step.text;
   overlayEl.querySelector('.tour-tooltip-count').textContent = (stepIndex + 1) + ' / ' + steps.length;
   overlayEl.querySelector('.tour-prev').style.visibility = stepIndex === 0 ? 'hidden' : 'visible';
-  overlayEl.querySelector('.tour-next').textContent = stepIndex === steps.length - 1 ? 'Finalizar' : 'Siguiente';
+  overlayEl.querySelector('.tour-next').textContent = stepIndex === steps.length - 1 ? t('tour.finish') : t('tour.next');
   positionTooltip(rect, step.placement || 'bottom');
   target.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   const advanceOn = step.advanceOn || (step.selector === '#btnLearn' || step.selector === '#mmBody' ? 'click' : null);
@@ -144,42 +146,42 @@ export function endTour() {
 // ── Contenido de los tutoriales v1 ──────────────────────────────────────
 
 export const TOUR_INTERFAZ = [
-  { selector: '.menubar', title: 'Barra de menú', text: 'Desde aquí controlas qué ventanas se ven, la apariencia de la app y los tutoriales.', placement: 'bottom' },
-  { selector: '#btnPaint', title: 'Pintar tu sumobot', text: 'Personaliza el diseño de la tapa de tu robot.', placement: 'bottom' },
-  { selector: '#btnLearn', title: 'Modo Aprender', text: 'Cambia entre SumoLab libre y misiones guiadas paso a paso.', placement: 'bottom' },
-  { selector: '.dock-zone[data-zone="left"] .dock-tabstrip', title: 'Editor y consola', text: 'Aquí escribes tu código (Python, pyblock, JS o C++) y ves lo que imprime tu programa.', placement: 'right' },
-  { selector: '.dock-zone[data-zone="center"]', title: 'Arena 3D', text: 'Observa la simulación de combate en tiempo real.', placement: 'left' },
-  { selector: '.dock-zone[data-zone="right"]', title: 'Panel de control', text: 'Ajusta bots rivales, velocidad y modo de juego.', placement: 'left' },
+  { selector: '.menubar', titleKey: 'tour.interfaz.1.title', textKey: 'tour.interfaz.1.text', placement: 'bottom' },
+  { selector: '#btnPaint', titleKey: 'tour.interfaz.2.title', textKey: 'tour.interfaz.2.text', placement: 'bottom' },
+  { selector: '#btnLearn', titleKey: 'tour.interfaz.3.title', textKey: 'tour.interfaz.3.text', placement: 'bottom' },
+  { selector: '.dock-zone[data-zone="left"] .dock-tabstrip', titleKey: 'tour.interfaz.4.title', textKey: 'tour.interfaz.4.text', placement: 'right' },
+  { selector: '.dock-zone[data-zone="center"]', titleKey: 'tour.interfaz.5.title', textKey: 'tour.interfaz.5.text', placement: 'left' },
+  { selector: '.dock-zone[data-zone="right"]', titleKey: 'tour.interfaz.6.title', textKey: 'tour.interfaz.6.text', placement: 'left' },
 ];
 
 export const TOUR_PYBLOCK = [
-  { selector: '#selLang', title: 'Elige pyblock', text: 'Abre este selector y cambia el lenguaje a pyblock para usar bloques en vez de escribir Python.', placement: 'bottom' },
-  { selector: '#blocksEditor', title: 'Editor pyblock', text: 'Este es el espacio donde armas tu programa arrastrando bloques.', placement: 'right' },
-  { selector: '#blocksEditor .blocklyToolboxDiv', title: 'Categorias', text: 'Las categorias agrupan bloques: Motores, LED y tiempo, Sensores, Control, Logica y Numeros.', placement: 'right' },
-  { selector: '#blocksEditor .blocklyTreeRow', title: 'Abrir una categoria', text: 'Haz clic en una categoria para ver sus bloques disponibles.', placement: 'right' },
-  { selector: '#blocksEditor .blocklyFlyout', title: 'Agregar un bloque', text: 'Arrastra un bloque desde esta bandeja hacia el area central y conectalo debajo de INICIO.', placement: 'right' },
-  { selector: '#sbGuide', title: 'Guia de mision', text: 'En Aprender, esta guia te muestra bloques nuevos, para que sirven y los pasos de la mision. Puedes minimizarla.', placement: 'left' },
-  { selector: '#sbPreviewBtn', title: 'Ver codigo', text: 'Este boton muestra el CircuitPython generado por tus bloques.', placement: 'top' },
+  { selector: '#selLang', titleKey: 'tour.pyblock.1.title', textKey: 'tour.pyblock.1.text', placement: 'bottom' },
+  { selector: '#blocksEditor', titleKey: 'tour.pyblock.2.title', textKey: 'tour.pyblock.2.text', placement: 'right' },
+  { selector: '#blocksEditor .blocklyToolboxDiv', titleKey: 'tour.pyblock.3.title', textKey: 'tour.pyblock.3.text', placement: 'right' },
+  { selector: '#blocksEditor .blocklyTreeRow', titleKey: 'tour.pyblock.4.title', textKey: 'tour.pyblock.4.text', placement: 'right' },
+  { selector: '#blocksEditor .blocklyFlyout', titleKey: 'tour.pyblock.5.title', textKey: 'tour.pyblock.5.text', placement: 'right' },
+  { selector: '#sbGuide', titleKey: 'tour.pyblock.6.title', textKey: 'tour.pyblock.6.text', placement: 'left' },
+  { selector: '#sbPreviewBtn', titleKey: 'tour.pyblock.7.title', textKey: 'tour.pyblock.7.text', placement: 'top' },
 ];
 
 export const TOUR_PINTAR_BOT = [
-  { selector: '#paintEditor .pe-title', title: 'Editor de pintura', text: 'Aqui personalizas la apariencia del sumobot virtual. Puedes pintar directamente sobre el modelo 3D o usar la vista 2D desplegada.', placement: 'bottom' },
-  { selector: '#peView3d', title: 'Vista 3D', text: 'Esta vista sirve para pintar el robot como lo verias en la arena. Clic izquierdo pinta, clic derecho gira y la rueda hace zoom.', placement: 'bottom' },
-  { selector: '#peViewport3d', title: 'Lienzo del robot', text: 'Pasa el cursor sobre una pieza y pinta encima. El editor detecta la superficie del modelo y coloca el color en la textura correcta.', placement: 'left' },
-  { selector: '#peRail', title: 'Herramientas', text: 'Usa pincel, goma, balde, figuras, difuminar, arrastrar color o gotero segun el tipo de diseno que quieras hacer.', placement: 'right' },
-  { selector: '#peBrush', title: 'Pincel', text: 'El pincel es la herramienta basica para dibujar lineas y detalles. Si quieres borrar, cambia a Goma.', placement: 'right' },
-  { selector: '#peColorPicker', title: 'Color', text: 'Elige el color con el selector, escribe un valor hexadecimal o guarda colores frecuentes como muestras.', placement: 'left' },
-  { selector: '#peSize', title: 'Tamano del trazo', text: 'Ajusta el tamano, dureza, opacidad y espaciado para pasar de trazos finos a areas grandes.', placement: 'left' },
-  { selector: '#peMirror', title: 'Espejo', text: 'Activa Espejo para pintar simetricamente. Es util para patrones iguales en ambos lados del robot.', placement: 'right' },
-  { selector: '#peView2d', title: 'Vista 2D', text: 'La vista 2D muestra las piezas desplegadas. Sirve para limpiar bordes, trabajar por pieza o hacer detalles mas precisos.', placement: 'bottom' },
-  { selector: '#pePartsList', title: 'Piezas', text: 'Toca una pieza para enfocarla en 2D. Asi puedes pintar tapa, laterales u otras superficies por separado.', placement: 'left' },
-  { selector: '#peApply', title: 'Aplicar al robot', text: 'Cuando el diseno te guste, pulsa Aplicar al robot para verlo en el sumobot de la simulacion.', placement: 'bottom' },
-  { selector: '#peClose', title: 'Cerrar', text: 'Cierra el editor para volver al laboratorio. El ultimo diseno aplicado queda visible en la arena.', placement: 'left' },
+  { selector: '#paintEditor .pe-title', titleKey: 'tour.paint.1.title', textKey: 'tour.paint.1.text', placement: 'bottom' },
+  { selector: '#peView3d', titleKey: 'tour.paint.2.title', textKey: 'tour.paint.2.text', placement: 'bottom' },
+  { selector: '#peViewport3d', titleKey: 'tour.paint.3.title', textKey: 'tour.paint.3.text', placement: 'left' },
+  { selector: '#peRail', titleKey: 'tour.paint.4.title', textKey: 'tour.paint.4.text', placement: 'right' },
+  { selector: '#peBrush', titleKey: 'tour.paint.5.title', textKey: 'tour.paint.5.text', placement: 'right' },
+  { selector: '#peColorPicker', titleKey: 'tour.paint.6.title', textKey: 'tour.paint.6.text', placement: 'left' },
+  { selector: '#peSize', titleKey: 'tour.paint.7.title', textKey: 'tour.paint.7.text', placement: 'left' },
+  { selector: '#peMirror', titleKey: 'tour.paint.8.title', textKey: 'tour.paint.8.text', placement: 'right' },
+  { selector: '#peView2d', titleKey: 'tour.paint.9.title', textKey: 'tour.paint.9.text', placement: 'bottom' },
+  { selector: '#pePartsList', titleKey: 'tour.paint.10.title', textKey: 'tour.paint.10.text', placement: 'left' },
+  { selector: '#peApply', titleKey: 'tour.paint.11.title', textKey: 'tour.paint.11.text', placement: 'bottom' },
+  { selector: '#peClose', titleKey: 'tour.paint.12.title', textKey: 'tour.paint.12.text', placement: 'left' },
 ];
 
 export const TOUR_PRIMERA_MISION = [
-  { selector: '#btnLearn', title: 'Entra a Aprender', text: 'Haz clic aquí para ver el mapa de misiones a pantalla completa.', placement: 'bottom' },
-  { selector: '#mmBody', title: 'Elige una misión', text: 'Toca el primer círculo desbloqueado del mapa para empezar.', placement: 'top' },
-  { selector: '#mpRunBtn', title: 'Prueba tu código', text: 'Cuando tengas tu misión abierta, este botón compila y corre tu robot.', placement: 'left' },
-  { selector: '#roStar1', title: 'Resultado', text: 'Al terminar la prueba verás cuántas estrellas ganaste y el XP/gemas.', placement: 'top' },
+  { selector: '#btnLearn', titleKey: 'tour.primera.1.title', textKey: 'tour.primera.1.text', placement: 'bottom' },
+  { selector: '#mmBody', titleKey: 'tour.primera.2.title', textKey: 'tour.primera.2.text', placement: 'top' },
+  { selector: '#mpRunBtn', titleKey: 'tour.primera.3.title', textKey: 'tour.primera.3.text', placement: 'left' },
+  { selector: '#roStar1', titleKey: 'tour.primera.4.title', textKey: 'tour.primera.4.text', placement: 'top' },
 ];

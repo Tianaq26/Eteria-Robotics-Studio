@@ -12,23 +12,24 @@
 
 import { ideaBoard, STATES } from '../device/ideaBoard.js';
 import { showPanel } from './dock/dockManager.js';
+import { t, onLangChange } from './i18n.js';
 
 const $ = (id) => document.getElementById(id);
 
 // Texto del botón (una acción) vs. el estado de los paneles (un estado).
 const BTN_LABEL = {
-  [STATES.DISCONNECTED]: 'Conectar IdeaBoard',
-  [STATES.CONNECTING]: 'Conectando…',
-  [STATES.CONNECTED]: 'Desconectar IdeaBoard',
-  [STATES.UPLOADING]: 'Subiendo…',
-  [STATES.ERROR]: 'Reintentar conexión',
+  [STATES.DISCONNECTED]: 'device.btn.disconnected',
+  [STATES.CONNECTING]: 'device.btn.connecting',
+  [STATES.CONNECTED]: 'device.btn.connected',
+  [STATES.UPLOADING]: 'device.btn.uploading',
+  [STATES.ERROR]: 'device.btn.error',
 };
 const STATUS_LABEL = {
-  [STATES.DISCONNECTED]: 'Desconectado',
-  [STATES.CONNECTING]: 'Conectando…',
-  [STATES.CONNECTED]: 'Conectado',
-  [STATES.UPLOADING]: 'Subiendo…',
-  [STATES.ERROR]: 'Error de conexión',
+  [STATES.DISCONNECTED]: 'device.status.disconnected',
+  [STATES.CONNECTING]: 'device.status.connecting',
+  [STATES.CONNECTED]: 'device.status.connected',
+  [STATES.UPLOADING]: 'device.status.uploading',
+  [STATES.ERROR]: 'device.status.error',
 };
 
 const ERROR_LINE_RE = /traceback|error:|exception/i;
@@ -41,9 +42,9 @@ function formatSize(bytes) {
 
 function timeAgo(ms) {
   const s = Math.max(0, Math.round((Date.now() - ms) / 1000));
-  if (s < 2) return 'justo ahora';
-  if (s < 60) return 'hace ' + s + ' s';
-  return 'hace ' + Math.round(s / 60) + ' min';
+  if (s < 2) return t('device.time.now');
+  if (s < 60) return t('device.time.sec', { n: s });
+  return t('device.time.min', { n: Math.round(s / 60) });
 }
 
 export function initDeviceUI({ getUploadCode, openDeviceFile, notify }) {
@@ -60,11 +61,15 @@ export function initDeviceUI({ getUploadCode, openDeviceFile, notify }) {
   if (!btn) return; // el markup del panel no está en esta página
 
   if (!ideaBoard.isSupported) {
+    const applyUnsupported = () => {
+      btn.title = t('device.unsupported.title');
+      if (statusEl) statusEl.textContent = t('device.unsupported.status');
+      if (filesStatusEl) filesStatusEl.textContent = t('device.unsupported.files');
+    };
     btn.disabled = true;
-    btn.title = 'Tu navegador no soporta Web Serial. Usa Chrome o Edge de escritorio para conectar la IdeaBoard.';
-    if (statusEl) statusEl.textContent = 'No disponible en este navegador (usa Chrome/Edge de escritorio).';
-    if (filesStatusEl) filesStatusEl.textContent = 'No disponible en este navegador.';
+    applyUnsupported();
     if (uploadBtn) uploadBtn.disabled = true;
+    onLangChange(applyUnsupported);
     return;
   }
 
@@ -72,13 +77,13 @@ export function initDeviceUI({ getUploadCode, openDeviceFile, notify }) {
 
   function render() {
     const labelEl = $('btnConnectLabel');
-    if (labelEl) labelEl.textContent = BTN_LABEL[ideaBoard.state] || ideaBoard.state;
+    if (labelEl) labelEl.textContent = BTN_LABEL[ideaBoard.state] ? t(BTN_LABEL[ideaBoard.state]) : ideaBoard.state;
     btn.classList.toggle('running', ideaBoard.state === STATES.CONNECTED);
     btn.classList.toggle('paused', ideaBoard.state === STATES.CONNECTING || ideaBoard.state === STATES.UPLOADING);
     btn.classList.toggle('device-error', ideaBoard.state === STATES.ERROR);
     if (uploadBtn) uploadBtn.disabled = ideaBoard.state !== STATES.CONNECTED;
 
-    const status = STATUS_LABEL[ideaBoard.state] || ideaBoard.state;
+    const status = STATUS_LABEL[ideaBoard.state] ? t(STATUS_LABEL[ideaBoard.state]) : ideaBoard.state;
     const full = status + (ideaBoard.error ? ' — ' + ideaBoard.error : '');
     if (statusEl) statusEl.textContent = full;
     if (filesStatusEl) filesStatusEl.textContent = full;
@@ -108,40 +113,40 @@ export function initDeviceUI({ getUploadCode, openDeviceFile, notify }) {
   setInterval(() => {
     if (!activityEl) return;
     activityEl.textContent = (ideaBoard.state === STATES.CONNECTED && lastActivityAt)
-      ? '· última actividad ' + timeAgo(lastActivityAt) : '';
+      ? '· ' + t('device.activity', { ago: timeAgo(lastActivityAt) }) : '';
   }, 1000);
 
   // ── Archivos del robot ──
   async function refreshFiles() {
     if (!filesListEl) return;
     if (ideaBoard.state !== STATES.CONNECTED) {
-      filesListEl.innerHTML = '<div class="proj-empty">Conecta la IdeaBoard para ver sus archivos.</div>';
+      filesListEl.innerHTML = '<div class="proj-empty">' + t('device.files.connect') + '</div>';
       return;
     }
     let entries;
     try { entries = await ideaBoard.listFiles(); }
-    catch (e) { filesListEl.innerHTML = '<div class="proj-empty">Error al listar archivos: ' + ((e && e.message) || e) + '</div>'; return; }
+    catch (e) { filesListEl.innerHTML = '<div class="proj-empty">' + t('device.files.error', { err: (e && e.message) || e }) + '</div>'; return; }
 
-    filesListEl.innerHTML = entries.length ? '' : '<div class="proj-empty">No hay archivos en la IdeaBoard.</div>';
+    filesListEl.innerHTML = entries.length ? '' : '<div class="proj-empty">' + t('device.files.none') + '</div>';
     for (const entry of entries) {
       const row = document.createElement('div');
       row.className = 'proj-item device-file-item' + (entry.kind === 'directory' ? ' directory' : '');
       row.innerHTML =
         '<div class="proj-item-main">' +
           '<div class="proj-item-name">' + entry.name + '</div>' +
-          '<div class="proj-item-date">' + (entry.kind === 'directory' ? 'Carpeta' : formatSize(entry.size)) + '</div>' +
+          '<div class="proj-item-date">' + (entry.kind === 'directory' ? t('device.files.folder') : formatSize(entry.size)) + '</div>' +
         '</div>' +
         (entry.kind === 'file'
-          ? '<button class="proj-item-del" data-act="download" title="Descargar">⬇</button>' +
-            '<button class="proj-item-del" data-act="delete" title="Eliminar">✕</button>'
+          ? '<button class="proj-item-del" data-act="download" title="' + t('device.file.download') + '">⬇</button>' +
+            '<button class="proj-item-del" data-act="delete" title="' + t('device.file.delete') + '">✕</button>'
           : '');
       if (entry.kind === 'file') {
         row.querySelector('.proj-item-main').onclick = async () => {
           try {
             const content = await ideaBoard.readFile(entry.name);
             if (openDeviceFile) openDeviceFile(entry.name, content);
-            notify('📄 ' + entry.name + ' cargado en el editor.', 'ok');
-          } catch (e) { notify('✗ No se pudo abrir ' + entry.name + ': ' + ((e && e.message) || e), 'error'); }
+            notify(t('device.notify.opened', { name: entry.name }), 'ok');
+          } catch (e) { notify(t('device.notify.openFail', { name: entry.name, err: (e && e.message) || e }), 'error'); }
         };
         row.querySelector('[data-act="download"]').onclick = async (ev) => {
           ev.stopPropagation();
@@ -151,13 +156,13 @@ export function initDeviceUI({ getUploadCode, openDeviceFile, notify }) {
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob); a.download = entry.name;
             a.click(); URL.revokeObjectURL(a.href);
-          } catch (e) { notify('✗ No se pudo descargar ' + entry.name + ': ' + ((e && e.message) || e), 'error'); }
+          } catch (e) { notify(t('device.notify.downloadFail', { name: entry.name, err: (e && e.message) || e }), 'error'); }
         };
         row.querySelector('[data-act="delete"]').onclick = async (ev) => {
           ev.stopPropagation();
-          if (!window.confirm('¿Eliminar "' + entry.name + '" de la IdeaBoard? Esta acción no se puede deshacer.')) return;
-          try { await ideaBoard.deleteFile(entry.name); await refreshFiles(); notify('🗑 ' + entry.name + ' eliminado de la IdeaBoard.', 'ok'); }
-          catch (e) { notify('✗ No se pudo eliminar ' + entry.name + ': ' + ((e && e.message) || e), 'error'); }
+          if (!window.confirm(t('device.confirm.delete', { name: entry.name }))) return;
+          try { await ideaBoard.deleteFile(entry.name); await refreshFiles(); notify(t('device.notify.deleted', { name: entry.name }), 'ok'); }
+          catch (e) { notify(t('device.notify.deleteFail', { name: entry.name, err: (e && e.message) || e }), 'error'); }
         };
       }
       filesListEl.appendChild(row);
@@ -167,14 +172,14 @@ export function initDeviceUI({ getUploadCode, openDeviceFile, notify }) {
 
   ideaBoard.onStateChange((state, error) => {
     render();
-    if (state === STATES.ERROR && error) notify('✗ IdeaBoard: ' + error, 'error');
+    if (state === STATES.ERROR && error) notify(t('device.notify.error', { err: error }), 'error');
     else if (state === STATES.CONNECTED) {
-      notify('🔌 IdeaBoard conectada.', 'ok');
+      notify(t('device.notify.connected'), 'ok');
       showPanel('serial');
       showPanel('deviceFiles');
       refreshFiles();
     } else if (state === STATES.DISCONNECTED) {
-      if (error) notify('🔌 ' + error, 'warn');
+      if (error) notify(t('device.notify.disconnected', { err: error }), 'warn');
       refreshFiles();
     }
   });
@@ -188,13 +193,13 @@ export function initDeviceUI({ getUploadCode, openDeviceFile, notify }) {
   if (uploadBtn) {
     uploadBtn.onclick = async () => {
       const code = getUploadCode();
-      if (code == null) { notify('✗ El lenguaje actual no genera CircuitPython. Cambia a 🐍 Python o 🧩 pyblock para subir al robot.', 'error'); return; }
+      if (code == null) { notify(t('device.notify.uploadNoPy'), 'error'); return; }
       try {
         await ideaBoard.upload(code);
-        notify('⬆ Código subido a la IdeaBoard (code.py). Ejecutando…', 'ok');
+        notify(t('device.notify.uploaded'), 'ok');
         refreshFiles();
       } catch (e) {
-        notify('✗ Error al subir: ' + ((e && e.message) || e), 'error');
+        notify(t('device.notify.uploadFail', { err: (e && e.message) || e }), 'error');
       }
     };
   }
@@ -215,4 +220,7 @@ export function initDeviceUI({ getUploadCode, openDeviceFile, notify }) {
 
   render();
   refreshFiles();
+
+  // Re-traduce etiquetas persistentes y la lista de archivos al cambiar idioma.
+  onLangChange(() => { render(); refreshFiles(); });
 }

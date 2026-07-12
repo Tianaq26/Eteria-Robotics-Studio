@@ -13,6 +13,12 @@
 
 import { PANELS, getPanel } from './panels.js';
 import { mobileMql } from '../../shared/mobileMedia.js';
+import { t, onLangChange } from '../i18n.js';
+
+// Título visible de un panel en el idioma activo (cae a su título literal).
+function panelTitle(def) {
+  return def && def.titleKey ? t(def.titleKey) : (def ? def.title : '');
+}
 
 const LAYOUT_KEY = 'sumobot_layout_v1';
 const ZONE_IDS = ['left', 'center', 'right', 'bottom'];
@@ -98,8 +104,8 @@ function renderZone(zoneId) {
     tab.dataset.zone = zoneId;
     tab.innerHTML =
       '<span class="dock-tab-icon">' + (def.icon || '') + '</span>' +
-      '<span class="dock-tab-title">' + def.title + '</span>' +
-      '<span class="dock-tab-close" title="Cerrar">✕</span>';
+      '<span class="dock-tab-title">' + panelTitle(def) + '</span>' +
+      '<span class="dock-tab-close" title="' + t('dock.close') + '">✕</span>';
     tab.addEventListener('click', (ev) => {
       if (ev.target.closest('.dock-tab-close')) return;
       setActive(zoneId, id);
@@ -128,7 +134,7 @@ function renderZone(zoneId) {
   if (!z.panelIds.length) {
     const empty = document.createElement('div');
     empty.className = 'dock-empty';
-    empty.textContent = 'Sin paneles — ábrelos desde el menú Ventanas.';
+    empty.textContent = t('dock.empty');
     content.appendChild(empty);
   }
 }
@@ -188,7 +194,7 @@ export function restoreDefaultLayout() {
 }
 
 export function getPanelList() {
-  return PANELS.map((p) => ({ id: p.id, title: p.title, icon: p.icon, visible: isVisible(p.id) }));
+  return PANELS.map((p) => ({ id: p.id, title: panelTitle(p), icon: p.icon, visible: isVisible(p.id) }));
 }
 
 // ── Tamaños de zona (ancho left/right, alto bottom) ─────────────────────
@@ -298,7 +304,7 @@ function onTabPointerMove(e, tabEl) {
     dragGhost = document.createElement('div');
     dragGhost.className = 'dock-drag-ghost';
     const def = getPanel(dragState.panelId);
-    dragGhost.textContent = (def.icon || '') + ' ' + def.title;
+    dragGhost.textContent = (def.icon || '') + ' ' + panelTitle(def);
     document.body.appendChild(dragGhost);
   }
   dragGhost.style.left = e.clientX + 'px';
@@ -398,7 +404,7 @@ function renderMobileZone(key) {
     tab.className = 'dock-tab' + (def.id === activeId ? ' active' : '');
     tab.innerHTML =
       '<span class="dock-tab-icon">' + (def.icon || '') + '</span>' +
-      '<span class="dock-tab-title">' + def.title + '</span>';
+      '<span class="dock-tab-title">' + panelTitle(def) + '</span>';
     tab.addEventListener('click', () => setMobileActive(key, def.id));
     tabstrip.appendChild(tab);
   }
@@ -532,4 +538,7 @@ export function initDock(rootEl) {
   window.addEventListener('resize', applySizes);
 
   initMobileDock(document.getElementById('dockRootMobile'));
+
+  // Re-renderiza las pestañas (títulos de panel) al cambiar de idioma.
+  onLangChange(() => { renderAll(); renderMobileAll(); });
 }

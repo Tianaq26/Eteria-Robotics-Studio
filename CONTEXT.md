@@ -184,6 +184,36 @@ en producción (silenciosamente, porque en local no se nota):
 
 ---
 
+## Internacionalización (español / inglés)
+
+`src/app/i18n.js` es un i18n ligero **sin dependencias ni build**: un diccionario plano
+`MESSAGES = { es: {...}, en: {...} }` con claves con puntos por área (`landing.*`, `header.*`,
+`toolbar.*`, `panel.*`, `mission.*`, `map.*`, `paint.*`, `menu.*`, `tour.*`, `device.*`, …).
+
+- **`t(key, params?)`** devuelve el texto del idioma activo; interpola `{x}` con `params`; cae
+  al español y luego a la propia clave si falta.
+- **HTML estático** (`index.html`): se anota con `data-i18n` (textContent), `data-i18n-html`
+  (innerHTML, para texto con `<b>`), `data-i18n-title`, `data-i18n-placeholder`, `data-i18n-aria`.
+  `applyStaticTranslations()` recorre esos atributos y traduce.
+- **UI dinámica** (generada en JS): `main.js`, `menubar.js`, `dockManager.js`, `panels.js`,
+  `tour.js` y `deviceUI.js` llaman a `t()` y se **re-renderizan** al escuchar el evento
+  `eteria:langchange` vía `onLangChange(cb)`. El HUD (`drawHUD`) ya corre cada frame, así que se
+  traduce solo; el panel de misión, el dock, el menú y los estados del dispositivo se refrescan en
+  el handler de cambio de idioma.
+- **`setLang(lang)`** persiste en `localStorage` (`eteria_lang`), fija `<html lang>`, re-aplica el
+  HTML estático y emite el evento. El idioma inicial sale de `localStorage` → `navigator.language`
+  → `es` por defecto.
+- **Interruptor**: `<select id="selLangUI">` en el header y un toggle ES/EN en la landing
+  (`.land-lang`), ambos cableados en `initLangSwitcher()` (`main.js`).
+- **Cuidado con nombres**: `main.js` ya tenía `setLang()` para el *lenguaje de programación*
+  (py/js/blocks/cpp); el de i18n se importa como `setUILang` para no colisionar.
+- **Fuera de alcance (queda en español, es contenido/datos, no chrome):** la narrativa/objetivos
+  de las misiones (`content/**/*.json`), títulos/descripciones de logros, el texto de las pistas,
+  los mensajes internos del motor (`engine.js` — se traduce solo el envoltorio del resultado vía
+  `transReason()` en `main.js`), los mensajes de log de diagnóstico verbosos de la consola y los
+  bloques nativos de Blockly (pyblock carga `msg/es.js` en el `<head>`). Para traducir contenido
+  después, añadir campos por idioma a los JSON o cargar `msg/en.js` y conmutar el locale de Blockly.
+
 ## SEO
 
 `index.html` tiene meta description, `robots`, `canonical`, Open Graph/Twitter, JSON-LD
